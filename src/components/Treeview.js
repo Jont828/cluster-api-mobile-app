@@ -9,10 +9,8 @@ import TreeView from "react-native-animated-tree-view";
 const Treeview = (props) => {
   return (
     <View>
-      {/* <TreeView data={data} /> */}
       <View style={styles.wrapper}>
         <Title>Cluster Infrastructure</Title>
-        {/* <Native.Button> */}
         <Card style={styles.card} onPress={() => { }}>
           <Card.Title title="AzureCluster" subtitle="my-cluster" style={styles.title} subtitleStyle={styles.name} />
           <View style={styles.leftWrap}>
@@ -21,7 +19,73 @@ const Treeview = (props) => {
             <Icon name="chevron-right" style={styles.chevron}></Icon>
           </View>
         </Card>
-        {/* </Native.Button> */}
+      </View>
+
+      <View style={styles.wrapper}>
+        <Title>Control Plane</Title>
+        <Card style={styles.card} onPress={() => { }}>
+          <Card.Title title="KubeadmControlPlane" subtitle="my-cluster" style={styles.title} subtitleStyle={styles.name} />
+          <View style={styles.leftWrap}>
+          </View>
+          <View style={styles.chevronWrap}>
+            <Icon name="chevron-right" style={styles.chevron}></Icon>
+          </View>
+        </Card>
+        <Card style={[styles.card, styles.indent1]} onPress={() => { }}>
+          <Card.Title title="3 Machines" subtitle="[Put something here?]" style={styles.title} subtitleStyle={styles.name} />
+          <View style={styles.leftWrap}>
+          </View>
+          <View style={styles.chevronWrap}>
+            <Icon name="chevron-right" style={styles.chevron}></Icon>
+          </View>
+        </Card>
+        <Card style={[styles.card, styles.indent1]} onPress={() => { }}>
+          <Card.Title title="AzureMachineTemplate" subtitle="my-cluster" style={styles.title} subtitleStyle={styles.name} />
+          <View style={styles.leftWrap}>
+          </View>
+          <View style={styles.chevronWrap}>
+            <Icon name="chevron-right" style={styles.chevron}></Icon>
+          </View>
+        </Card>
+      </View>
+
+      <View style={styles.wrapper}>
+        <Title>Machine Deployments</Title>
+        <Card style={styles.card} onPress={() => { }}>
+          <Card.Title title="MachineDeployment" subtitle="my-cluster" style={styles.title} subtitleStyle={styles.name} />
+          <View style={styles.leftWrap}>
+          </View>
+          <View style={styles.chevronWrap}>
+            <Icon name="chevron-right" style={styles.chevron}></Icon>
+          </View>
+        </Card>
+        <Card style={[styles.card, styles.indent1]} onPress={() => { }}>
+          <Card.Title title="AzureMachineTemplate" subtitle="my-cluster" style={styles.title} subtitleStyle={styles.name} />
+          <View style={styles.leftWrap}>
+          </View>
+          <View style={styles.chevronWrap}>
+            <Icon name="chevron-right" style={styles.chevron}></Icon>
+          </View>
+        </Card>
+      </View>
+      <View style={styles.wrapper}>
+        <Title>Machine Pools</Title>
+        <Card style={styles.card} onPress={() => { }}>
+          <Card.Title title="MachineDeployment" subtitle="my-cluster" style={styles.title} subtitleStyle={styles.name} />
+          <View style={styles.leftWrap}>
+          </View>
+          <View style={styles.chevronWrap}>
+            <Icon name="chevron-right" style={styles.chevron}></Icon>
+          </View>
+        </Card>
+        <Card style={[styles.card, styles.indent1]} onPress={() => { }}>
+          <Card.Title title="AzureMachineTemplate" subtitle="my-cluster" style={styles.title} subtitleStyle={styles.name} />
+          <View style={styles.leftWrap}>
+          </View>
+          <View style={styles.chevronWrap}>
+            <Icon name="chevron-right" style={styles.chevron}></Icon>
+          </View>
+        </Card>
       </View>
 
     </View >
@@ -56,8 +120,12 @@ const styles = StyleSheet.create({
     // width: '100%',
     // height: '100%',
     // margin: 0,
+    height: 70,
     marginTop: 10,
     marginBottom: 10,
+  },
+  indent1: {
+    marginLeft: 20,
   },
   accordion: {
     // backgroundColor: 'red',

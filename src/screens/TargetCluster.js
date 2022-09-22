@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, ScrollView } from 'react-native';
 import { List } from 'react-native-paper';
 import { Avatar, Button, Card } from 'react-native-paper';
 import { Caption, Headline, Paragraph, Subheading, Text, Title } from 'react-native-paper';
@@ -11,11 +11,9 @@ const TargetCluster = (props) => {
 
   const handlePress = () => setExpanded(!expanded);
   return (
-    <View>
-      <View style={styles.wrapper}>
-        <Treeview></Treeview>
-      </View>
-    </View>
+    <ScrollView style={styles.wrapper}>
+      <Treeview></Treeview>
+    </ScrollView>
   );
 }
 
@@ -23,7 +21,7 @@ export default TargetCluster;
 
 const styles = StyleSheet.create({
   wrapper: {
-    margin: 10,
+    padding: 10
   },
   card: {
     marginTop: 10,
