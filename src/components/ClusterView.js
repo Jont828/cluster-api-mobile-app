@@ -9,21 +9,41 @@ import TreeView from "react-native-animated-tree-view";
 const Cluster = (props) => {
   return (
     <View>
-      <Card.Title title="Conditions"></Card.Title>
+      <Card.Title title="Status"></Card.Title>
 
-      <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
-        <Chip avatar={
-          <Avatar.Icon size={20} color="red" style={{backgroundColor: 'white'}} icon="check" />
-        } style={[styles.chip]}>Ready</Chip>
-        <Chip icon="check-circle" color="green" style={{ backgroundColor: 'white', color: "white"}}>Ready2</Chip>
-        <Chip icon="check-circle" style={[styles.chip]}>Ready3</Chip>
-        <Chip icon="check-circle" style={[styles.chip]}>Ready4</Chip>
-        <Chip icon="check-circle" style={[styles.chip]}>Ready5</Chip>
-        <Chip icon="check-circle" style={[styles.chip]}>Ready6</Chip>
-        {/* <Chip icon="check-circle" style={[styles.chip]}>Ready</Chip> */}
-      </View>
-      <Title title="Info (Key/value section)"></Title>
       <Card>
+        <Card.Content>
+          <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
+            <Chip icon={() => (
+              <Icon name="check-circle" size={20} color="#4CAF50" />
+            )}>Ready</Chip>
+            {/* <Chip icon={() => (
+              <Icon name="check-circle" size={20} color="#4CAF50" />
+            )} style={{ backgroundColor: 'white'}}>Ready</Chip> */}
+            <Chip icon={() => (
+              <Icon name="check-circle" size={20} color="#4CAF50" />
+            )}>Ready2</Chip>
+            <Chip icon={() => (
+              <Icon name="check-circle" size={20} color="#4CAF50" />
+            )}>Ready3</Chip>
+            <Chip icon={() => (
+              <Icon name="check-circle" size={20} color="#4CAF50" />
+            )}>Ready4</Chip>
+          </View>
+          <Divider style={{ margin: 10 }}></Divider>
+          <View style={{ flexDirection: 'row' }}>
+            <Paragraph style={[styles.textStyle, styles.info, {}]}>Phase</Paragraph>
+            <Paragraph style={[styles.textStyle, styles.info, styles.textRight]}>Provisioned</Paragraph>
+          </View>
+          <Divider style={{ margin: 10 }}></Divider>
+          <View style={{ flexDirection: 'row' }}>
+            <Paragraph style={[styles.textStyle, styles.info, {}]}>Namespace</Paragraph>
+            <Paragraph style={[styles.textStyle, styles.info, styles.textRight]}>my-namespace</Paragraph>
+          </View>
+        </Card.Content>
+      </Card>
+      <Card.Title title="Info (Key/value section)"></Card.Title>
+      <Card >
         <Card.Content>
           <View style={{ flexDirection: 'row' }}>
             <Paragraph style={[styles.textStyle, styles.info, {}]}>Name</Paragraph>
@@ -48,6 +68,8 @@ const Cluster = (props) => {
           <Divider style={{ margin: 10 }}></Divider>
 
           <View style={{ flexDirection: 'row' }}>
+            {/* Note: <View> from ReactNative doesn't have an onPress */}
+          {/* <View style={{ flexDirection: 'row' }} onPress={() => props.navigation.navigate('ListScreen')}> */}
             <Paragraph style={[styles.textStyle, styles.info, {}]}>Pod CIDRs</Paragraph>
             <Paragraph style={[styles.textStyle, styles.info, styles.textRight]}><Icon name="chevron-right" size={30}></Icon></Paragraph>
           </View>

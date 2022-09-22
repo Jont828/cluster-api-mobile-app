@@ -6,18 +6,25 @@ import { Caption, Headline, Paragraph, Subheading, Text, Title } from 'react-nat
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Cluster from '../components/ClusterView';
 
-const TargetCluster = (props) => {
+const ListScreen = (props) => {
   const [expanded, setExpanded] = React.useState(true);
 
   const handlePress = () => setExpanded(!expanded);
   return (
     <ScrollView style={styles.wrapper}>
-      <Cluster props={props}></Cluster>
+      <Card>
+        <Card.Content>
+          <Paragraph style={styles.info}>10.244.0.0/16</Paragraph>
+          <Divider style={{ margin: 10 }}></Divider>
+          <Paragraph style={styles.info}>2001:1234:5678:9a40::/58</Paragraph>
+
+        </Card.Content>
+      </Card>
     </ScrollView>
   );
 }
 
-export default TargetCluster;
+export default ListScreen;
 
 const styles = StyleSheet.create({
   wrapper: {

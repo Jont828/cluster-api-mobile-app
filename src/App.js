@@ -6,6 +6,7 @@ import { StyleSheet, View } from 'react-native';
 // import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ManagementCluster from './screens/ManagementCluster';
 import TargetCluster from './screens/TargetCluster';
+import ListScreen from './screens/ListScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import CustomAppBar from './components/CustomAppBar';
@@ -20,6 +21,7 @@ const App = () => (
       }}>
       <Stack.Screen name="ManagementCluster" component={ManagementCluster} options={{ title: 'Clusters' }} />
       <Stack.Screen name="TargetCluster" component={TargetCluster} options={{ title: 'Cluster/my-cluster' }} />
+      <Stack.Screen name="ListScreen" component={ListScreen} options={{ title: 'Pod CIDRs' }} />
     </Stack.Navigator>
   </NavigationContainer>
   // <View>
