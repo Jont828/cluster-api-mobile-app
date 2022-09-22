@@ -4,7 +4,7 @@ import { List } from 'react-native-paper';
 import { Avatar, Button, Card } from 'react-native-paper';
 import { Caption, Headline, Paragraph, Subheading, Text, Title } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import Treeview from '../components/Treeview';
+import Cluster from '../components/ClusterView';
 
 const TargetCluster = (props) => {
   const [expanded, setExpanded] = React.useState(true);
@@ -12,7 +12,7 @@ const TargetCluster = (props) => {
   const handlePress = () => setExpanded(!expanded);
   return (
     <ScrollView style={styles.wrapper}>
-      <Treeview></Treeview>
+      <Cluster></Cluster>
     </ScrollView>
   );
 }
