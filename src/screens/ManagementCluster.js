@@ -1,24 +1,18 @@
 import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
+import * as Native from 'react-native';
 import { Appbar, } from 'react-native-paper';
 import { Avatar, Button, Card } from 'react-native-paper';
 import { Caption, Headline, Paragraph, Subheading, Text, Title } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
-const TargetCluster = () => (
+const ManagementCluster = (props) => (
   <View>
-    <Appbar.Header elevated>
-      <Appbar.Action icon="menu" onPress={() => { }} />
-      {/* <Appbar.BackAction onPress={() => { }} /> */}
-      <Appbar.Content title="Clusters">
-      </Appbar.Content>
-      <Appbar.Action icon="dots-vertical" onPress={() => { }} />
-      {/* <Appbar.Action icon="magnify" onPress={() => { }} /> */}
-    </Appbar.Header>
     <View style={styles.wrapper}>
       <Title>my-namespace</Title>
-      <Card style={styles.card}>
+      {/* <Native.Button> */}
+      <Card style={styles.card} onPress={() => props.navigation.navigate('TargetCluster')}>
         {/* <Card.Title title="my-cluster" subtitle="Provisioned" /> */}
         <Card.Content>
           <Title>
@@ -30,18 +24,7 @@ const TargetCluster = () => (
           </View>
         </Card.Content>
       </Card>
-      <Card style={styles.card}>
-        {/* <Card.Title title="my-cluster" subtitle="Provisioned" /> */}
-        <Card.Content>
-          <Title>
-            my-other-cluster <Icon name="microsoft-azure" style={styles.provider}></Icon>
-          </Title>
-          <Caption>Provisioned</Caption>
-          <View style={styles.chevronWrap}>
-            <Icon name="chevron-right" style={styles.chevron}></Icon>
-          </View>
-        </Card.Content>
-      </Card>
+      {/* </Native.Button> */}
     </View>
 
     <View style={styles.wrapper}>
@@ -50,7 +33,7 @@ const TargetCluster = () => (
         {/* <Card.Title title="my-cluster" subtitle="Provisioned" /> */}
         <Card.Content>
           <Title>
-            <Icon name="microsoft-azure" style={styles.provider}></Icon>
+            my-fake-cluster <Icon name="microsoft-azure" style={styles.provider}></Icon>
           </Title>
           <Caption>Provisioned</Caption>
           <View style={styles.chevronWrap}>
@@ -62,7 +45,7 @@ const TargetCluster = () => (
   </View>
 );
 
-export default TargetCluster;
+export default ManagementCluster;
 
 const styles = StyleSheet.create({
   wrapper: {
