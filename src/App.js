@@ -1,9 +1,4 @@
 import * as React from 'react';
-import { StyleSheet, View } from 'react-native';
-// import { Appbar, } from 'react-native-paper';
-// import { Avatar, Button, Card } from 'react-native-paper';
-// import { Caption, Headline, Paragraph, Subheading, Text, Title } from 'react-native-paper';
-// import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ManagementCluster from './screens/ManagementCluster';
 import TargetCluster from './screens/TargetCluster';
 import ListScreen from './screens/ListScreen';
@@ -24,9 +19,6 @@ const App = () => (
       <Stack.Screen name="ListScreen" component={ListScreen} options={{ title: 'Pod CIDRs' }} />
     </Stack.Navigator>
   </NavigationContainer>
-  // <View>
-  //   <ManagementCluster></ManagementCluster>
-  // </View>
 );
 
 export default App;
