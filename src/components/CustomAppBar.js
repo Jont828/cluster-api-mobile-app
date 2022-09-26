@@ -3,12 +3,6 @@ import { Appbar } from 'react-native-paper';
 import { DrawerActions } from '@react-navigation/native';
 
 const CustomAppBar = (props) => {
-  // if (props.back) {
-    return <Bar {...props} />
-  // }
-}
-
-const Bar = (props) => {
   return (
     <Appbar.Header elevated>
       {

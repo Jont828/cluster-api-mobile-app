@@ -18,7 +18,7 @@ const App = () => (
         header: (props) => <CustomAppBar {...props} />,
       }}
       >
-      <Stack.Screen name="Menu" component={Menu} />
+      <Stack.Screen name="Menu" component={Menu} options={{ title: 'Clusters' }} />
       {/* <Stack.Screen name="ManagementCluster" component={ManagementCluster} options={{ title: 'Clusters' }} /> */}
       <Stack.Screen name="ClusterView" component={ClusterView} options={({ route }) => ({ title: route.params.name })} />
       <Stack.Screen name="ListScreen" component={ListScreen} options={{ title: 'Pod CIDRs' }} />
@@ -33,6 +33,11 @@ const Menu = () => {
           name="ManagementCluster" 
           component={ManagementCluster} 
           options={{ title: 'Clusters' }} 
+        />
+        <Drawer.Screen 
+          name="Settings" 
+          component={ManagementCluster} 
+          options={{ title: 'Settings' }} 
         />
     </Drawer.Navigator>
   )
