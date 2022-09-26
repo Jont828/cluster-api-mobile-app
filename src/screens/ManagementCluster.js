@@ -27,7 +27,10 @@ const NamespaceList = (props) => {
   return (
     <View style={styles.wrapper}>
       <Title>{props.namespace}</Title>
-      {props.clusters.map((cluster) => <ClusterCard title={cluster.name} path="TargetCluster" navigation={props.navigation} key={cluster.name} />)}
+      {props.clusters.map((cluster) => {
+        console.log("cluster name: ", cluster.name)
+        return <ClusterCard name={cluster.name} path="TargetCluster" navigation={props.navigation} key={cluster.name} />
+      })}
     </View>
   )
 }

@@ -15,7 +15,7 @@ const App = () => (
         header: (props) => <CustomAppBar {...props} />,
       }}>
       <Stack.Screen name="ManagementCluster" component={ManagementCluster} options={{ title: 'Clusters' }} />
-      <Stack.Screen name="TargetCluster" component={ClusterView} options={{ title: 'Cluster/my-cluster' }} />
+      <Stack.Screen name="ClusterView" component={ClusterView} options={({ route }) => ({ title: route.params.name })} />
       <Stack.Screen name="ListScreen" component={ListScreen} options={{ title: 'Pod CIDRs' }} />
     </Stack.Navigator>
   </NavigationContainer>

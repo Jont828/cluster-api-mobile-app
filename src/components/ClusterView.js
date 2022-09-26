@@ -8,7 +8,7 @@ import TreeView from "react-native-animated-tree-view";
 import CardListEntry from './CardListEntry';
 import ServiceCard from './ServiceCard';
 
-const mockClusterInfo = {
+var mockClusterInfo = {
   "Name": "test-cluster",
   "Namespace": "default",
   "Phase": "Provisioned",
@@ -21,9 +21,11 @@ const mockCidrs = [
 ]
 
 // Displays the details of a cluster
-const Cluster = (props) => {
+const ClusterView = (props) => {
+  const { name } = props.route.params;
+  mockClusterInfo.Name = name;
   return (
-    <ScrollView style={styles.wrapper}>
+    <ScrollView style={styles.wrapper} key={props.title}>
       <Card.Title title="Status"></Card.Title>
 
       <Card>
@@ -66,7 +68,7 @@ const Cluster = (props) => {
         <Card.Content>
           {mockCidrs.map((cidr) => {
             return(
-              <View>
+              <View key={cidr}>
                 <CardListEntry name={cidr} value="" />
                 <Divider style={{ margin: 10 }}></Divider>
               </View>
@@ -104,7 +106,7 @@ const Cluster = (props) => {
   );
 }
 
-export default Cluster;
+export default ClusterView;
 
 const styles = StyleSheet.create({
   chip: {
