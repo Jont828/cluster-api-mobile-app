@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 import { List } from 'react-native-paper';
 import { Avatar, Button, Card, Divider } from 'react-native-paper';
 import { Caption, Headline, Paragraph, Subheading, Text, Title, Chip } from 'react-native-paper';
@@ -20,9 +20,10 @@ const mockCidrs = [
   "2001:1234:5678:9a40::/58"
 ]
 
+// Displays the details of a cluster
 const Cluster = (props) => {
   return (
-    <View>
+    <ScrollView style={styles.wrapper}>
       <Card.Title title="Status"></Card.Title>
 
       <Card>
@@ -99,7 +100,7 @@ const Cluster = (props) => {
         </List.Accordion>
       </View>
 
-    </View >
+    </ScrollView >
   );
 }
 

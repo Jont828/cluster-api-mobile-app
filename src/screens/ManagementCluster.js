@@ -32,9 +32,10 @@ const NamespaceList = (props) => {
   )
 }
 
+// Displays a list of clusters grouped by namespace
 const ManagementCluster = (props) => (
   <View style={styles.wrapper}>
-    {Object.keys(mockClusters).map((namespace) => <NamespaceList namespace={namespace} clusters={mockClusters[namespace]} navigation={props.navigation} />)}
+    {Object.keys(mockClusters).map((namespace) => <NamespaceList namespace={namespace} clusters={mockClusters[namespace]} navigation={props.navigation} key={namespace} />)}
   </View>
 );
 

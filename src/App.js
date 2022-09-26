@@ -1,7 +1,7 @@
 import * as React from 'react';
 import ManagementCluster from './screens/ManagementCluster';
-import TargetCluster from './screens/TargetCluster';
 import ListScreen from './screens/ListScreen';
+import ClusterView from './components/ClusterView';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import CustomAppBar from './components/CustomAppBar';
@@ -15,7 +15,7 @@ const App = () => (
         header: (props) => <CustomAppBar {...props} />,
       }}>
       <Stack.Screen name="ManagementCluster" component={ManagementCluster} options={{ title: 'Clusters' }} />
-      <Stack.Screen name="TargetCluster" component={TargetCluster} options={{ title: 'Cluster/my-cluster' }} />
+      <Stack.Screen name="TargetCluster" component={ClusterView} options={{ title: 'Cluster/my-cluster' }} />
       <Stack.Screen name="ListScreen" component={ListScreen} options={{ title: 'Pod CIDRs' }} />
     </Stack.Navigator>
   </NavigationContainer>

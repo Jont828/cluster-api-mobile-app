@@ -3,6 +3,7 @@ import { View, StyleSheet } from 'react-native'
 import { Card, Title, Caption } from 'react-native-paper'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
+// Displays a card with a title and a provider icon. Tapping the card navigates to the path specified in props.path
 const ClusterCard = (props) => (
   <Card style={styles.card} onPress={() => props.navigation.navigate(props.path)}>
     <Card.Content>
