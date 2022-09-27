@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { ProgressViewIOSComponent } from 'react-native';
-
 import { Appbar } from 'react-native-paper';
+import { DrawerActions } from '@react-navigation/native';
 
 const CustomAppBar = (props) => {
   return (
@@ -9,7 +8,7 @@ const CustomAppBar = (props) => {
       {
         props.back ?
           <Appbar.BackAction onPress={props.navigation.goBack} /> :
-          <Appbar.Action icon="menu" onPress={() => { }} />
+          <Appbar.Action icon="menu" onPress={() => props.navigation.dispatch(DrawerActions.toggleDrawer())} />
       }
 
       <Appbar.Content title={props.options.title}></Appbar.Content>

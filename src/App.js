@@ -1,32 +1,46 @@
+import 'react-native-gesture-handler';
 import * as React from 'react';
-import { StyleSheet, View } from 'react-native';
-// import { Appbar, } from 'react-native-paper';
-// import { Avatar, Button, Card } from 'react-native-paper';
-// import { Caption, Headline, Paragraph, Subheading, Text, Title } from 'react-native-paper';
-// import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ManagementCluster from './screens/ManagementCluster';
-import TargetCluster from './screens/TargetCluster';
 import ListScreen from './screens/ListScreen';
+import ClusterView from './components/ClusterView';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import CustomAppBar from './components/CustomAppBar';
 
 const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
 
 const App = () => (
   <NavigationContainer>
-    <Stack.Navigator initialRouteName='ManagementCluster'
+    <Stack.Navigator initialRouteName='Menu'
       screenOptions={{
         header: (props) => <CustomAppBar {...props} />,
-      }}>
-      <Stack.Screen name="ManagementCluster" component={ManagementCluster} options={{ title: 'Clusters' }} />
-      <Stack.Screen name="TargetCluster" component={TargetCluster} options={{ title: 'Cluster/my-cluster' }} />
+      }}
+      >
+      <Stack.Screen name="Menu" component={Menu} options={{ title: 'Clusters' }} />
+      {/* <Stack.Screen name="ManagementCluster" component={ManagementCluster} options={{ title: 'Clusters' }} /> */}
+      <Stack.Screen name="ClusterView" component={ClusterView} options={({ route }) => ({ title: route.params.name })} />
       <Stack.Screen name="ListScreen" component={ListScreen} options={{ title: 'Pod CIDRs' }} />
     </Stack.Navigator>
   </NavigationContainer>
-  // <View>
-  //   <ManagementCluster></ManagementCluster>
-  // </View>
 );
+
+const Menu = () => {
+  return(
+    <Drawer.Navigator initialRouteName="Home" screenOptions={{headerShown: false}}>
+        <Drawer.Screen 
+          name="ManagementCluster" 
+          component={ManagementCluster} 
+          options={{ title: 'Clusters' }} 
+        />
+        <Drawer.Screen 
+          name="Settings" 
+          component={ManagementCluster} 
+          options={{ title: 'Settings' }} 
+        />
+    </Drawer.Navigator>
+  )
+}
 
 export default App;

@@ -4,7 +4,7 @@ import { List } from 'react-native-paper';
 import { Avatar, Button, Card } from 'react-native-paper';
 import { Caption, Headline, Paragraph, Subheading, Text, Title } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import Cluster from '../components/ClusterView';
+import ClusterView from '../components/ClusterView';
 
 const ListScreen = (props) => {
   const [expanded, setExpanded] = React.useState(true);
