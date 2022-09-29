@@ -8,17 +8,18 @@ import TreeView from "react-native-animated-tree-view";
 import CardListEntry from './CardListEntry';
 import ServiceCard from './ServiceCard';
 
+const mockCidrs = [
+  "10.244.0.0/16",
+  "2001:1234:5678:9a40::/58"
+]
+
 var mockClusterInfo = {
   "Name": "test-cluster",
   "Namespace": "default",
   "Phase": "Provisioned",
   "Ready": "True",
+  "PodCIDRs": mockCidrs
 }
-
-const mockCidrs = [
-  "10.244.0.0/16",
-  "2001:1234:5678:9a40::/58"
-]
 
 // Displays the details of a cluster
 const ClusterView = (props) => {
@@ -51,13 +52,18 @@ const ClusterView = (props) => {
         </Card.Content>
       </Card>
       <Card.Title title="Info (Key/value section)"></Card.Title>
-      <Card >
+      <Card>
         <Card.Content>
-          {Object.keys(mockClusterInfo).map((key) => {
-            return(
+          {Object.keys(mockClusterInfo).map((key, index) => {
+            console.log("Value is", mockClusterInfo[key])
+            return (
               <View>
                 <CardListEntry name={key} value={mockClusterInfo[key]} />
-                <Divider style={{ margin: 10 }}></Divider>
+                {
+                  index < Object.keys(mockClusterInfo).length - 1 ? (
+                    <Divider style={{ margin: 10 }}></Divider>
+                  ) : null
+                }
               </View>
             )
           })}
@@ -67,7 +73,7 @@ const ClusterView = (props) => {
       <Card>
         <Card.Content>
           {mockCidrs.map((cidr) => {
-            return(
+            return (
               <View key={cidr}>
                 <CardListEntry name={cidr} value="" />
                 <Divider style={{ margin: 10 }}></Divider>
@@ -90,8 +96,8 @@ const ClusterView = (props) => {
           titleStyle={{ fontWeight: '500', fontSize: 20, marginLeft: -15 }}
         >
           <ServiceCard title="KubeadmControlPlane" subtitle="my-cluster" status="error" />
-          <ServiceCard title="3 Machines" subtitle="my-cluster" status="success" indent={20} />
-          <ServiceCard title="AzureMachineTemplate" subtitle="my-cluster" status="success" indent={20}/>
+          {/* <ServiceCard title="3 Machines" subtitle="my-cluster" status="success" indent={20} />
+          <ServiceCard title="AzureMachineTemplate" subtitle="my-cluster" status="success" indent={20}/> */}
         </List.Accordion>
         <List.Accordion
           title="Workers"
@@ -135,19 +141,19 @@ const styles = StyleSheet.create({
     backgroundColor: '#4CAF50' // Success
   },
   warningBg: {
-    backgroundColor: '#fb8c00' 
+    backgroundColor: '#fb8c00'
   },
   errorBg: {
-    backgroundColor: '#ff5252' 
+    backgroundColor: '#ff5252'
   },
   success: {
     color: '#4CAF50' // Success
   },
   warning: {
-    color: '#fb8c00' 
+    color: '#fb8c00'
   },
   error: {
-    color: '#ff5252' 
+    color: '#ff5252'
   },
   leftWrap: {
     position: 'absolute',
