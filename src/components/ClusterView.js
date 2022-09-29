@@ -10,15 +10,22 @@ import ServiceCard from './ServiceCard';
 
 const mockCidrs = [
   "10.244.0.0/16",
-  "2001:1234:5678:9a40::/58"
+  "2001:1234:5678:9a40::/58",
+  "localhost:8080"
 ]
+
+const mockMap = {
+  "key1": "value1",
+  "key2": "value2"
+}
 
 var mockClusterInfo = {
   "Name": "test-cluster",
   "Namespace": "default",
   "Phase": "Provisioned",
   "Ready": "True",
-  "PodCIDRs": mockCidrs
+  "PodCIDRs": mockCidrs,
+  "Labels": mockMap,
 }
 
 // Displays the details of a cluster
@@ -57,8 +64,8 @@ const ClusterView = (props) => {
           {Object.keys(mockClusterInfo).map((key, index) => {
             console.log("Value is", mockClusterInfo[key])
             return (
-              <View>
-                <CardListEntry name={key} value={mockClusterInfo[key]} />
+              <View key={key}>
+                <CardListEntry name={key} value={mockClusterInfo[key]} navigation={props.navigation} />
                 {
                   index < Object.keys(mockClusterInfo).length - 1 ? (
                     <Divider style={{ margin: 10 }}></Divider>

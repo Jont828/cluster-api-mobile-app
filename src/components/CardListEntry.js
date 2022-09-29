@@ -2,16 +2,29 @@ import React from 'react'
 import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import { Paragraph } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import MapScreen from '../screens/MapScreen';
 
 const CardListEntry = (props) => {
+
+  const isObject = (val) => {
+    if (val === null) { return false; }
+    return ((typeof val === 'function') || (typeof val === 'object'));
+  };
+
   return (
-    <TouchableOpacity style={{ flexDirection: 'row' }}>
+    <TouchableOpacity 
+      style={{ flexDirection: 'row' }}
+      onPress={() => {
+        props.navigation.navigate((Array.isArray(props.value) ? "ListScreen" : "MapScreen"), { name: props.name, values: props.value })}
+      }
+      disabled={typeof props.value === 'string'}
+      >
       <Paragraph style={[styles.textStyle, styles.info, {}]}>{props.name}</Paragraph>
       {
-        Array.isArray(props.value) ? (
-          <TouchableOpacity style={styles.chevronWrap}>
+        !(typeof props.value === 'string') ? (
+          <View style={styles.chevronWrap}>
             <Icon name="chevron-right" style={styles.chevron}></Icon>
-          </TouchableOpacity>
+          </View>
         ) : (
           <Paragraph style={[styles.textStyle, styles.info, styles.textRight]}>{props.value}</Paragraph>
         )

@@ -4,19 +4,25 @@ import { List } from 'react-native-paper';
 import { Avatar, Button, Card } from 'react-native-paper';
 import { Caption, Headline, Paragraph, Subheading, Text, Title, Divider } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import ClusterView from '../components/ClusterView';
+import CardListEntry from '../components/CardListEntry';
 
-const ListScreen = ({route, navigation}) => {
+const MapScreen = ({route, navigation}) => {
+  const values = route.params.values;
+  console.log("Values are", values);
   return (
     <ScrollView style={styles.wrapper}>
       <Card>
         <Card.Content>
           {
-            route.params.values.map( (value, index) => {
+            Object.keys(values).map( (key, index) => {
               return (
-                <View key={index}>
-                  <Paragraph style={styles.info}>{value}</Paragraph>
-                  {index < route.params.values.length - 1 ? <Divider style={{ margin: 10 }}></Divider> : null}
+                <View key={key}>
+                  <CardListEntry name={key} value={values[key]} navigation={navigation} />
+                  {
+                    index < Object.keys(values).length - 1 ? (
+                      <Divider style={{ margin: 10 }}></Divider>
+                    ) : null
+                  }
                 </View>
               )
             })
@@ -27,7 +33,7 @@ const ListScreen = ({route, navigation}) => {
   );
 }
 
-export default ListScreen;
+export default MapScreen;
 
 const styles = StyleSheet.create({
   wrapper: {
