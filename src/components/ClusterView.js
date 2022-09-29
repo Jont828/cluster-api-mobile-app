@@ -6,6 +6,7 @@ import { Caption, Headline, Paragraph, Subheading, Text, Title, Chip } from 'rea
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import TreeView from "react-native-animated-tree-view";
 import CardListEntry from './CardListEntry';
+import MapComponent from './MapComponent';
 import ServiceCard from './ServiceCard';
 
 const mockCidrs = [
@@ -19,6 +20,11 @@ const mockMap = {
   "key2": "value2"
 }
 
+const nestedMap = {
+  "key1": "value1",
+  "CIDRS": mockCidrs
+}
+
 var mockClusterInfo = {
   "Name": "test-cluster",
   "Namespace": "default",
@@ -26,6 +32,7 @@ var mockClusterInfo = {
   "Ready": "True",
   "PodCIDRs": mockCidrs,
   "Labels": mockMap,
+  "Nested": nestedMap,
 }
 
 // Displays the details of a cluster
@@ -61,19 +68,7 @@ const ClusterView = (props) => {
       <Card.Title title="Info (Key/value section)"></Card.Title>
       <Card>
         <Card.Content>
-          {Object.keys(mockClusterInfo).map((key, index) => {
-            console.log("Value is", mockClusterInfo[key])
-            return (
-              <View key={key}>
-                <CardListEntry name={key} value={mockClusterInfo[key]} navigation={props.navigation} />
-                {
-                  index < Object.keys(mockClusterInfo).length - 1 ? (
-                    <Divider style={{ margin: 10 }}></Divider>
-                  ) : null
-                }
-              </View>
-            )
-          })}
+          <MapComponent route={props.route} navigation={props.navigation} values={mockClusterInfo} />
         </Card.Content>
       </Card>
       <Card.Title title="Pod CIDRs (list idea)"></Card.Title>

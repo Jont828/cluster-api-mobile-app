@@ -4,23 +4,30 @@ import { List } from 'react-native-paper';
 import { Avatar, Button, Card } from 'react-native-paper';
 import { Caption, Headline, Paragraph, Subheading, Text, Title, Divider } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import MapComponent from '../components/MapComponent';
+import CardListEntry from '../components/CardListEntry';
 
-const MapScreen = ({route, navigation}) => {
-  const values = route.params.values;
-  console.log("Values are", values);
+const MapComponent = ({ values, route, navigation }) => {
   return (
-    <ScrollView style={styles.wrapper}>
-      <Card>
-        <Card.Content>
-          <MapComponent route={route} navigation={navigation} values={route.params.values}/>
-        </Card.Content>
-      </Card>
-    </ScrollView>
+    <View>
+      {
+        Object.keys(values).map((key, index) => {
+          return (
+            <View key={key}>
+              <CardListEntry name={key} value={values[key]} route={route} navigation={navigation} />
+              {
+                index < Object.keys(values).length - 1 ? (
+                  <Divider style={{ margin: 10 }}></Divider>
+                ) : null
+              }
+            </View>
+          )
+        })
+      }
+    </View>
   );
 }
 
-export default MapScreen;
+export default MapComponent;
 
 const styles = StyleSheet.create({
   wrapper: {
