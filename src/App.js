@@ -3,7 +3,7 @@ import * as React from 'react';
 import ManagementCluster from './screens/ManagementCluster';
 import ListScreen from './screens/ListScreen';
 import MapScreen from './screens/MapScreen';
-import ClusterView from './components/ClusterView';
+import ClusterView from './screens/ClusterView';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';

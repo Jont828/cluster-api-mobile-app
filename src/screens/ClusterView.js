@@ -5,9 +5,10 @@ import { Avatar, Button, Card, Divider } from 'react-native-paper';
 import { Caption, Headline, Paragraph, Subheading, Text, Title, Chip } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import TreeView from "react-native-animated-tree-view";
-import CardListEntry from './CardListEntry';
-import MapComponent from './MapComponent';
-import ServiceCard from './ServiceCard';
+import CardListEntry from '../components/CardListEntry';
+import MapComponent from '../components/MapComponent';
+import ServiceCard from '../components/ServiceCard';
+import ServiceList from '../components/ServiceList';
 
 const mockCidrs = [
   "10.244.0.0/16",
@@ -33,6 +34,35 @@ var mockClusterInfo = {
   "PodCIDRs": mockCidrs,
   "Labels": mockMap,
   "Nested": nestedMap,
+}
+
+const services = {
+  "Cluster Infrastructure": [
+    {
+      "kind": "AzureCluster",
+      "name": "my-azurecluster",
+      "status": "success"
+    }
+  ],
+  "Control Plane": [
+    {
+      "kind": "KubeadmControlPlane",
+      "name": "my-kcp",
+      "status": "warning"
+    }
+  ],
+  "Workers": [
+    {
+      "kind": "MachineDeployment",
+      "name": "my-md",
+      "status": "success"
+    },
+    {
+      "kind": "MachinePool",
+      "name": "my-mp",
+      "status": "error"
+    }
+  ]
 }
 
 // Displays the details of a cluster
@@ -86,7 +116,8 @@ const ClusterView = (props) => {
       </Card>
 
       <View style={styles.wrapper}>
-        <List.Accordion
+        <ServiceList route={props.route} navigation={props.navigation} items={services} />
+        {/* <List.Accordion
           title="Cluster Infrastructure"
           titleStyle={{ fontWeight: '500', fontSize: 20, marginLeft: -15 }}
         >
@@ -98,8 +129,6 @@ const ClusterView = (props) => {
           titleStyle={{ fontWeight: '500', fontSize: 20, marginLeft: -15 }}
         >
           <ServiceCard title="KubeadmControlPlane" subtitle="my-cluster" status="error" />
-          {/* <ServiceCard title="3 Machines" subtitle="my-cluster" status="success" indent={20} />
-          <ServiceCard title="AzureMachineTemplate" subtitle="my-cluster" status="success" indent={20}/> */}
         </List.Accordion>
         <List.Accordion
           title="Workers"
@@ -107,7 +136,7 @@ const ClusterView = (props) => {
         >
           <ServiceCard title="MachineDeployment" subtitle="my-cluster" status="success" />
           <ServiceCard title="MachinePool" subtitle="my-cluster" status="success" />
-        </List.Accordion>
+        </List.Accordion> */}
       </View>
 
     </ScrollView >
@@ -137,7 +166,7 @@ const styles = StyleSheet.create({
     color: 'black',
   },
   wrapper: {
-    margin: 10,
+    padding: 10,
   },
   successBg: {
     backgroundColor: '#4CAF50' // Success
