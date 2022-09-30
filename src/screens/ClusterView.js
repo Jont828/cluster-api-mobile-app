@@ -6,8 +6,8 @@ import { Caption, Headline, Paragraph, Subheading, Text, Title, Chip } from 'rea
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import TreeView from "react-native-animated-tree-view";
 import CardListEntry from '../components/CardListEntry';
-import MapComponent from '../components/MapComponent';
-import StatusComponent from '../components/StatusComponent';
+import MapComponent from '../components/MapCard';
+import StatusCard from '../components/StatusCard';
 import ServiceList from '../components/ServiceList';
 
 const mockCidrs = [
@@ -105,16 +105,12 @@ const ClusterView = (props) => {
     <ScrollView style={styles.wrapper} key={props.title}>
       <Card.Title title="Status"></Card.Title>
 
-      <Card>
-        <Card.Content>
-          <StatusComponent 
-            route={props.route}
-            navigation={props.navigation}
-            conditions={conditions}
-            values={statusInfo}
-          />
-        </Card.Content>
-      </Card>
+      <StatusCard 
+        route={props.route}
+        navigation={props.navigation}
+        conditions={conditions}
+        values={statusInfo}
+      />
       <Card.Title title="Info (Key/value section)"></Card.Title>
       <Card>
         <Card.Content>

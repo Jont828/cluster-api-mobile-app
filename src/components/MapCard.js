@@ -4,11 +4,12 @@ import { List } from 'react-native-paper';
 import { Avatar, Button, Card } from 'react-native-paper';
 import { Caption, Headline, Paragraph, Subheading, Text, Title, Divider } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import CardListEntry from '../components/CardListEntry';
+import CardListEntry from './CardListEntry';
 
-const MapComponent = ({ values, route, navigation }) => {
+const MapCard = ({ values, route, navigation }) => {
   return (
-    <View>
+    <Card>
+      <Card.Content>
       {
         Object.keys(values).map((key, index) => {
           return (
@@ -23,11 +24,12 @@ const MapComponent = ({ values, route, navigation }) => {
           )
         })
       }
-    </View>
+      </Card.Content>
+    </Card>
   );
 }
 
-export default MapComponent;
+export default MapCard;
 
 const styles = StyleSheet.create({
   wrapper: {

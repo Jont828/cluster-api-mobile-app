@@ -6,7 +6,7 @@ import { Caption, Headline, Paragraph, Subheading, Text, Title, Divider, Chip } 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import CardListEntry from './CardListEntry';
 
-const StatusComponent = ({ conditions, values, route, navigation }) => {
+const StatusCard = ({ conditions, values, route, navigation }) => {
   const getIcon = (status) => {
     switch(status) {
       case "success":
@@ -32,38 +32,40 @@ const StatusComponent = ({ conditions, values, route, navigation }) => {
     }
   };
   return (
-    <View>
-      <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
-        {
-          conditions.map((condition, index) => {
-            return (
-              <Chip 
-                key={index}
-                style={styles.chip}
-                icon={() => (
-                <Icon name={getIcon(condition.status)} size={20} color={getColor(condition.status)} />
-              )}>{ condition.type }</Chip>
-            )
-          })
-        }
-      </View>
-      <View>
-        {
-          Object.keys(values).map((key, index) => {
-            return (
-              <View key={key}>
-                <Divider style={{ margin: 10 }}></Divider>
-                <CardListEntry name={key} value={values[key]} route={route} navigation={navigation} />
-              </View>
-            )
-          })
-        }
-      </View>
-    </View>
+    <Card>
+      <Card.Content>
+        <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
+          {
+            conditions.map((condition, index) => {
+              return (
+                <Chip 
+                  key={index}
+                  style={styles.chip}
+                  icon={() => (
+                  <Icon name={getIcon(condition.status)} size={20} color={getColor(condition.status)} />
+                )}>{ condition.type }</Chip>
+              )
+            })
+          }
+        </View>
+        <View>
+          {
+            Object.keys(values).map((key, index) => {
+              return (
+                <View key={key}>
+                  <Divider style={{ margin: 10 }}></Divider>
+                  <CardListEntry name={key} value={values[key]} route={route} navigation={navigation} />
+                </View>
+              )
+            })
+          }
+        </View>
+      </Card.Content>
+    </Card>
   );
 }
 
-export default StatusComponent;
+export default StatusCard;
 
 const styles = StyleSheet.create({
   chip: {

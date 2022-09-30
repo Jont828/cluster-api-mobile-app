@@ -4,18 +4,14 @@ import { List } from 'react-native-paper';
 import { Avatar, Button, Card } from 'react-native-paper';
 import { Caption, Headline, Paragraph, Subheading, Text, Title, Divider } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import MapComponent from '../components/MapComponent';
+import MapCard from '../components/MapCard';
 
 const MapScreen = ({route, navigation}) => {
   const values = route.params.values;
   console.log("Values are", values);
   return (
     <ScrollView style={styles.wrapper}>
-      <Card>
-        <Card.Content>
-          <MapComponent route={route} navigation={navigation} values={route.params.values}/>
-        </Card.Content>
-      </Card>
+      <MapCard route={route} navigation={navigation} values={route.params.values}/>
     </ScrollView>
   );
 }

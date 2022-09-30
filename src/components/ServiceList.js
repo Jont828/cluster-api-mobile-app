@@ -4,9 +4,6 @@ import { List } from 'react-native-paper';
 import { Avatar, Button, Card, Divider } from 'react-native-paper';
 import { Caption, Headline, Paragraph, Subheading, Text, Title, Chip } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import TreeView from "react-native-animated-tree-view";
-import CardListEntry from '../components/CardListEntry';
-import MapComponent from '../components/MapComponent';
 import ServiceCard from '../components/ServiceCard';
 
 
