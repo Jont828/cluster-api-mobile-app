@@ -15,7 +15,7 @@ const ListScreen = ({route, navigation}) => {
               return (
                 <View key={index}>
                   <Paragraph style={styles.info}>{value}</Paragraph>
-                  {index < route.params.values.length - 1 ? <Divider style={{ margin: 10 }}></Divider> : null}
+                  {index < route.params.values.length - 1 ? <Divider style={{ marginTop: 10, marginBottom: 10 }}></Divider> : null}
                 </View>
               )
             })

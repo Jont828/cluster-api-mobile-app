@@ -2,7 +2,6 @@ import React from 'react'
 import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import { Paragraph } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-import MapScreen from '../screens/MapScreen';
 
 const CardListEntry = (props) => {
 

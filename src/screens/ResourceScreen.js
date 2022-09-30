@@ -8,9 +8,16 @@ import ServiceList from '../components/ServiceList';
 
 // Displays the details of a cluster
 const ResourceScreen = ({ route, navigation }) => {
-  const { name, namespace, kind, apiVersion } = route.params;
+  const { name, namespace, kind, apiVersion, node } = route.params;
   // mockClusterInfo.Name = name;
-  const { status, spec, children } = fetchResourceData(kind, name);
+  const { status, spec } = fetchResourceData(kind, name);
+
+  let tree = node;
+  if (tree === undefined) {
+    tree = fetchTree(name);
+    console.log("Tree is", tree);
+  }
+
   return (
     <ScrollView style={styles.wrapper} key={name}>
       <Card.Title title="Status"></Card.Title>
@@ -25,7 +32,7 @@ const ResourceScreen = ({ route, navigation }) => {
       <MapCard route={route} navigation={navigation} values={spec} />
 
       <View style={styles.wrapper}>
-        <ServiceList route={route} navigation={navigation} items={children} />
+        <ServiceList route={route} navigation={navigation} resourceMap={tree.children} />
       </View>
 
     </ScrollView >
@@ -33,6 +40,7 @@ const ResourceScreen = ({ route, navigation }) => {
 }
 
 export default ResourceScreen;
+
 const children = {
   "Cluster Infrastructure": [
     {
@@ -98,7 +106,6 @@ const clusterData = {
     }
   },
   "spec": spec,
-  "children": children
 };
 
 const azureClusterData = {
@@ -133,8 +140,90 @@ const fetchResourceData = (kind, name) => {
       return clusterData;
     case "AzureCluster":
       return azureClusterData;
+    default:
+      return azureClusterData;
   }
 };
+
+const fetchTree = (name) => {
+  console.log("Cluster:", name);
+  return {
+    "kind": "Cluster",
+    "name": "my-cluster",
+    "status": "success",
+    "children": {
+      "Cluster Infrastructure": [
+        {
+          "kind": "AzureCluster",
+          "name": "my-azurecluster",
+          "status": "success",
+          "children": {}
+        }
+      ],
+      "Control Plane": [
+        {
+          "kind": "KubeadmControlPlane",
+          "name": "my-kcp",
+          "status": "warning",
+          "children": {
+            "Machines": [
+              {
+                "kind": "Machine",
+                "name": "my-machine-0",
+                "status": "success",
+                "children": {}
+              },
+              {
+                "kind": "Machine",
+                "name": "my-machine-1",
+                "status": "success",
+                "children": {}
+              }
+            ]
+          },
+        }
+      ],
+      "Workers": [
+        {
+          "kind": "MachineDeployment",
+          "name": "my-md",
+          "status": "success",
+          "children": {
+            "Machines": [
+              {
+                "kind": "Machine",
+                "name": "my-machine-0",
+                "status": "success",
+                "children": {}
+              },
+              {
+                "kind": "Machine",
+                "name": "my-machine-1",
+                "status": "success",
+                "children": {}
+              }
+            ]
+          }
+        },
+        {
+          "kind": "MachinePool",
+          "name": "my-mp",
+          "status": "error",
+          "children": {
+            "Machine Infrastructure": [
+              {
+                "kind": "AzureMachinePool",
+                "name": "my-amp-0",
+                "status": "error",
+                "children": {}
+              }
+            ]
+          }
+        }
+      ]
+    } 
+  }
+}
 
 const styles = StyleSheet.create({
   chip: {

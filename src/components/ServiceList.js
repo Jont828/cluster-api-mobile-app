@@ -4,13 +4,21 @@ import { List } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ServiceCard from '../components/ServiceCard';
 
+// items = {
+//   "Cluster infra": [
+//     {
+//       "name"...
+
+//     }
+//   ]
+// }
 
 // Displays the details of a cluster
-const ServiceList = ({route, navigation, items}) => {
+const ServiceList = ({route, navigation, resourceMap}) => {
   return (
     <View>
       {
-        Object.keys(items).map( (key, index) => {
+        Object.keys(resourceMap).map( (key, index) => {
           return (
             <List.Accordion
               key={key}
@@ -18,15 +26,16 @@ const ServiceList = ({route, navigation, items}) => {
               titleStyle={{ fontWeight: '500', fontSize: 20, marginLeft: -15 }}
             >
               {
-                items[key].map( (card, j) => {
+                resourceMap[key].map( (resource, j) => {
                   return (
                     <ServiceCard 
                       key={j}
-                      kind={card.kind}
-                      name={card.name}
-                      status={card.status}
+                      kind={resource.kind}
+                      name={resource.name}
+                      status={resource.status}
                       route={route}
                       navigation={navigation}
+                      node={resource}
                     />
                   )
                 })

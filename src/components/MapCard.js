@@ -15,7 +15,7 @@ const MapCard = ({ values, route, navigation }) => {
               <CardListEntry name={key} value={values[key]} route={route} navigation={navigation} />
               {
                 index < Object.keys(values).length - 1 ? (
-                  <Divider style={{ margin: 10 }}></Divider>
+                  <Divider style={{ marginTop: 10, marginBottom: 10 }}></Divider>
                 ) : null
               }
             </View>

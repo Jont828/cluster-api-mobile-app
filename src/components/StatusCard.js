@@ -53,7 +53,7 @@ const StatusCard = ({ conditions, values, route, navigation }) => {
             Object.keys(values).map((key, index) => {
               return (
                 <View key={key}>
-                  <Divider style={{ margin: 10 }}></Divider>
+                  <Divider style={{ marginTop: 10, marginBottom: 10 }}></Divider>
                   <CardListEntry name={key} value={values[key]} route={route} navigation={navigation} />
                 </View>
               )
