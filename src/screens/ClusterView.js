@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import TreeView from "react-native-animated-tree-view";
 import CardListEntry from '../components/CardListEntry';
 import MapComponent from '../components/MapComponent';
-import ServiceCard from '../components/ServiceCard';
+import StatusComponent from '../components/StatusComponent';
 import ServiceList from '../components/ServiceList';
 
 const mockCidrs = [
@@ -64,6 +64,38 @@ const services = {
     }
   ]
 }
+// {
+//   "status": {
+//     "conditions": [],
+//     "phase": [],
+//   },
+//   "cards": [
+//     {
+//       "title": title,
+//       "content": mockClusterInfo,
+//     }
+//   ],
+//   "children": services,
+// }
+
+const conditions = [
+  {
+    "type": "Ready",
+    "status": "success",
+  },
+  {
+    "type": "ClusterInfraReady",
+    "status": "success",
+  },
+  {
+    "type": "AddonsReady",
+    "status": "warning",
+  }
+];
+
+const statusInfo = {
+  "Phase": "Provisioned"
+}
 
 // Displays the details of a cluster
 const ClusterView = (props) => {
@@ -75,24 +107,12 @@ const ClusterView = (props) => {
 
       <Card>
         <Card.Content>
-          <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
-            <Chip icon={() => (
-              <Icon name="check-circle" size={20} color="#4CAF50" />
-            )}>Ready</Chip>
-            <Chip icon={() => (
-              <Icon name="check-circle" size={20} color="#4CAF50" />
-            )}>Ready2</Chip>
-            <Chip icon={() => (
-              <Icon name="check-circle" size={20} color="#4CAF50" />
-            )}>Ready3</Chip>
-            <Chip icon={() => (
-              <Icon name="check-circle" size={20} color="#4CAF50" />
-            )}>Ready4</Chip>
-          </View>
-          <Divider style={{ margin: 10 }}></Divider>
-          <CardListEntry name="Phase" value="Provisioned" />
-          <Divider style={{ margin: 10 }}></Divider>
-          <CardListEntry name="Namespace" value="my-namespace" />
+          <StatusComponent 
+            route={props.route}
+            navigation={props.navigation}
+            conditions={conditions}
+            values={statusInfo}
+          />
         </Card.Content>
       </Card>
       <Card.Title title="Info (Key/value section)"></Card.Title>
@@ -101,42 +121,9 @@ const ClusterView = (props) => {
           <MapComponent route={props.route} navigation={props.navigation} values={mockClusterInfo} />
         </Card.Content>
       </Card>
-      <Card.Title title="Pod CIDRs (list idea)"></Card.Title>
-      <Card>
-        <Card.Content>
-          {mockCidrs.map((cidr) => {
-            return (
-              <View key={cidr}>
-                <CardListEntry name={cidr} value="" />
-                <Divider style={{ margin: 10 }}></Divider>
-              </View>
-            )
-          })}
-        </Card.Content>
-      </Card>
 
       <View style={styles.wrapper}>
         <ServiceList route={props.route} navigation={props.navigation} items={services} />
-        {/* <List.Accordion
-          title="Cluster Infrastructure"
-          titleStyle={{ fontWeight: '500', fontSize: 20, marginLeft: -15 }}
-        >
-          <ServiceCard title="AzureCluster" subtitle="my-cluster" status="warning" />
-        </List.Accordion>
-
-        <List.Accordion
-          title="Control Plane"
-          titleStyle={{ fontWeight: '500', fontSize: 20, marginLeft: -15 }}
-        >
-          <ServiceCard title="KubeadmControlPlane" subtitle="my-cluster" status="error" />
-        </List.Accordion>
-        <List.Accordion
-          title="Workers"
-          titleStyle={{ fontWeight: '500', fontSize: 20, marginLeft: -15 }}
-        >
-          <ServiceCard title="MachineDeployment" subtitle="my-cluster" status="success" />
-          <ServiceCard title="MachinePool" subtitle="my-cluster" status="success" />
-        </List.Accordion> */}
       </View>
 
     </ScrollView >
