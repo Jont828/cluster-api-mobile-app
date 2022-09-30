@@ -4,7 +4,6 @@ import { List } from 'react-native-paper';
 import { Avatar, Button, Card } from 'react-native-paper';
 import { Caption, Headline, Paragraph, Subheading, Text, Title, Divider } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import ClusterView from './ClusterView';
 
 const ListScreen = ({route, navigation}) => {
   return (

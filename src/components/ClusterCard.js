@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 const ClusterCard = (props) => {
   // console.log("ClusterCard props: ", props.name)
   return(
-    <Card style={styles.card} onPress={() => props.navigation.navigate("ClusterView", {name: props.name})}>
+    <Card style={styles.card} onPress={() => props.navigation.navigate("ResourceScreen", {name: props.name})}>
       <Card.Content>
         <Title>
           {props.name} <Icon name="microsoft-azure" style={styles.provider}></Icon>

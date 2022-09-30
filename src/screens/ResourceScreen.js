@@ -6,7 +6,7 @@ import { Caption, Headline, Paragraph, Subheading, Text, Title, Chip } from 'rea
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import TreeView from "react-native-animated-tree-view";
 import CardListEntry from '../components/CardListEntry';
-import MapComponent from '../components/MapCard';
+import MapCard from '../components/MapCard';
 import StatusCard from '../components/StatusCard';
 import ServiceList from '../components/ServiceList';
 
@@ -98,35 +98,31 @@ const statusInfo = {
 }
 
 // Displays the details of a cluster
-const ClusterView = (props) => {
-  const { name } = props.route.params;
+const ResourceScreen = ({ route, navigation }) => {
+  const { name } = route.params;
   mockClusterInfo.Name = name;
   return (
-    <ScrollView style={styles.wrapper} key={props.title}>
+    <ScrollView style={styles.wrapper} key={name}>
       <Card.Title title="Status"></Card.Title>
 
       <StatusCard 
-        route={props.route}
-        navigation={props.navigation}
+        route={route}
+        navigation={navigation}
         conditions={conditions}
         values={statusInfo}
       />
-      <Card.Title title="Info (Key/value section)"></Card.Title>
-      <Card>
-        <Card.Content>
-          <MapComponent route={props.route} navigation={props.navigation} values={mockClusterInfo} />
-        </Card.Content>
-      </Card>
+      <Card.Title title="Specs"></Card.Title>
+      <MapCard route={route} navigation={navigation} values={mockClusterInfo} />
 
       <View style={styles.wrapper}>
-        <ServiceList route={props.route} navigation={props.navigation} items={services} />
+        <ServiceList route={route} navigation={navigation} items={services} />
       </View>
 
     </ScrollView >
   );
 }
 
-export default ClusterView;
+export default ResourceScreen;
 
 const styles = StyleSheet.create({
   chip: {
