@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, ScrollView, View } from 'react-native';
-import { List } from 'react-native-paper';
-import { Avatar, Button, Card } from 'react-native-paper';
-import { Caption, Headline, Paragraph, Subheading, Text, Title, Divider } from 'react-native-paper';
+import { Card, Divider } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import CardListEntry from './CardListEntry';
 

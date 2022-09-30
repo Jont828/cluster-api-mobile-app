@@ -1,14 +1,12 @@
 import * as React from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { List } from 'react-native-paper';
-import { Avatar, Button, Card, Divider } from 'react-native-paper';
-import { Caption, Headline, Paragraph, Subheading, Text, Title, Chip } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ServiceCard from '../components/ServiceCard';
 
 
 // Displays the details of a cluster
-const ClusterView = ({route, navigation, items}) => {
+const ServiceList = ({route, navigation, items}) => {
   return (
     <View>
       {
@@ -22,7 +20,14 @@ const ClusterView = ({route, navigation, items}) => {
               {
                 items[key].map( (card, j) => {
                   return (
-                    <ServiceCard key={j} title={card.kind} subtitle={card.name} status={card.status} />
+                    <ServiceCard 
+                      key={j}
+                      kind={card.kind}
+                      name={card.name}
+                      status={card.status}
+                      route={route}
+                      navigation={navigation}
+                    />
                   )
                 })
               }
@@ -34,7 +39,7 @@ const ClusterView = ({route, navigation, items}) => {
   );
 }
 
-export default ClusterView;
+export default ServiceList;
 
 const styles = StyleSheet.create({
   chip: {

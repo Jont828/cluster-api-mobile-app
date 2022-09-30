@@ -1,42 +1,39 @@
 import * as React from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
-import { List } from 'react-native-paper';
-import { Avatar, Button, Card, Divider } from 'react-native-paper';
-import { Caption, Headline, Paragraph, Subheading, Text, Title, Chip } from 'react-native-paper';
+import { Card } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import TreeView from "react-native-animated-tree-view";
-import CardListEntry from '../components/CardListEntry';
 import MapCard from '../components/MapCard';
 import StatusCard from '../components/StatusCard';
 import ServiceList from '../components/ServiceList';
 
-const mockCidrs = [
-  "10.244.0.0/16",
-  "2001:1234:5678:9a40::/58",
-  "localhost:8080"
-]
+// Displays the details of a cluster
+const ResourceScreen = ({ route, navigation }) => {
+  const { name, namespace, kind, apiVersion } = route.params;
+  // mockClusterInfo.Name = name;
+  const { status, spec, children } = fetchResourceData(kind, name);
+  return (
+    <ScrollView style={styles.wrapper} key={name}>
+      <Card.Title title="Status"></Card.Title>
 
-const mockMap = {
-  "key1": "value1",
-  "key2": "value2"
+      <StatusCard 
+        route={route}
+        navigation={navigation}
+        conditions={status.conditions}
+        values={status.info}
+      />
+      <Card.Title title="Spec"></Card.Title>
+      <MapCard route={route} navigation={navigation} values={spec} />
+
+      <View style={styles.wrapper}>
+        <ServiceList route={route} navigation={navigation} items={children} />
+      </View>
+
+    </ScrollView >
+  );
 }
 
-const nestedMap = {
-  "key1": "value1",
-  "CIDRS": mockCidrs
-}
-
-var mockClusterInfo = {
-  "Name": "test-cluster",
-  "Namespace": "default",
-  "Phase": "Provisioned",
-  "Ready": "True",
-  "PodCIDRs": mockCidrs,
-  "Labels": mockMap,
-  "Nested": nestedMap,
-}
-
-const services = {
+export default ResourceScreen;
+const children = {
   "Cluster Infrastructure": [
     {
       "kind": "AzureCluster",
@@ -64,19 +61,6 @@ const services = {
     }
   ]
 }
-// {
-//   "status": {
-//     "conditions": [],
-//     "phase": [],
-//   },
-//   "cards": [
-//     {
-//       "title": title,
-//       "content": mockClusterInfo,
-//     }
-//   ],
-//   "children": services,
-// }
 
 const conditions = [
   {
@@ -93,36 +77,64 @@ const conditions = [
   }
 ];
 
-const statusInfo = {
-  "Phase": "Provisioned"
+const spec = {
+  "Paused": "False",
+  "APIServerPort": "6443",
+  "PodCIDRs": [
+    "10.244.0.0/16",
+    "2001:1234:5678:9a40::/58"
+  ],
+  "ServiceCIDRs": [
+    "10.244.0.0/16",
+    "2001:1234:5678:9a40::/58"
+  ]
 }
 
-// Displays the details of a cluster
-const ResourceScreen = ({ route, navigation }) => {
-  const { name } = route.params;
-  mockClusterInfo.Name = name;
-  return (
-    <ScrollView style={styles.wrapper} key={name}>
-      <Card.Title title="Status"></Card.Title>
+const clusterData = {
+  "status": {
+    "conditions": conditions,
+    "info": {
+      "Phase": "Provisioned"
+    }
+  },
+  "spec": spec,
+  "children": children
+};
 
-      <StatusCard 
-        route={route}
-        navigation={navigation}
-        conditions={conditions}
-        values={statusInfo}
-      />
-      <Card.Title title="Specs"></Card.Title>
-      <MapCard route={route} navigation={navigation} values={mockClusterInfo} />
+const azureClusterData = {
+  "status": {
+    "conditions": [
+      {
+        "type": "Ready",
+        "status": "warning",
+      },
+      {
+        "type": "VNetReady",
+        "status": "success",
+      },
+      {
+        "type": "NSGReady",
+        "status": "warning",
+      },
+      {
+        "type": "LoadBalancersReady",
+        "status": "success",
+      }
+    ],
+    "info": {}
+  },
+  "spec": spec,
+  "children": []
+};
 
-      <View style={styles.wrapper}>
-        <ServiceList route={route} navigation={navigation} items={services} />
-      </View>
-
-    </ScrollView >
-  );
-}
-
-export default ResourceScreen;
+const fetchResourceData = (kind, name) => {
+  switch (kind) {
+    case "Cluster":
+      return clusterData;
+    case "AzureCluster":
+      return azureClusterData;
+  }
+};
 
 const styles = StyleSheet.create({
   chip: {

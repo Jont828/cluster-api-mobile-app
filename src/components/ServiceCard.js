@@ -3,13 +3,22 @@ import { StyleSheet, View } from 'react-native';
 import { Card } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const ServiceCard = (props) => {
+const ServiceCard = ({route, navigation, kind, name, namespace, apiVersion, status }) => {
     return(
-      <Card style={[styles.card, {marginLeft: props.indent}]} onPress={() => { }}>
-        <Card.Title title={props.title} subtitle={props.subtitle} style={styles.title} subtitleStyle={styles.name} />
-        <View style={[styles.leftWrap, eval("styles." + props.status)]} />
+      <Card 
+        style={[styles.card]}
+        onPress={() => navigation.navigate("ResourceScreen",
+          {
+            namespace: namespace,
+            name: name,
+            kind: kind,
+            apiVersion: "v1beta1"
+          })}
+      >
+        <Card.Title title={kind} subtitle={name} style={styles.title} subtitleStyle={styles.name} />
+        <View style={[styles.leftWrap, eval("styles." + status)]} />
         <View style={styles.chevronWrap}>
-            <Icon name="chevron-right" style={styles.chevron}></Icon>
+          <Icon name="chevron-right" style={styles.chevron}></Icon>
         </View>
       </Card>
     )

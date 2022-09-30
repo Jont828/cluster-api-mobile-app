@@ -3,14 +3,19 @@ import { View, StyleSheet } from 'react-native'
 import { Card, Title, Caption } from 'react-native-paper'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
-// Displays a card with a title and a provider icon. Tapping the card navigates to the path specified in props.path
-const ClusterCard = (props) => {
-  // console.log("ClusterCard props: ", props.name)
+// Displays a card with a title and a provider icon. Tapping the card navigates to the path specified in path
+const ClusterCard = ({route, navigation, name, namespace}) => {
   return(
-    <Card style={styles.card} onPress={() => props.navigation.navigate("ResourceScreen", {name: props.name})}>
+    <Card style={styles.card} onPress={() => navigation.navigate("ResourceScreen", 
+      {
+        namespace: namespace,
+        name: name,
+        kind: "Cluster",
+        apiVersion: "v1beta1"
+      })}>
       <Card.Content>
         <Title>
-          {props.name} <Icon name="microsoft-azure" style={styles.provider}></Icon>
+          {name} <Icon name="microsoft-azure" style={styles.provider}></Icon>
         </Title>
         <Caption>Provisioned</Caption>
         <View style={styles.chevronWrap}>
