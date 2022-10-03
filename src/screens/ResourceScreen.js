@@ -45,35 +45,6 @@ const ResourceScreen = ({ route, navigation }) => {
 
 export default ResourceScreen;
 
-const children = {
-  "Cluster Infrastructure": [
-    {
-      "kind": "AzureCluster",
-      "name": "my-azurecluster",
-      "status": "success"
-    }
-  ],
-  "Control Plane": [
-    {
-      "kind": "KubeadmControlPlane",
-      "name": "my-kcp",
-      "status": "warning"
-    }
-  ],
-  "Workers": [
-    {
-      "kind": "MachineDeployment",
-      "name": "my-md",
-      "status": "success"
-    },
-    {
-      "kind": "MachinePool",
-      "name": "my-mp",
-      "status": "error"
-    }
-  ]
-}
-
 const conditions = [
   {
     "type": "Ready",
@@ -159,83 +130,7 @@ const fetchTree = async (name) => {
       }
     ).catch(error => reject("Axios error:", error));
   });
-  // console.log("Cluster:", name);
-  // return {
-  //   "kind": "Cluster",
-  //   "name": "my-cluster",
-  //   "status": "success",
-  //   "children": {
-  //     "Cluster Infrastructure": [
-  //       {
-  //         "kind": "AzureCluster",
-  //         "name": "my-azurecluster",
-  //         "status": "success",
-  //         "children": {}
-  //       }
-  //     ],
-  //     "Control Plane": [
-  //       {
-  //         "kind": "KubeadmControlPlane",
-  //         "name": "my-kcp",
-  //         "status": "warning",
-  //         "children": {
-  //           "Machines": [
-  //             {
-  //               "kind": "Machine",
-  //               "name": "my-machine-0",
-  //               "status": "success",
-  //               "children": {}
-  //             },
-  //             {
-  //               "kind": "Machine",
-  //               "name": "my-machine-1",
-  //               "status": "success",
-  //               "children": {}
-  //             }
-  //           ]
-  //         },
-  //       }
-  //     ],
-  //     "Workers": [
-  //       {
-  //         "kind": "MachineDeployment",
-  //         "name": "my-md",
-  //         "status": "success",
-  //         "children": {
-  //           "Machines": [
-  //             {
-  //               "kind": "Machine",
-  //               "name": "my-machine-0",
-  //               "status": "success",
-  //               "children": {}
-  //             },
-  //             {
-  //               "kind": "Machine",
-  //               "name": "my-machine-1",
-  //               "status": "success",
-  //               "children": {}
-  //             }
-  //           ]
-  //         }
-  //       },
-  //       {
-  //         "kind": "MachinePool",
-  //         "name": "my-mp",
-  //         "status": "error",
-  //         "children": {
-  //           "Machine Infrastructure": [
-  //             {
-  //               "kind": "AzureMachinePool",
-  //               "name": "my-amp-0",
-  //               "status": "error",
-  //               "children": {}
-  //             }
-  //           ]
-  //         }
-  //       }
-  //     ]
-  //   } 
-  }
+}
 
 const styles = StyleSheet.create({
   chip: {
