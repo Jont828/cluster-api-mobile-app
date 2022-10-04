@@ -21,6 +21,7 @@ type clusterOverview struct {
 func main() {
 	router := gin.Default()
 	router.GET("/tree", getTree)
+	router.GET("/tree/:name", getResourceByName)
 	router.GET("/managementclusters", getManagementClusters)
 
 	router.Run("localhost:5000")
@@ -34,10 +35,24 @@ func getManagementClusters(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, overview)
 }
 
+func getResourceByName(c *gin.Context) {
+	name := c.Param("name")
+
+	// Loop over the list of albums, looking for
+	// an album whose ID value matches the parameter.
+	for _, r := range resources {
+		if r.Name == name {
+			c.IndentedJSON(http.StatusOK, r)
+			return
+		}
+	}
+	c.IndentedJSON(http.StatusNotFound, gin.H{"message": "album not found"})
+}
+
 var overview = map[string][]clusterOverview{
 	"my-namespace": {
 		clusterOverview{
-			Name:     "my-test-cluster",
+			Name:     "my-cluster",
 			Provider: "azure",
 		},
 		clusterOverview{
@@ -118,3 +133,5 @@ var azureMachinePool = resourceTree{
 	Status:   "error",
 	Children: map[string][]resourceTree{},
 }
+
+var resources = []resourceTree{tree, clusterInfra, kubeadmControlPlane, machineDeployment, machinePool, machine1, machine2, azureMachinePool}

@@ -121,9 +121,9 @@ const fetchResourceData = (kind, name) => {
 };
 
 const fetchTree = async (name) => {
-  console.log("Fetching tree for", name, "from", BACKEND_URL + "/tree")
+  console.log("Fetching tree for", name, "from", BACKEND_URL + '/tree/' + name)
   return new Promise((resolve, reject) => {
-    axios.get(BACKEND_URL + '/tree').then(
+    axios.get(BACKEND_URL + '/tree/' + name).then(
       (response) => {
         console.log("Response:", response.data);
         resolve(response.data);
