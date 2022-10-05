@@ -1,9 +1,12 @@
 package main
 
 import (
+	"log"
 	"net/http"
+	"os"
 
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 )
 
 type resourceTree struct {
@@ -24,7 +27,24 @@ func main() {
 	router.GET("/tree/:name", getResourceByName)
 	router.GET("/managementclusters", getManagementClusters)
 
-	router.Run("localhost:5000")
+	address := goDotEnvVariable("BACKEND_ADDRESS")
+	port := goDotEnvVariable("BACKEND_PORT")
+	log.Printf("Starting backend on %s:%s", address, port)
+	router.Run(address + ":" + port)
+}
+
+// use godot package to load/read the .env file and
+// return the value of the key
+func goDotEnvVariable(key string) string {
+
+	// load .env file
+	err := godotenv.Load("../.env")
+
+	if err != nil {
+		log.Fatalf("Error loading .env file")
+	}
+
+	return os.Getenv(key)
 }
 
 func getTree(c *gin.Context) {
