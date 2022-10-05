@@ -1,22 +1,26 @@
-import * as React from 'react';
+import React, {useState, useEffect} from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { Card } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import MapCard from '../components/MapCard';
 import StatusCard from '../components/StatusCard';
 import ServiceList from '../components/ServiceList';
+import axios from 'axios';
+import { BACKEND_URL } from '@env'
 
 // Displays the details of a cluster
 const ResourceScreen = ({ route, navigation }) => {
   const { name, namespace, kind, apiVersion, node } = route.params;
   // mockClusterInfo.Name = name;
   const { status, spec } = fetchResourceData(kind, name);
+  const [tree, setTree] = useState({children: {}});
 
-  let tree = node;
-  if (tree === undefined) {
-    tree = fetchTree(name);
-    console.log("Tree is", tree);
-  }
+  useEffect(() => {
+    fetchTree(name).then((res) => {
+      console.log("useeffect res: ", res)
+      setTree(res);
+    })
+  }, [])
 
   return (
     <ScrollView style={styles.wrapper} key={name}>
@@ -40,35 +44,6 @@ const ResourceScreen = ({ route, navigation }) => {
 }
 
 export default ResourceScreen;
-
-const children = {
-  "Cluster Infrastructure": [
-    {
-      "kind": "AzureCluster",
-      "name": "my-azurecluster",
-      "status": "success"
-    }
-  ],
-  "Control Plane": [
-    {
-      "kind": "KubeadmControlPlane",
-      "name": "my-kcp",
-      "status": "warning"
-    }
-  ],
-  "Workers": [
-    {
-      "kind": "MachineDeployment",
-      "name": "my-md",
-      "status": "success"
-    },
-    {
-      "kind": "MachinePool",
-      "name": "my-mp",
-      "status": "error"
-    }
-  ]
-}
 
 const conditions = [
   {
@@ -145,84 +120,16 @@ const fetchResourceData = (kind, name) => {
   }
 };
 
-const fetchTree = (name) => {
-  console.log("Cluster:", name);
-  return {
-    "kind": "Cluster",
-    "name": "my-cluster",
-    "status": "success",
-    "children": {
-      "Cluster Infrastructure": [
-        {
-          "kind": "AzureCluster",
-          "name": "my-azurecluster",
-          "status": "success",
-          "children": {}
-        }
-      ],
-      "Control Plane": [
-        {
-          "kind": "KubeadmControlPlane",
-          "name": "my-kcp",
-          "status": "warning",
-          "children": {
-            "Machines": [
-              {
-                "kind": "Machine",
-                "name": "my-machine-0",
-                "status": "success",
-                "children": {}
-              },
-              {
-                "kind": "Machine",
-                "name": "my-machine-1",
-                "status": "success",
-                "children": {}
-              }
-            ]
-          },
-        }
-      ],
-      "Workers": [
-        {
-          "kind": "MachineDeployment",
-          "name": "my-md",
-          "status": "success",
-          "children": {
-            "Machines": [
-              {
-                "kind": "Machine",
-                "name": "my-machine-0",
-                "status": "success",
-                "children": {}
-              },
-              {
-                "kind": "Machine",
-                "name": "my-machine-1",
-                "status": "success",
-                "children": {}
-              }
-            ]
-          }
-        },
-        {
-          "kind": "MachinePool",
-          "name": "my-mp",
-          "status": "error",
-          "children": {
-            "Machine Infrastructure": [
-              {
-                "kind": "AzureMachinePool",
-                "name": "my-amp-0",
-                "status": "error",
-                "children": {}
-              }
-            ]
-          }
-        }
-      ]
-    } 
-  }
+const fetchTree = async (name) => {
+  console.log("Fetching tree for", name, "from", BACKEND_URL + '/tree/' + name)
+  return new Promise((resolve, reject) => {
+    axios.get(BACKEND_URL + '/tree/' + name).then(
+      (response) => {
+        console.log("Response:", response.data);
+        resolve(response.data);
+      }
+    ).catch(error => reject("Axios error:", error));
+  });
 }
 
 const styles = StyleSheet.create({

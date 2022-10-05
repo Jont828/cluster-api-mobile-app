@@ -1,7 +1,9 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Title } from 'react-native-paper'
 import ClusterCard from '../components/ClusterCard';
+import { BACKEND_URL } from '@env'
+import axios from 'axios';
 
 
 const mockClusters = {
@@ -36,11 +38,22 @@ const NamespaceList = (props) => {
 }
 
 // Displays a list of clusters grouped by namespace
-const ManagementCluster = (props) => (
-  <View style={styles.wrapper}>
-    {Object.keys(mockClusters).map((namespace) => <NamespaceList namespace={namespace} clusters={mockClusters[namespace]} navigation={props.navigation} key={namespace} />)}
-  </View>
-);
+const ManagementCluster = (props) => {
+  const [clusters, setClusters] = useState({});
+  useEffect(() => {
+    axios.get(BACKEND_URL + '/managementclusters').then((res) => {
+      console.log("cluster overview: ", res.data)
+      setClusters(res.data);
+    }).catch((err) => {
+      console.log("error: ", err)
+    })
+  }, [])
+  return(
+    <View style={styles.wrapper}>
+      {Object.keys(clusters).map((namespace) => <NamespaceList namespace={namespace} clusters={clusters[namespace]} navigation={props.navigation} key={namespace} />)}
+    </View>
+  )
+};
 
 export default ManagementCluster;
 
