@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, ScrollView } from 'react-native';
 import { Title } from 'react-native-paper'
 import ClusterCard from '../components/ClusterCard';
 import { BACKEND_URL } from '@env'
@@ -49,9 +49,9 @@ const ManagementCluster = (props) => {
     })
   }, [])
   return(
-    <View style={styles.wrapper}>
+    <ScrollView style={styles.wrapper}>
       {Object.keys(clusters).map((namespace) => <NamespaceList namespace={namespace} clusters={clusters[namespace]} navigation={props.navigation} key={namespace} />)}
-    </View>
+    </ScrollView>
   )
 };
 
