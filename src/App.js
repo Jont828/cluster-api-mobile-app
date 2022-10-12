@@ -140,6 +140,9 @@ const SettingsStackNav = () => {
       }}
     >
       <SettingsStack.Screen name="Settings" component={Settings} options={{ title: 'Settings' }} />
+      <ClusterStack.Screen name="ListScreen" component={ListScreen} options={({ route }) => ({ title: route.params.name })} />
+      <ClusterStack.Screen name="MapScreen" component={MapScreen} options={({ route }) => ({ title: route.params.name })} />
+
     </SettingsStack.Navigator>
   )
 }
