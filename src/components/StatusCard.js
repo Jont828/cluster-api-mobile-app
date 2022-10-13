@@ -51,10 +51,25 @@ const StatusCard = ({ conditions, values, route, navigation }) => {
         <View>
           {
             Object.keys(values).map((key, index) => {
+              let val = values[key];
+              var text, list, map;
+              if (typeof val === 'string')
+                text = val;
+              else if (Array.isArray(val))
+                list = val;
+              else // TODO: add a test to check if it actually is a map.
+                map = val;
               return (
                 <View key={key}>
                   <Divider></Divider>
-                  <CardListEntry name={key} value={values[key]} route={route} navigation={navigation} />
+                  <CardListEntry 
+                    name={key}
+                    text={text}
+                    list={list}
+                    map={map}
+                    route={route}
+                    navigation={navigation}
+                  />
                 </View>
               )
             })
