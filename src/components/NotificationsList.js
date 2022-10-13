@@ -123,6 +123,7 @@ export default function NotificationsList() {
         previewOpenDelay={3000}
         onRowDidOpen={onRowDidOpen}
         onSwipeValueChange={onSwipeValueChange}
+        recalculateHiddenLayout={true}
       />
     </View>
   );
@@ -142,7 +143,7 @@ const styles = StyleSheet.create({
     // borderBottomColor: 'black',
     // borderBottomWidth: 1,
     // justifyContent: 'center',
-    height: 50,
+    height: 100,
     marginBottom: 10,
     // marginVertical: 5,
   },
@@ -153,7 +154,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingLeft: 15,
-    height: 50,
     marginBottom: 10,
     borderRadius: 3,
     // borderRadius: 10,

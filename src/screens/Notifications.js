@@ -31,7 +31,7 @@ export default Notifications;
 const styles = StyleSheet.create({
   wrapper: {
     paddingHorizontal: 10,
-    marginVertical: 15,
+    paddingVertical: 15,
   },
   rowFront: {
     height: 50,
