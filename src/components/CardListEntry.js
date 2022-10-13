@@ -10,22 +10,27 @@ const CardListEntry = (props) => {
     return ((typeof val === 'function') || (typeof val === 'object'));
   };
 
+
   return (
     <TouchableOpacity 
-      style={{ flexDirection: 'row' }}
+      style={styles.touchableRow}
       onPress={() => {
         props.navigation.navigate((Array.isArray(props.value) ? "ListScreen" : "MapScreen"), { name: props.name, values: props.value })}
       }
       disabled={typeof props.value === 'string'}
       >
-      <Paragraph style={[styles.textStyle, styles.info, {}]}>{props.name}</Paragraph>
+      {
+        (props.icon) ? (
+          <Icon name={props.icon} size={props.iconSize} color={props.iconColor} style={styles.leftIcon} />
+        ) : null
+      }
+      <Paragraph style={styles.textStyle}>{props.name}</Paragraph>
+
       {
         !(typeof props.value === 'string') ? (
-          <View style={styles.chevronWrap}>
-            <Icon name="chevron-right" style={styles.chevron}></Icon>
-          </View>
+          <Icon name="chevron-right" size={30} style={[styles.textStyle, styles.textRight]}></Icon>
         ) : (
-          <Paragraph style={[styles.textStyle, styles.info, styles.textRight]}>{props.value}</Paragraph>
+          <Paragraph style={[styles.textStyle, styles.textRight]}>{props.value}</Paragraph>
         )
       }
     </TouchableOpacity>
@@ -34,25 +39,25 @@ const CardListEntry = (props) => {
 
 export default CardListEntry;
 
+const lineHeight = 35;
+
 const styles = StyleSheet.create({
-  chevronWrap: {
-    position: 'absolute',
-    right: 0,
-    top: '50%',
-    transform: [
-      { translateY: -15 } // TODO: don't hard code this
-    ]
+  touchableRow: {
+    flexDirection: 'row',
+    paddingVertical: 5
   },
   chevron: {
-    fontSize: 30,
+    lineHeight: lineHeight,
     color: 'grey',
   },
   textStyle: {
-    // fontSize: 25,
+    lineHeight: lineHeight,
     flex: 1
   },
-  info: {
-    // fontSize: 20,
+  leftIcon: {
+    paddingTop: 1,
+    lineHeight: lineHeight-1,
+    marginRight: 5,
   },
   textRight: {
     textAlign: 'right',

@@ -77,7 +77,8 @@ const clusterData = {
   "status": {
     "conditions": conditions,
     "info": {
-      "Phase": "Provisioned"
+      "Phase": "Provisioned",
+      "IsManaged": "True",
     }
   },
   "spec": spec,

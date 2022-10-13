@@ -7,15 +7,23 @@ import CardListEntry from './CardListEntry';
 const MapCard = ({ values, route, navigation }) => {
   return (
     <Card>
-      <Card.Content>
+      <Card.Content style={{paddingVertical: 5}}>
       {
         Object.keys(values).map((key, index) => {
           return (
             <View key={key}>
-              <CardListEntry name={key} value={values[key]} route={route} navigation={navigation} />
+              <CardListEntry 
+                name={key}
+                value={values[key]}
+                route={route}
+                navigation={navigation} 
+                // icon={"check-circle"} 
+                // iconSize={20}
+                // iconColor={"#4CAF50"}
+              />
               {
                 index < Object.keys(values).length - 1 ? (
-                  <Divider style={{ marginTop: 10, marginBottom: 10 }}></Divider>
+                  <Divider></Divider>
                 ) : null
               }
             </View>
@@ -34,8 +42,8 @@ const styles = StyleSheet.create({
     padding: 10
   },
   card: {
-    marginTop: 10,
-    marginBottom: 10,
+    // marginTop: 10,
+    // marginBottom: 10,
   },
   chevronWrap: {
     position: 'absolute',

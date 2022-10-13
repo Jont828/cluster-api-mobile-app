@@ -33,7 +33,7 @@ const StatusCard = ({ conditions, values, route, navigation }) => {
   };
   return (
     <Card>
-      <Card.Content>
+      <Card.Content style={styles.cardContent}>
         <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
           {
             conditions.map((condition, index) => {
@@ -53,7 +53,7 @@ const StatusCard = ({ conditions, values, route, navigation }) => {
             Object.keys(values).map((key, index) => {
               return (
                 <View key={key}>
-                  <Divider style={{ marginTop: 10, marginBottom: 10 }}></Divider>
+                  <Divider></Divider>
                   <CardListEntry name={key} value={values[key]} route={route} navigation={navigation} />
                 </View>
               )
@@ -72,12 +72,8 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     marginRight: 8,
   },
-  wrapper: {
-    padding: 10
-  },
-  card: {
-    marginTop: 10,
-    marginBottom: 10,
+  cardContent: {
+    paddingBottom: 5,
   },
   chevronWrap: {
     position: 'absolute',
