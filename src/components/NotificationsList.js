@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 
 import { SwipeListView } from 'react-native-swipe-list-view';
-import { Card, Subheading } from 'react-native-paper';
+import { Card, Subheading, Paragraph } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const rowSwipeAnimatedValues = {};
@@ -57,9 +57,9 @@ export default function NotificationsList() {
       // underlayColor={'#AAA'}
     >
       <Card.Title title={"List " + data.item.text}></Card.Title>
-      {/* <View>
-        <Text>I am {data.item.text} in a SwipeListView</Text>
-      </View> */}
+      <Card.Content>
+        <Paragraph>Something happened, check it out!</Paragraph>
+      </Card.Content>
     </Card>
   );
 
