@@ -10,14 +10,16 @@ const CardListEntry = (props) => {
     return ((typeof val === 'function') || (typeof val === 'object'));
   };
 
-
   return (
     <TouchableOpacity 
       style={styles.touchableRow}
       onPress={() => {
-        props.navigation.navigate((Array.isArray(props.value) ? "ListScreen" : "MapScreen"), { name: props.name, values: props.value })}
-      }
-      disabled={typeof props.value === 'string'}
+        if (props.list)
+          props.navigation.navigate("ListScreen", { name: props.name, values: props.list })
+        else
+          props.navigation.navigate("MapScreen", { name: props.name, values: props.map })
+      }}
+      disabled={!props.list && !props.map}
       >
       {
         (props.icon) ? (
@@ -27,10 +29,10 @@ const CardListEntry = (props) => {
       <Paragraph style={styles.textStyle}>{props.name}</Paragraph>
 
       {
-        !(typeof props.value === 'string') ? (
+        (props.map || props.list) ? (
           <Icon name="chevron-right" size={30} style={[styles.textStyle, styles.textRight]}></Icon>
         ) : (
-          <Paragraph style={[styles.textStyle, styles.textRight]}>{props.value}</Paragraph>
+          <Paragraph style={[styles.textStyle, styles.textRight]}>{props.text}</Paragraph>
         )
       }
     </TouchableOpacity>

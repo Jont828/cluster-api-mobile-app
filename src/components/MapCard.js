@@ -10,13 +10,25 @@ const MapCard = ({ values, route, navigation }) => {
       <Card.Content style={{paddingVertical: 5}}>
       {
         Object.keys(values).map((key, index) => {
+          let val = values[key];
+          var text, list, map;
+          if (typeof val === 'string')
+            text = val;
+          else if (Array.isArray(val))
+            list = val;
+          else // TODO: add a test to check if it actually is a map.
+            map = val;
+
           return (
             <View key={key}>
               <CardListEntry 
                 name={key}
-                value={values[key]}
                 route={route}
                 navigation={navigation} 
+                text={text}
+                list={list}
+                map={map}
+                // TODO: add additional props like supporting a link to a website.
                 // icon={"check-circle"} 
                 // iconSize={20}
                 // iconColor={"#4CAF50"}
