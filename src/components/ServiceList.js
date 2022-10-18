@@ -24,6 +24,7 @@ const ServiceList = ({route, navigation, resourceMap}) => {
               key={key}
               title={key}
               titleStyle={{ fontWeight: '500', fontSize: 20, marginLeft: -15 }}
+              style={{ backgroundColor: 'none' }}
             >
               {
                 resourceMap[key].map( (resource, j) => {

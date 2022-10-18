@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 
 import { SwipeListView } from 'react-native-swipe-list-view';
-import { Card, Subheading, Paragraph } from 'react-native-paper';
+import { Card, Subheading, Paragraph, Title, Caption } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const rowSwipeAnimatedValues = {};
@@ -24,7 +24,7 @@ export default function NotificationsList() {
   const [listData, setListData] = useState(
     Array(20)
       .fill('')
-      .map((_, i) => ({ key: `${i}`, text: `item #${i}` }))
+      .map((_, i) => ({ key: `${i}`, text: `${i}` }))
   );
 
   const closeRow = (rowMap, rowKey) => {
@@ -56,9 +56,29 @@ export default function NotificationsList() {
       style={styles.rowFront}
       // underlayColor={'#AAA'}
     >
-      <Card.Title title={"List " + data.item.text}></Card.Title>
-      <Card.Content>
-        <Paragraph>Something happened, check it out!</Paragraph>
+      <Card.Content style={{
+        // backgroundColor: 'red',
+      }}>
+        <View style={{
+          // backgroundColor: 'grey',
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+        }}>
+          <Title style={{
+              // backgroundColor: 'red'
+          }}>
+            Cluster/my-cluster-{data.item.text}
+          </Title>
+          <Paragraph style={{
+            textAlign: 'right',
+            color: '#666'
+          }}>
+            5 min
+          </Paragraph>
+        </View>
+        <Caption>Subtitle</Caption>
+        <Paragraph>Cluster condition 'InfraReady' is ready</Paragraph>
       </Card.Content>
     </Card>
   );

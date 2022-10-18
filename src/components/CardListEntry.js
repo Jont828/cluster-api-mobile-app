@@ -45,8 +45,10 @@ const lineHeight = 35;
 
 const styles = StyleSheet.create({
   touchableRow: {
+    display: 'flex',
     flexDirection: 'row',
-    paddingVertical: 5
+    paddingVertical: 5,
+    justifyContent: 'space-between',
   },
   chevron: {
     lineHeight: lineHeight,
@@ -54,7 +56,12 @@ const styles = StyleSheet.create({
   },
   textStyle: {
     lineHeight: lineHeight,
-    flex: 1
+    // minWidth: 0,
+    // overflow: 'hidden',
+    // whiteSpace: 'nowrap',
+    // textOverflow: 'ellipsis',
+
+    // flex: 1
   },
   leftIcon: {
     paddingTop: 1,
@@ -62,6 +69,7 @@ const styles = StyleSheet.create({
     marginRight: 5,
   },
   textRight: {
+    minWidth: 0,
     textAlign: 'right',
     color: '#888'
   },

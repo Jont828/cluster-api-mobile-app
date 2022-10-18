@@ -21,7 +21,7 @@ const MapCard = ({ values, route, navigation }) => {
 
           return (
             <View key={key}>
-              <CardListEntry 
+              <CardListEntry
                 name={key}
                 route={route}
                 navigation={navigation} 

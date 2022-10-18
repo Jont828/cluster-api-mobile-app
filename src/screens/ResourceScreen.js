@@ -62,6 +62,7 @@ const conditions = [
 
 const spec = {
   "Paused": "False",
+  // "This is a super long line that will test overflow of the parent": "False",
   "APIServerPort": "6443",
   "PodCIDRs": [
     "10.244.0.0/16",
@@ -70,8 +71,41 @@ const spec = {
   "ServiceCIDRs": [
     "10.244.0.0/16",
     "2001:1234:5678:9a40::/58"
-  ]
+  ],
+  "Labels": {
+    "key1": "value1",
+    "key2": "value2",
+  }
 }
+const specList = [
+  {
+    "name": "Paused",
+    "icon": "pause",
+    "value": "False"
+  },
+]
+
+const list = [
+  {
+    "name": "10.244.0.0/16",
+    "value": ""
+  },
+  {
+    "name": "2001:1234:5678:9a40::/58",
+    "value": ""
+  },
+]
+
+const map = [
+  {
+    "name": "key1",
+    "value": "value1"
+  },
+  {
+    "name": "key2",
+    "value": "value2"
+  },
+]
 
 const clusterData = {
   "status": {
