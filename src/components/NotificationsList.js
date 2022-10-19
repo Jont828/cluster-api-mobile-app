@@ -66,18 +66,31 @@ export default function NotificationsList() {
           justifyContent: 'space-between',
         }}>
           <Title style={{
-              // backgroundColor: 'red'
+            // fontSize: 20,
           }}>
-            Cluster/my-cluster-{data.item.text}
+            AzureMachinePool
           </Title>
           <Paragraph style={{
-            textAlign: 'right',
-            color: '#666'
+            lineHeight: 30, // TODO: is this right
+            // textAlign: 'right',
+            color: '#666',
           }}>
             5 min
           </Paragraph>
         </View>
-        <Caption>Subtitle</Caption>
+
+        <View style={{
+          // backgroundColor: 'grey',
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+        }}>
+          <Subheading style={styles.name}>my-cluster-{data.item.text}</Subheading>
+          <Subheading style={{fontSize: 16, color: '#666'}}>my-namespace</Subheading>
+        </View>
+        
+        {/* <Subheading style={styles.name}>my-cluster-{data.item.text}</Subheading>
+        <Caption style={styles.name}>my-namespace</Caption> */}
         <Paragraph>Cluster condition 'InfraReady' is ready</Paragraph>
       </Card.Content>
     </Card>
@@ -154,6 +167,13 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     flex: 1,
   },
+  name: {
+    // marginTop: 0,
+    fontSize: 16,
+    fontStyle: 'italic',
+    color: 'black',
+    // backgroundColor: 'red',
+  },
   backTextWhite: {
     color: '#FFF',
   },
@@ -163,7 +183,7 @@ const styles = StyleSheet.create({
     // borderBottomColor: 'black',
     // borderBottomWidth: 1,
     // justifyContent: 'center',
-    height: 100,
+    height: 120,
     marginBottom: 10,
     // marginVertical: 5,
   },

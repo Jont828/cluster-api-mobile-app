@@ -16,7 +16,7 @@ const HomeScreen = ({ route, navigation }) => {
         // node={resource}
       />
       <ServiceCard 
-        kind={'Cluster'}
+        kind={'DockerCluster'}
         name={"my-resource-2"}
         status={'error'}
         route={route}
