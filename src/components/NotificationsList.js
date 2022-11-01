@@ -144,8 +144,9 @@ export default function NotificationsList() {
   );
 
   return (
-    <View style={styles.container}>
+    // <View style={styles.container}>
       <SwipeListView
+        style={styles.list}
         data={listData}
         renderItem={renderItem}
         renderHiddenItem={renderHiddenItem}
@@ -158,12 +159,16 @@ export default function NotificationsList() {
         onSwipeValueChange={onSwipeValueChange}
         recalculateHiddenLayout={true}
       />
-    </View>
+    // </View>
   );
 }
 
 const styles = StyleSheet.create({
+  list: {
+    padding: 10,
+  },
   container: {
+    // padding: 10,
     backgroundColor: 'transparent',
     flex: 1,
   },
