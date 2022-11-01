@@ -97,7 +97,7 @@ const spec = [
         "valueType": "string",
       },
     ],
-    "valueType": "map", 
+    "valueType": "list", 
   },
 ]
 

@@ -9,27 +9,29 @@ const InfoCard = ({ items, route, navigation }) => {
     <Card>
       <Card.Content style={{paddingVertical: 5}}>
       {
-        items.map((item, index) => {
-          return (
-            <View key={index}>
-              <CardRow
-                name={item.name}
-                route={route}
-                navigation={navigation} 
-                value={item.value}
-                valueType={item.valueType}
-                icon={item.icon}
-                iconSize={item.iconSize}
-                iconColor={item.iconColor}
-              />
-              {
-                index < Object.keys(items).length - 1 ? (
-                  <Divider></Divider>
-                ) : null
-              }
-            </View>
-          )
-        })
+        (items) ? 
+          items.map((item, index) => {
+            return (
+              <View key={index}>
+                <CardRow
+                  name={item.name}
+                  route={route}
+                  navigation={navigation} 
+                  value={item.value}
+                  valueType={item.valueType}
+                  icon={item.icon}
+                  iconSize={item.iconSize}
+                  iconColor={item.iconColor}
+                />
+                {
+                  index < Object.keys(items).length - 1 ? (
+                    <Divider></Divider>
+                  ) : null
+                }
+              </View>
+            )
+          })
+        : null
       }
       </Card.Content>
     </Card>

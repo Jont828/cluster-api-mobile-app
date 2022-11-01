@@ -4,13 +4,14 @@ import { Paragraph } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 const CardRow = (props) => {
-  console.log("Props are", props);
+  const isList = Array.isArray(props.value);
+  // const isList = props.valueType === 'list';
   return (
     <TouchableOpacity 
       style={styles.touchableRow}
       onPress={() => {
-        if (props.valueType === 'list' || props.valueType === 'map')
-          props.navigation.navigate("MapScreen", { name: props.name, items: props.value })
+        if (props.valueType === 'list')
+          props.navigation.navigate("InfoCardScreen", { name: props.name, items: props.value })
       }}
       disabled={props.valueType === 'text'}
       >
@@ -26,7 +27,7 @@ const CardRow = (props) => {
         
       <View style={styles.rightWrap}>
       {
-        (props.valueType === 'list' || props.valueType === 'map') ? (
+        (isList) ? (
           <Icon name="chevron-right" size={30} style={[styles.textStyle, styles.textRight]}></Icon>
         ) : (
           <Paragraph style={[styles.textStyle, styles.textRight]}>{props.value}</Paragraph>

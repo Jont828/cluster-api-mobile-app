@@ -113,7 +113,7 @@ const ClusterStackNav = () => {
     >
       <ClusterStack.Screen name="ManagementCluster" component={ManagementCluster} options={{ title: 'Clusters' }} />
       <ClusterStack.Screen name="ResourceScreen" component={ResourceScreen} options={({ route }) => ({ title: route.params.name })} />
-      <ClusterStack.Screen name="MapScreen" component={InfoCardScreen} options={({ route }) => ({ title: route.params.name })} />
+      <ClusterStack.Screen name="InfoCardScreen" component={InfoCardScreen} options={({ route }) => ({ title: route.params.name })} />
     </ClusterStack.Navigator>
   )
 }
@@ -138,7 +138,7 @@ const SettingsStackNav = () => {
       }}
     >
       <SettingsStack.Screen name="Settings" component={Settings} options={{ title: 'Settings' }} />
-      <ClusterStack.Screen name="MapScreen" component={InfoCardScreen} options={({ route }) => ({ title: route.params.name })} />
+      <ClusterStack.Screen name="InfoCardScreen" component={InfoCardScreen} options={({ route }) => ({ title: route.params.name })} />
 
     </SettingsStack.Navigator>
   )
