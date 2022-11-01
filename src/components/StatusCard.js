@@ -4,7 +4,7 @@ import { List } from 'react-native-paper';
 import { Avatar, Button, Card } from 'react-native-paper';
 import { Caption, Headline, Paragraph, Subheading, Text, Title, Divider, Chip } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import CardListEntry from './CardListEntry';
+import CardRow from './CardRow';
 
 const StatusCard = ({ conditions, items, route, navigation }) => {
   const getIcon = (status) => {
@@ -54,7 +54,7 @@ const StatusCard = ({ conditions, items, route, navigation }) => {
               return (
                 <View key={index}>
                   <Divider></Divider>
-                  <CardListEntry 
+                  <CardRow 
                     name={item.name}
                     value={item.value}
                     valueType={item.valueType}

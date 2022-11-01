@@ -3,7 +3,7 @@ import { StyleSheet, View, TouchableOpacity, Text } from 'react-native';
 import { Paragraph } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
-const CardListEntry = (props) => {
+const CardRow = (props) => {
   console.log("Props are", props);
   return (
     <TouchableOpacity 
@@ -37,7 +37,7 @@ const CardListEntry = (props) => {
   )
 }
 
-export default CardListEntry;
+export default CardRow;
 
 const lineHeight = 35;
 

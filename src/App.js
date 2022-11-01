@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
 import ManagementCluster from './screens/ManagementCluster';
-import MapScreen from './screens/MapScreen';
+import InfoCardScreen from './screens/InfoCardScreen';
 import ResourceScreen from './screens/ResourceScreen';
 import Settings from './screens/Settings';
 import HomeScreen from './screens/HomeScreen';
@@ -113,7 +113,7 @@ const ClusterStackNav = () => {
     >
       <ClusterStack.Screen name="ManagementCluster" component={ManagementCluster} options={{ title: 'Clusters' }} />
       <ClusterStack.Screen name="ResourceScreen" component={ResourceScreen} options={({ route }) => ({ title: route.params.name })} />
-      <ClusterStack.Screen name="MapScreen" component={MapScreen} options={({ route }) => ({ title: route.params.name })} />
+      <ClusterStack.Screen name="MapScreen" component={InfoCardScreen} options={({ route }) => ({ title: route.params.name })} />
     </ClusterStack.Navigator>
   )
 }
@@ -138,7 +138,7 @@ const SettingsStackNav = () => {
       }}
     >
       <SettingsStack.Screen name="Settings" component={Settings} options={{ title: 'Settings' }} />
-      <ClusterStack.Screen name="MapScreen" component={MapScreen} options={({ route }) => ({ title: route.params.name })} />
+      <ClusterStack.Screen name="MapScreen" component={InfoCardScreen} options={({ route }) => ({ title: route.params.name })} />
 
     </SettingsStack.Navigator>
   )

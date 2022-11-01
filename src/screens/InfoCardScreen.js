@@ -1,19 +1,19 @@
 import * as React from 'react';
 import { StyleSheet, ScrollView, View } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import MapCard from '../components/MapCard';
+import InfoCard from '../components/InfoCard';
 
-const MapScreen = ({route, navigation}) => {
+const InfoCardScreen = ({route, navigation}) => {
   const items = route.params.items;
   console.log("Items are", items);
   return (
     <ScrollView style={styles.wrapper}>
-      <MapCard route={route} navigation={navigation} items={route.params.items}/>
+      <InfoCard route={route} navigation={navigation} items={route.params.items}/>
     </ScrollView>
   );
 }
 
-export default MapScreen;
+export default InfoCardScreen;
 
 const styles = StyleSheet.create({
   wrapper: {

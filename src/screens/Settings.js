@@ -1,7 +1,7 @@
 import React from "react";
 import { ScrollView, Text, StyleSheet } from 'react-native';
 import { Card } from 'react-native-paper';
-import MapCard from '../components/MapCard';
+import InfoCard from '../components/InfoCard';
 
 const Settings = ({route, navigation}) => {
   
@@ -18,10 +18,10 @@ const Settings = ({route, navigation}) => {
   return (
     <ScrollView style={styles.wrapper}>
       <Card.Title title="About"></Card.Title>
-      <MapCard route={route} navigation={navigation} values={aboutItems} />
+      <InfoCard route={route} navigation={navigation} values={aboutItems} />
 
       <Card.Title title="General"></Card.Title>
-      <MapCard route={route} navigation={navigation} values={settingsItems} />
+      <InfoCard route={route} navigation={navigation} values={settingsItems} />
     </ScrollView>
   );
 }

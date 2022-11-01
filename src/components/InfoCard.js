@@ -2,9 +2,9 @@ import * as React from 'react';
 import { StyleSheet, ScrollView, View } from 'react-native';
 import { Card, Divider } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import CardListEntry from './CardListEntry';
+import CardRow from './CardRow';
 
-const MapCard = ({ items, route, navigation }) => {
+const InfoCard = ({ items, route, navigation }) => {
   return (
     <Card>
       <Card.Content style={{paddingVertical: 5}}>
@@ -12,19 +12,15 @@ const MapCard = ({ items, route, navigation }) => {
         items.map((item, index) => {
           return (
             <View key={index}>
-              <CardListEntry
+              <CardRow
                 name={item.name}
                 route={route}
                 navigation={navigation} 
                 value={item.value}
                 valueType={item.valueType}
-                // icon={item.icon}
-                // iconSize={item.iconSize}
-                // iconColor={item.iconColor}
-                // TODO: add additional props like supporting a link to a website.
-                // icon={"check-circle"} 
-                // iconSize={20}
-                // iconColor={"#4CAF50"}
+                icon={item.icon}
+                iconSize={item.iconSize}
+                iconColor={item.iconColor}
               />
               {
                 index < Object.keys(items).length - 1 ? (
@@ -40,7 +36,7 @@ const MapCard = ({ items, route, navigation }) => {
   );
 }
 
-export default MapCard;
+export default InfoCard;
 
 const styles = StyleSheet.create({
   wrapper: {
