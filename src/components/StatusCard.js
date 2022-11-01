@@ -6,7 +6,7 @@ import { Caption, Headline, Paragraph, Subheading, Text, Title, Divider, Chip } 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import CardListEntry from './CardListEntry';
 
-const StatusCard = ({ conditions, values, route, navigation }) => {
+const StatusCard = ({ conditions, items, route, navigation }) => {
   const getIcon = (status) => {
     switch(status) {
       case "success":
@@ -50,16 +50,19 @@ const StatusCard = ({ conditions, values, route, navigation }) => {
         </View>
         <View>
           {
-            Object.keys(values).map((key, index) => {
+            items.map((item, index) => {
               return (
-                <View key={key}>
+                <View key={index}>
                   <Divider></Divider>
                   <CardListEntry 
-                    name={key}
-                    value={values[key]}
-                    valueType="string"
+                    name={item.name}
+                    value={item.value}
+                    valueType={item.valueType}
                     route={route}
                     navigation={navigation}
+                    icon={item.icon}
+                    iconSize={item.iconSize}
+                    iconColor={item.iconColor}
                   />
                 </View>
               )

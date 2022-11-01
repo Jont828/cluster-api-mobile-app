@@ -10,7 +10,6 @@ const MapCard = ({ items, route, navigation }) => {
       <Card.Content style={{paddingVertical: 5}}>
       {
         items.map((item, index) => {
-          console.log("Item #", index, "is", item);
           return (
             <View key={index}>
               <CardListEntry

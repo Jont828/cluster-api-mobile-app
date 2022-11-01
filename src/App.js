@@ -1,7 +1,6 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
 import ManagementCluster from './screens/ManagementCluster';
-import ListScreen from './screens/ListScreen';
 import MapScreen from './screens/MapScreen';
 import ResourceScreen from './screens/ResourceScreen';
 import Settings from './screens/Settings';
@@ -114,7 +113,6 @@ const ClusterStackNav = () => {
     >
       <ClusterStack.Screen name="ManagementCluster" component={ManagementCluster} options={{ title: 'Clusters' }} />
       <ClusterStack.Screen name="ResourceScreen" component={ResourceScreen} options={({ route }) => ({ title: route.params.name })} />
-      <ClusterStack.Screen name="ListScreen" component={ListScreen} options={({ route }) => ({ title: route.params.name })} />
       <ClusterStack.Screen name="MapScreen" component={MapScreen} options={({ route }) => ({ title: route.params.name })} />
     </ClusterStack.Navigator>
   )
@@ -140,7 +138,6 @@ const SettingsStackNav = () => {
       }}
     >
       <SettingsStack.Screen name="Settings" component={Settings} options={{ title: 'Settings' }} />
-      <ClusterStack.Screen name="ListScreen" component={ListScreen} options={({ route }) => ({ title: route.params.name })} />
       <ClusterStack.Screen name="MapScreen" component={MapScreen} options={({ route }) => ({ title: route.params.name })} />
 
     </SettingsStack.Navigator>

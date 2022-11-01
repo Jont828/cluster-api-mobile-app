@@ -30,7 +30,7 @@ const ResourceScreen = ({ route, navigation }) => {
         route={route}
         navigation={navigation}
         conditions={status.conditions}
-        values={status.info}
+        items={status.info}
       />
       <Card.Title title="Spec"></Card.Title>
       <MapCard route={route} navigation={navigation} items={spec} />
@@ -97,17 +97,33 @@ const spec = [
         "valueType": "string",
       },
     ],
-    "valueType": "map",
+    "valueType": "map", 
   },
 ]
 
 const clusterData = {
   "status": {
     "conditions": conditions,
-    "info": {
-      "Phase": "Provisioned",
-      "IsManaged": "True",
-    }
+    "info": [
+      {
+        "name": "Phase",
+        "value": "Provisioned",
+        "valueType": "string",
+        "icon": "alert",
+        "iconColor": "green",
+        "iconSize": 20,
+      },
+      {
+        "name": "Phase",
+        "value": "Provisioned",
+        "valueType": "string",
+      },
+      {
+        "name": "IsManaged",
+        "value": "True",
+        "valueType": "string",
+      }
+  ]
   },
   "spec": spec,
 };
@@ -132,7 +148,7 @@ const azureClusterData = {
         "status": "success",
       }
     ],
-    "info": {}
+    "info": []
   },
   "spec": spec,
   "children": []
