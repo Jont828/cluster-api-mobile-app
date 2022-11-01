@@ -33,7 +33,7 @@ const ResourceScreen = ({ route, navigation }) => {
         values={status.info}
       />
       <Card.Title title="Spec"></Card.Title>
-      <MapCard route={route} navigation={navigation} values={spec} />
+      <MapCard route={route} navigation={navigation} items={spec} />
 
       <View style={styles.wrapper}>
         <ServiceList route={route} navigation={navigation} resourceMap={tree.children} />
@@ -60,50 +60,44 @@ const conditions = [
   }
 ];
 
-const spec = {
-  "Paused": "False",
-  // "This is a super long line that will test overflow of the parent": "False",
-  "APIServerPort": "6443",
-  "PodCIDRs": [
-    "10.244.0.0/16",
-    "2001:1234:5678:9a40::/58"
-  ],
-  "ServiceCIDRs": [
-    "10.244.0.0/16",
-    "2001:1234:5678:9a40::/58"
-  ],
-  "Labels": {
-    "key1": "value1",
-    "key2": "value2",
-  }
-}
-const specList = [
+const spec = [
   {
     "name": "Paused",
-    "icon": "pause",
-    "value": "False"
-  },
-]
-
-const list = [
-  {
-    "name": "10.244.0.0/16",
-    "value": ""
+    "value": "False",
+    "valueType": "string",
   },
   {
-    "name": "2001:1234:5678:9a40::/58",
-    "value": ""
-  },
-]
-
-const map = [
-  {
-    "name": "key1",
-    "value": "value1"
+    "name": "APIServerPort",
+    "value": "6443",
+    "valueType": "string",
   },
   {
-    "name": "key2",
-    "value": "value2"
+    "name": "PodCIDRs",
+    "value": [
+      {
+        "name": "10.244.0.0/16"
+      },
+      {
+        "name": "2001:1234:5678:9a40::/58",
+      },
+    ],
+    "valueType": "list",
+  },
+  {
+    "name": "Labels",
+    "value": [
+      {
+        "name": "Label1",
+        "value": "Value1",
+        "valueType": "string",
+      },
+      {
+        "name": "Label2",
+        "value": "Value2",
+        "valueType": "string",
+      },
+    ],
+    "valueType": "map",
   },
 ]
 
@@ -163,7 +157,10 @@ const fetchTree = async (name) => {
         console.log("Response:", response.data);
         resolve(response.data);
       }
-    ).catch(error => reject("Axios error:", error));
+    ).catch(error => {
+      console.log("Got an axios error fetching tree:", error);
+      reject("Axios error fetching tree:", error)
+    });
   });
 }
 

@@ -45,7 +45,7 @@ const ManagementCluster = (props) => {
       console.log("cluster overview: ", res.data)
       setClusters(res.data);
     }).catch((err) => {
-      console.log("error: ", err)
+      console.log("Axios error fetching management cluster: ", err)
     })
   }, [])
   return(

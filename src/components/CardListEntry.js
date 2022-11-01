@@ -4,22 +4,19 @@ import { Paragraph } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 const CardListEntry = (props) => {
-
-  const isObject = (val) => {
-    if (val === null) { return false; }
-    return ((typeof val === 'function') || (typeof val === 'object'));
-  };
-
+  console.log("Props are", props);
   return (
     <TouchableOpacity 
       style={styles.touchableRow}
       onPress={() => {
-        if (props.list)
-          props.navigation.navigate("ListScreen", { name: props.name, values: props.list })
-        else
-          props.navigation.navigate("MapScreen", { name: props.name, values: props.map })
+        if (props.valueType === 'list' || props.valueType === 'map')
+          props.navigation.navigate("MapScreen", { name: props.name, items: props.value })
+        // if (props.valueType === 'list')
+        //   props.navigation.navigate("ListScreen", { name: props.name, items: props.value })
+        // else if (props.valueType === 'map')
+        //   props.navigation.navigate("MapScreen", { name: props.name, items: props.value })
       }}
-      disabled={!props.list && !props.map}
+      disabled={props.valueType === 'text'}
       >
       {
         (props.icon) ? (
@@ -29,10 +26,10 @@ const CardListEntry = (props) => {
       <Paragraph style={styles.textStyle}>{props.name}</Paragraph>
 
       {
-        (props.map || props.list) ? (
+        (props.valueType === 'list' || props.valueType === 'map') ? (
           <Icon name="chevron-right" size={30} style={[styles.textStyle, styles.textRight]}></Icon>
         ) : (
-          <Paragraph style={[styles.textStyle, styles.textRight]}>{props.text}</Paragraph>
+          <Paragraph style={[styles.textStyle, styles.textRight]}>{props.value}</Paragraph>
         )
       }
     </TouchableOpacity>

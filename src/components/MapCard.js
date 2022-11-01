@@ -4,37 +4,31 @@ import { Card, Divider } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import CardListEntry from './CardListEntry';
 
-const MapCard = ({ values, route, navigation }) => {
+const MapCard = ({ items, route, navigation }) => {
   return (
     <Card>
       <Card.Content style={{paddingVertical: 5}}>
       {
-        Object.keys(values).map((key, index) => {
-          let val = values[key];
-          var text, list, map;
-          if (typeof val === 'string')
-            text = val;
-          else if (Array.isArray(val))
-            list = val;
-          else // TODO: add a test to check if it actually is a map.
-            map = val;
-
+        items.map((item, index) => {
+          console.log("Item #", index, "is", item);
           return (
-            <View key={key}>
+            <View key={index}>
               <CardListEntry
-                name={key}
+                name={item.name}
                 route={route}
                 navigation={navigation} 
-                text={text}
-                list={list}
-                map={map}
+                value={item.value}
+                valueType={item.valueType}
+                // icon={item.icon}
+                // iconSize={item.iconSize}
+                // iconColor={item.iconColor}
                 // TODO: add additional props like supporting a link to a website.
                 // icon={"check-circle"} 
                 // iconSize={20}
                 // iconColor={"#4CAF50"}
               />
               {
-                index < Object.keys(values).length - 1 ? (
+                index < Object.keys(items).length - 1 ? (
                   <Divider></Divider>
                 ) : null
               }

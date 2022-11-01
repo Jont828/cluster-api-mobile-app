@@ -4,11 +4,11 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import MapCard from '../components/MapCard';
 
 const MapScreen = ({route, navigation}) => {
-  const values = route.params.values;
-  console.log("Values are", values);
+  const items = route.params.items;
+  console.log("Items are", items);
   return (
     <ScrollView style={styles.wrapper}>
-      <MapCard route={route} navigation={navigation} values={route.params.values}/>
+      <MapCard route={route} navigation={navigation} items={route.params.items}/>
     </ScrollView>
   );
 }
