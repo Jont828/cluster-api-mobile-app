@@ -13,18 +13,41 @@ import { SwipeListView } from 'react-native-swipe-list-view';
 import { Card, Subheading, Paragraph, Title, Caption } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const rowSwipeAnimatedValues = {};
-Array(20)
-  .fill('')
-  .forEach((_, i) => {
-    rowSwipeAnimatedValues[`${i}`] = new Animated.Value(0);
-  });
 
-export default function NotificationsList() {
+let arrayData = [
+  {
+    key: '0',
+    kind: 'Cluster',
+    name: 'my-cluster',
+    namespace: 'my-namespace',
+    time: "",
+    ago: "5 min",
+    message: "Cluster provisioned successfully",
+  },
+  {
+    key: '1',
+    kind: 'AzureMachinePool',
+    name: 'my-amp',
+    namespace: 'my-namespace',
+    time: "",
+    ago: "15 min",
+    message: "AzureMachinePool failed to create replicas",
+  },
+]
+
+const rowSwipeAnimatedValues = {};
+Array(arrayData.length)
+.fill('')
+.forEach((_, i) => {
+  rowSwipeAnimatedValues[`${i}`] = new Animated.Value(0);
+});
+
+export default function NotificationsList({ navigation, route }) {
   const [listData, setListData] = useState(
-    Array(20)
-      .fill('')
-      .map((_, i) => ({ key: `${i}`, text: `${i}` }))
+    arrayData
+    // Array(20)
+    //   .fill('')
+    //   .map((_, i) => ({ key: `${i}`, text: `${i}` }))
   );
 
   const closeRow = (rowMap, rowKey) => {
@@ -68,14 +91,14 @@ export default function NotificationsList() {
           <Title style={{
             // fontSize: 20,
           }}>
-            AzureMachinePool
+            {data.item.kind}
           </Title>
           <Paragraph style={{
             lineHeight: 30, // TODO: is this right
             // textAlign: 'right',
             color: '#666',
           }}>
-            5 min
+            {data.item.ago}
           </Paragraph>
         </View>
 
@@ -85,13 +108,13 @@ export default function NotificationsList() {
           flexDirection: 'row',
           justifyContent: 'space-between',
         }}>
-          <Subheading style={styles.name}>my-cluster-{data.item.text}</Subheading>
-          <Subheading style={{fontSize: 16, color: '#666'}}>my-namespace</Subheading>
+          <Subheading style={styles.name}>{data.item.name}</Subheading>
+          <Subheading style={{ fontSize: 16, color: '#666' }}>{data.item.namespace}</Subheading>
         </View>
         
         {/* <Subheading style={styles.name}>my-cluster-{data.item.text}</Subheading>
         <Caption style={styles.name}>my-namespace</Caption> */}
-        <Paragraph>Cluster condition 'InfraReady' is ready</Paragraph>
+        <Paragraph>{data.item.message}</Paragraph>
       </Card.Content>
     </Card>
   );

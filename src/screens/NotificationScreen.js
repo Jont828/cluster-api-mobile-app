@@ -4,20 +4,19 @@ import { Card } from 'react-native-paper';
 import NotificationsList from '../components/NotificationsList';
 import { SwipeListView } from 'react-native-swipe-list-view';
 
-const Notifications = ({ route, navigation }) => {
-
-  let listViewData = Array(20)
-    .fill("")
-    .map((_, i) => ({ key: `${i}`, text: `item #${i}` }));
+const NotificationScreen = ({ route, navigation }) => {
 
   return (
     // <ScrollView style={styles.wrapper}>
-    <NotificationsList></NotificationsList>
+    <NotificationsList
+      route={route}
+      navigation={navigation}
+    />
     // </ScrollView>
   );
 }
 
-export default Notifications;
+export default NotificationScreen;
 
 const styles = StyleSheet.create({
   wrapper: {

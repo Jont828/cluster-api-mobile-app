@@ -5,7 +5,7 @@ import InfoCardScreen from './screens/InfoCardScreen';
 import ResourceScreen from './screens/ResourceScreen';
 import Settings from './screens/Settings';
 import HomeScreen from './screens/HomeScreen';
-import Notifications from './screens/Notifications';
+import NotificationScreen from './screens/NotificationScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -125,7 +125,7 @@ const NotificationStackNav = () => {
         header: (props) => <CustomAppBar {...props} />,
       }}
     >
-      <NotificationStack.Screen name="Notifications" component={Notifications} options={{ title: 'Notifications' }} />
+      <NotificationStack.Screen name="NotificationScreen" component={NotificationScreen} options={{ title: 'Notifications' }} />
     </NotificationStack.Navigator>
   )
 }
