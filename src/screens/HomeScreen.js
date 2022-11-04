@@ -37,8 +37,24 @@ const HomeScreen = ({ route, navigation }) => {
       <Card style={styles.card}>
         <Card.Content>
           <View style={styles.cardContent}>
+            <Title>Sign in to AWS</Title>
+            <Icon name="aws" size={30} style={{ color: '#ff9900'}}></Icon>
+          </View>
+        </Card.Content>
+      </Card>
+      <Card style={styles.card}>
+        <Card.Content>
+          <View style={styles.cardContent}>
             <Title>Sign in to Azure</Title>
             <Icon name="microsoft-azure" size={30} style={{ color: '#1976D2'}}></Icon>
+          </View>
+        </Card.Content>
+      </Card>
+      <Card style={styles.card}>
+        <Card.Content>
+          <View style={styles.cardContent}>
+            <Title>Sign in to GCP</Title>
+            <Icon name="google-cloud" size={30} style={{ color: '#EA4335'}}></Icon>
           </View>
         </Card.Content>
       </Card>

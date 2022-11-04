@@ -109,14 +109,6 @@ const clusterData = {
         "name": "Phase",
         "value": "Provisioned",
         "valueType": "string",
-        "icon": "alert",
-        "iconColor": "green",
-        "iconSize": 20,
-      },
-      {
-        "name": "Phase",
-        "value": "Provisioned",
-        "valueType": "string",
       },
       {
         "name": "IsManaged",
