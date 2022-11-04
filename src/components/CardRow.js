@@ -76,7 +76,7 @@ const CardRow = (props) => {
         else if (props.valueType === 'link')
           handlePress()
       }}
-      disabled={props.valueType === 'text'}
+      disabled={props.valueType !== 'list' && props.valueType !== 'link'}
       >
       <View style={styles.leftWrap}>
         {
