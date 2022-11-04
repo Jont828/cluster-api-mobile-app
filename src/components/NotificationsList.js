@@ -32,7 +32,7 @@ let arrayData = [
     namespace: 'my-namespace',
     time: "",
     ago: "15 min",
-    message: "AzureMachinePool failed to create replicas",
+    message: "AzureMachinePool failed to create replicas. Lorem ipsum some text hello world let's make this overflow.",
     status: "error",
   },
 ]
@@ -85,7 +85,6 @@ export default function NotificationsList({ navigation, route }) {
     >
       <View style={styles.cardContent}>
         <View style={[styles.leftWrap, eval("styles." + data.item.status)]}>
-          {/* <Icon name="information" size={40} style={{ color: 'white', textAlign: 'center' }}></Icon> */}
         </View>
         {/* <View style={{
           display: 'flex',
@@ -126,12 +125,12 @@ export default function NotificationsList({ navigation, route }) {
         <Text style={styles.backTextWhite}>Left</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity
+      {/* <TouchableOpacity
         style={[styles.backRightBtn, styles.backRightBtnLeft]}
         onPress={() => closeRow(rowMap, data.item.key)}
       >
         <Text style={styles.backTextWhite}>Close</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
       <TouchableOpacity
         style={[styles.backRightBtn, styles.backRightBtnRight]}
         onPress={() => deleteRow(rowMap, data.item.key)}
@@ -154,7 +153,7 @@ export default function NotificationsList({ navigation, route }) {
             },
           ]}
         >
-          <Icon name="delete" size={24} color="white"></Icon>
+          <Icon name="delete" size={40} color="white"></Icon>
           {/* <Image
             source={require('../images/trash.png')}
             style={styles.trash}
@@ -171,8 +170,10 @@ export default function NotificationsList({ navigation, route }) {
         data={listData}
         renderItem={renderItem}
         renderHiddenItem={renderHiddenItem}
-        leftOpenValue={75}
-        rightOpenValue={-150}
+        disableRightSwipe
+        // leftOpenValue={75}
+        rightOpenValue={-75}
+        // rightOpenValue={-150}
         previewRowKey={'0'}
         previewOpenValue={-40}
         previewOpenDelay={3000}
@@ -221,7 +222,6 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 15,
     paddingVertical: 10,
-    
   },
   list: {
     padding: 10,
@@ -294,7 +294,7 @@ const styles = StyleSheet.create({
     right: 0,
   },
   trash: {
-    height: 25,
-    width: 25,
+    height: 40,
+    width: 40,
   },
 });
