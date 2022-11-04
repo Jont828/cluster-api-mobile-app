@@ -13,15 +13,17 @@ const ClusterCard = ({route, navigation, name, namespace}) => {
         kind: "Cluster",
         apiVersion: "v1beta1"
       })}>
-      <Card.Content>
-        <Title>
-          {name} <Icon name="microsoft-azure" style={styles.provider}></Icon>
-        </Title>
-        <Caption>Provisioned</Caption>
-        <View style={styles.chevronWrap}>
+      <View style={styles.cardContentWrapper}>
+        <View styles={styles.leftWrap}>
+          <Title>
+            {name} <Icon name="microsoft-azure" style={styles.provider}></Icon>
+          </Title>
+          <Caption>Provisioned</Caption>
+        </View>
+        <View style={styles.rightWrap}>
           <Icon name="chevron-right" style={styles.chevron}></Icon>
         </View>
-      </Card.Content>
+      </View>
     </Card>
   )
 }
@@ -35,13 +37,18 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
   },
-  chevronWrap: {
-    position: 'absolute',
-    right: 10,
-    top: '50%',
-    transform: [
-     { translateY: -5 } // TODO: don't hard code this
-    ]
+  cardContentWrapper: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingVertical: 10,
+    paddingLeft: 20,
+    paddingRight: 10,
+  },
+  rightWrap: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
   },
   chevron: {
     fontSize: 40,

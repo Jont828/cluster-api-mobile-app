@@ -23,6 +23,7 @@ let arrayData = [
     time: "",
     ago: "5 min",
     message: "Cluster provisioned successfully",
+    status: "success",
   },
   {
     key: '1',
@@ -32,6 +33,7 @@ let arrayData = [
     time: "",
     ago: "15 min",
     message: "AzureMachinePool failed to create replicas",
+    status: "error",
   },
 ]
 
@@ -81,43 +83,37 @@ export default function NotificationsList({ navigation, route }) {
       style={styles.rowFront}
       // underlayColor={'#AAA'}
     >
-      <Card.Content style={{
-        // backgroundColor: 'red',
-      }}>
-        <View style={{
-          // backgroundColor: 'grey',
+      <View style={styles.cardContent}>
+        <View style={[styles.leftWrap, eval("styles." + data.item.status)]}>
+          {/* <Icon name="information" size={40} style={{ color: 'white', textAlign: 'center' }}></Icon> */}
+        </View>
+        {/* <View style={{
           display: 'flex',
           flexDirection: 'row',
-          justifyContent: 'space-between',
+          alignItems: 'center',
+          paddingLeft: 10,
         }}>
-          <Title style={{
-            // fontSize: 20,
-          }}>
-            {data.item.kind}
-          </Title>
-          <Paragraph style={{
-            lineHeight: 30, // TODO: is this right
-            // textAlign: 'right',
-            color: '#666',
-          }}>
-            {data.item.ago}
-          </Paragraph>
-        </View>
+          <Icon name="information" size={40} style={{ color: '#4CAF50', textAlign: 'center' }}></Icon>
+        </View> */}
+        <View style={styles.rightWrap}>
+          <View style={styles.titleRow}>
+            <Title>{data.item.kind}</Title>
+            <Paragraph style={{
+              lineHeight: 30, // TODO: is this right
+              color: '#666',
+            }}>
+              {data.item.ago}
+            </Paragraph>
+          </View>
 
-        <View style={{
-          // backgroundColor: 'grey',
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-        }}>
-          <Subheading style={styles.name}>{data.item.name}</Subheading>
-          <Subheading style={{ fontSize: 16, color: '#666' }}>{data.item.namespace}</Subheading>
+          <View style={styles.titleRow}>
+            <Subheading style={styles.name}>{data.item.name}</Subheading>
+            <Subheading style={{ fontSize: 16, color: '#666' }}>{data.item.namespace}</Subheading>
+          </View>
+
+          <Paragraph>{data.item.message}</Paragraph>
         </View>
-        
-        {/* <Subheading style={styles.name}>my-cluster-{data.item.text}</Subheading>
-        <Caption style={styles.name}>my-namespace</Caption> */}
-        <Paragraph>{data.item.message}</Paragraph>
-      </Card.Content>
+      </View>
     </Card>
   );
 
@@ -189,6 +185,44 @@ export default function NotificationsList({ navigation, route }) {
 }
 
 const styles = StyleSheet.create({
+  cardContent: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  leftStatus: {
+
+  },
+  info: {
+    backgroundColor: '#1976D2' // Info
+  },
+  success: {
+    backgroundColor: '#4CAF50' // Success
+  },
+  warning: {
+    backgroundColor: '#fb8c00'
+  },
+  error: {
+    backgroundColor: '#ff5252'
+  },
+  leftWrap: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderTopLeftRadius: 2,
+    borderBottomLeftRadius: 2,
+    width: 15,
+  },
+  titleRow: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  rightWrap: {
+    flex: 1,
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+    
+  },
   list: {
     padding: 10,
   },
@@ -213,7 +247,7 @@ const styles = StyleSheet.create({
     // borderBottomColor: 'black',
     // borderBottomWidth: 1,
     // justifyContent: 'center',
-    height: 120,
+    // height: 120,
     marginBottom: 10,
     // marginVertical: 5,
   },
