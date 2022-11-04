@@ -10,6 +10,9 @@ const Settings = ({route, navigation}) => {
       "name": "Version",
       "value": "0.1.0-alpha",
       "valueType": "text",
+      "icon": "information",
+      "iconSize": 20,
+      "iconColor": "#1976D2",
     },
     {
       "name": "Authors",
@@ -17,14 +20,41 @@ const Settings = ({route, navigation}) => {
         {"name": "Jonathan Tong"}, {"name": "William Yao"}
       ],
       "valueType": "list",
+      "icon": "account",
+      // "icon": "account-circle",
+      // "icon": "pencil",
+      "iconSize": 20,
+      "iconColor": "#1976D2",
+    },
+    {
+      "name": "GitHub",
+      "value": "https://github.com/Jont828/cluster-api-mobile-app",
+      "valueType": "link",
+      "icon": "github",
+      // "icon": "account-circle",
+      // "icon": "pencil",
+      "iconSize": 20,
+      "iconColor": "#1976D2",
     },
   ]
 
   const settingsItems = [
     {
       "name": "Theme",
-      "value": "Light",
-      "valueType": "text",
+      "value": [
+        "Light", "Dark"
+      ],
+      "valueType": "menu",
+      "icon": "brightness-6",
+      "iconSize": 20,
+      // "iconColor": "#555",
+    },
+    {
+      "name": "Enable Something Random",
+      "valueType": "switch",
+      "icon": "help-circle",
+      "iconSize": 20,
+      "iconColor": "#1976D2",
     },
     {
       "name": "Notifications",
@@ -32,6 +62,10 @@ const Settings = ({route, navigation}) => {
         {"name": "TODO"}
       ],
       "valueType": "list",
+      "icon": "bell",
+      "iconSize": 20,
+      "iconColor": "#1976D2",
+
     },
   ]
   

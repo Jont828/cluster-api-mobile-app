@@ -1,17 +1,80 @@
-import React from 'react'
-import { StyleSheet, View, TouchableOpacity, Text } from 'react-native';
-import { Paragraph } from 'react-native-paper';
+import React, { useCallback } from 'react'
+import { StyleSheet, View, TouchableOpacity, Text, Linking } from 'react-native';
+import { Paragraph, Switch, Menu, Button, Divider } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 const CardRow = (props) => {
-  const isList = Array.isArray(props.value);
   // const isList = props.valueType === 'list';
+  const [isSwitchOn, setIsSwitchOn] = React.useState(false);
+  const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn);
+
+  const [visible, setVisible] = React.useState(false);
+  const openMenu = () => setVisible(true);
+  const closeMenu = () => setVisible(false);
+
+  const [menuValue, setMenuValue] = React.useState('Light');
+  const setAndCloseMenu = (value) => { setMenuValue(value); closeMenu(); }
+  
+  function getValueComponent(type, value) {
+    switch (type) {
+      case 'link':
+      case 'list':
+        return <Icon name="chevron-right" size={30} style={[styles.textStyle, styles.textRight]}></Icon>
+      case 'switch':
+        return <Switch value={isSwitchOn} onValueChange={onToggleSwitch} color="#1976D2"/>
+      case 'menu':
+        return (
+          <Menu
+            visible={visible}
+            onDismiss={closeMenu}
+            anchor={
+            <Button 
+              onPress={openMenu}
+              uppercase={false}
+              mode="outlined"
+              icon="chevron-down"
+              color="#888"
+              compact
+              contentStyle={styles.menuButtonContent}
+              labelStyle={styles.menuButtonLabel}
+            >
+              <Paragraph style={styles.buttonText}>{menuValue}</Paragraph>
+            </Button>
+            }>
+              {
+                value.map((item, index) => (
+                  <Menu.Item onPress={() => setAndCloseMenu(item)} title={item} />
+                ))
+              }
+          </Menu>
+          )
+      case 'text':
+      default:
+        return <Paragraph style={[styles.textStyle, styles.textRight]}>{value}</Paragraph>
+    }
+  }
+  
+  const handlePress = useCallback(async () => {
+    // Checking if the link is supported for links with custom URL scheme.
+    const supported = await Linking.canOpenURL(props.value);
+
+    if (supported) {
+      // Opening the link with some app, if the URL scheme is "http" the web link should be opened
+      // by some browser in the mobile
+      await Linking.openURL(props.value);
+    } else {
+      Alert.alert(`Don't know how to open this URL: ${props.value}`);
+    }
+  }, [props.value]);
+
   return (
     <TouchableOpacity 
       style={styles.touchableRow}
       onPress={() => {
         if (props.valueType === 'list')
           props.navigation.navigate("InfoCardScreen", { name: props.name, items: props.value })
+        else if (props.valueType === 'link')
+          handlePress()
       }}
       disabled={props.valueType === 'text'}
       >
@@ -27,11 +90,7 @@ const CardRow = (props) => {
         
       <View style={styles.rightWrap}>
       {
-        (isList) ? (
-          <Icon name="chevron-right" size={30} style={[styles.textStyle, styles.textRight]}></Icon>
-        ) : (
-          <Paragraph style={[styles.textStyle, styles.textRight]}>{props.value}</Paragraph>
-        )
+        getValueComponent(props.valueType, props.value)
       }
       </View>
     </TouchableOpacity>
@@ -40,10 +99,29 @@ const CardRow = (props) => {
 
 export default CardRow;
 
-const lineHeight = 35;
+const lineHeight = 45;
 
 const styles = StyleSheet.create({
+  menuButtonContent: {
+    flexDirection: 'row-reverse', // Reverses all the margin calcs
+    height: 30,
+    justifyContent: 'center',
+    fontSize: 30,
+  },
+  menuButtonLabel: {
+    marginTop: 0,
+    marginBottom: 0,
+    marginRight: 4,
+    padding: 0,
+  },
   leftWrap: {
+    // backgroundColor: 'yellow',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: "center",
+    height: lineHeight,
+  }, 
+  rightWrap: {
     // backgroundColor: 'yellow',
     display: 'flex',
     flexDirection: 'row',
@@ -55,7 +133,6 @@ const styles = StyleSheet.create({
     // backgroundColor: 'red',
     display: 'flex',
     flexDirection: 'row',
-    paddingVertical: 5,
     justifyContent: 'space-between',
   },
   chevron: {
@@ -87,7 +164,12 @@ const styles = StyleSheet.create({
   textRight: {
     minWidth: 0,
     textAlign: 'right',
-    // lineHeight: lineHeight,
     color: '#888'
+  },
+  buttonText: {
+    color: '#888',
+    marginTop: 0,
+    marginBottom: 0,
+    fontSize: 14,
   },
 });
