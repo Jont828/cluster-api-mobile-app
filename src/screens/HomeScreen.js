@@ -1,6 +1,7 @@
 import React from "react";
-import { ScrollView, Text, StyleSheet } from 'react-native';
-import { Card } from 'react-native-paper';
+import { ScrollView, View, Text, StyleSheet } from 'react-native';
+import { Card, Title, Paragraph } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ServiceCard from '../components/ServiceCard';
 
 const HomeScreen = ({ route, navigation }) => {
@@ -24,9 +25,22 @@ const HomeScreen = ({ route, navigation }) => {
         // node={resource}
       />
 
-      <Card.Title title="Resource 1"/>
+      <Card.Title title="Pair with management cluster"/>
       <Card style={styles.card}>
-        <Card.Title title="TODO" subtitle="Card Subtitle" />
+        <Card.Content>
+          <View style={styles.cardContent}>
+            <Title>Scan QR code</Title>
+            <Icon name="qrcode-scan" size={30} style={{color: '#888'}}></Icon>
+          </View>
+        </Card.Content>
+      </Card>
+      <Card style={styles.card}>
+        <Card.Content>
+          <View style={styles.cardContent}>
+            <Title>Sign in to Azure</Title>
+            <Icon name="microsoft-azure" size={30} style={{ color: '#1976D2'}}></Icon>
+          </View>
+        </Card.Content>
       </Card>
 
     </ScrollView>
@@ -36,10 +50,24 @@ const HomeScreen = ({ route, navigation }) => {
 export default HomeScreen;
 
 const styles = StyleSheet.create({
+  cardContent: {
+    // backgroundColor: 'grey',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  titleWrap: {
+    display: 'inline',
+    backgroundColor: 'grey',
+  },
   wrapper: {
     padding: 10
   },
   card: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: "center",
+
     // marginTop: 10,
     marginBottom: 10,
   },

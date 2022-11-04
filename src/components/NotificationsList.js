@@ -75,7 +75,9 @@ export default function NotificationsList({ navigation, route }) {
 
   const renderItem = data => (
     <Card
-      onPress={() => console.log('You touched me')}
+      onPress={() => {
+        navigation.navigate("ClustersTab", { screen: "ResourceScreen", params: { name: data.item.name, namespace: data.item.namespace } })
+      }}
       style={styles.rowFront}
       // underlayColor={'#AAA'}
     >
