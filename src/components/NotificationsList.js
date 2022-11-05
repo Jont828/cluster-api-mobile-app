@@ -78,7 +78,7 @@ export default function NotificationsList({ navigation, route }) {
   const renderItem = data => (
     <Card
       onPress={() => {
-        navigation.navigate("ClustersTab", { screen: "ResourceScreen", params: { name: data.item.name, namespace: data.item.namespace } })
+        navigation.navigate("ClustersTab", { screen: "ResourceScreen", params: { name: data.item.name, namespace: data.item.namespace, kind: data.item.kind } })
       }}
       style={styles.rowFront}
       // underlayColor={'#AAA'}

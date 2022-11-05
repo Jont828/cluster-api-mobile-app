@@ -132,24 +132,7 @@ const clusterData = {
 
 const azureClusterData = {
   "status": {
-    "conditions": [
-      {
-        "type": "Ready",
-        "status": "warning",
-      },
-      {
-        "type": "VNetReady",
-        "status": "success",
-      },
-      {
-        "type": "NSGReady",
-        "status": "warning",
-      },
-      {
-        "type": "LoadBalancersReady",
-        "status": "success",
-      }
-    ],
+    "conditions": conditions,
     "info": []
   },
   "spec": spec,

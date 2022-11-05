@@ -1,29 +1,51 @@
 import React from "react";
 import { ScrollView, View, Text, StyleSheet } from 'react-native';
+import { TouchableOpacity } from "react-native-gesture-handler";
 import { Card, Title, Paragraph } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ServiceCard from '../components/ServiceCard';
 
 const HomeScreen = ({ route, navigation }) => {
+
+  const recents = [
+    {
+      kind: "Cluster",
+      name: "my-cluster",
+      status: "success",
+      namespace: "default",
+    },
+    {
+      kind: "AzureMachinePool",
+      name: "my-amp",
+      status: "error",
+      namespace: "default",
+    }
+  ];
+  
   return (
     <ScrollView style={styles.wrapper}>
       <Card.Title title="Recently Viewed"></Card.Title>
-      <ServiceCard 
-        kind={'Cluster'}
-        name={"my-resource"}
-        status={'success'}
-        route={route}
-        navigation={navigation}
-        // node={resource}
-      />
-      <ServiceCard 
-        kind={'DockerCluster'}
-        name={"my-resource-2"}
-        status={'error'}
-        route={route}
-        navigation={navigation}
-        // node={resource}
-      />
+      {
+        recents.map( (resource, index) => {
+          return (
+            // <TouchableOpacity
+            //   onPress={
+            //     navigation.navigate("ClustersTab", { screen: "ResourceScreen", params: { name: resource.name, namespace: resource.namespace, kind: resource.kind } })
+            //   }
+            // >
+            <ServiceCard 
+              key={index}
+              kind={resource.kind}
+              name={resource.name}
+              status={resource.status}
+              route={route}
+              navigation={navigation}
+              node={resource}
+            />
+            // </TouchableOpacity>
+          )
+        })
+      }
 
       <Card.Title title="Pair with management cluster"/>
       <Card style={styles.card}>
