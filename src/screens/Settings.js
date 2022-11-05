@@ -27,7 +27,7 @@ const Settings = ({route, navigation}) => {
       "iconColor": "#1976D2",
     },
     {
-      "name": "GitHub",
+      "name": "GitHub Repo",
       "value": "https://github.com/Jont828/cluster-api-mobile-app",
       "valueType": "link",
       "icon": "github",

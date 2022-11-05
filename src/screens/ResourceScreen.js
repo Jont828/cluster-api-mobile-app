@@ -48,15 +48,25 @@ export default ResourceScreen;
 const conditions = [
   {
     "type": "Ready",
-    "status": "success",
+    "status": "True",
+    "lastTransitionTime": "2021-03-03T12:00:00Z",
   },
   {
     "type": "ClusterInfraReady",
-    "status": "success",
+    "status": "False",
+    "severity": "Warning",
+    "lastTransitionTime": "2021-03-03T12:00:00Z",
+    "reason": "ClusterInfraNotReady",
+    "message": "Cluster infrastructure is not ready",
   },
   {
     "type": "AddonsReady",
-    "status": "warning",
+    "severity": "Warning",
+    "status": "False",
+    "lastTransitionTime": "2021-03-03T12:00:00Z",
+    "reason": "ClusterInfraNotReady",
+    "message": "Cluster infrastructure is not ready",
+    
   }
 ];
 

@@ -159,7 +159,7 @@ const styles = StyleSheet.create({
     // marginRight: 20,
     // paddingTop: 1,
     // lineHeight: lineHeight-1,
-    marginRight: 5,
+    marginRight: 10,
   },
   textRight: {
     minWidth: 0,
