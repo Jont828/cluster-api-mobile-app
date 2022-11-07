@@ -18,6 +18,7 @@ const CardRow = (props) => {
   function getValueComponent(type, value) {
     switch (type) {
       case 'link':
+        return <Icon name="link-variant" size={25} style={[styles.textStyle, styles.textRight]}></Icon>
       case 'list':
         return <Icon name="chevron-right" size={30} style={[styles.textStyle, styles.textRight]}></Icon>
       case 'switch':
@@ -164,7 +165,7 @@ const styles = StyleSheet.create({
   textRight: {
     minWidth: 0,
     textAlign: 'right',
-    color: '#888'
+    color: '#888',
   },
   buttonText: {
     color: '#888',
