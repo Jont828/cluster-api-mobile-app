@@ -77,6 +77,9 @@ const styles = StyleSheet.create({
   warning: {
     backgroundColor: '#fb8c00' 
   },
+  info: {
+    backgroundColor: '#fb8c00' 
+  },
   error: {
     backgroundColor: '#ff5252' 
   },

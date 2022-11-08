@@ -1,0 +1,54 @@
+{
+  "apiVersion": "bootstrap.cluster.x-k8s.io/v1beta1",
+  "kind": "KubeadmConfigTemplate",
+  "metadata": {
+    "annotations": {
+      "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"bootstrap.cluster.x-k8s.io/v1beta1\",\"kind\":\"KubeadmConfigTemplate\",\"metadata\":{\"annotations\":{},\"name\":\"default-20797-md-0\",\"namespace\":\"default\"},\"spec\":{\"template\":{\"spec\":{\"files\":[{\"contentFrom\":{\"secret\":{\"key\":\"worker-node-azure.json\",\"name\":\"default-20797-md-0-azure-json\"}},\"owner\":\"root:root\",\"path\":\"/etc/kubernetes/azure.json\",\"permissions\":\"0644\"}],\"joinConfiguration\":{\"nodeRegistration\":{\"kubeletExtraArgs\":{\"azure-container-registry-config\":\"/etc/kubernetes/azure.json\",\"cloud-config\":\"/etc/kubernetes/azure.json\",\"cloud-provider\":\"azure\"},\"name\":\"{{ ds.meta_data[\\\"local_hostname\\\"] }}\"}},\"preKubeadmCommands\":[]}}}}\n"
+    },
+    "creationTimestamp": "2022-11-07T21:29:45Z",
+    "generation": 1,
+    "name": "default-20797-md-0",
+    "namespace": "default",
+    "ownerReferences": [
+      {
+        "apiVersion": "cluster.x-k8s.io/v1beta1",
+        "kind": "Cluster",
+        "name": "default-20797",
+        "uid": "32e091ca-6aad-4515-819b-0b64e456d94c"
+      }
+    ],
+    "resourceVersion": "3580",
+    "uid": "806fcd6f-a3dd-4a4a-b666-f2bfabb76b74"
+  },
+  "spec": {
+    "template": {
+      "spec": {
+        "files": [
+          {
+            "contentFrom": {
+              "secret": {
+                "key": "worker-node-azure.json",
+                "name": "default-20797-md-0-azure-json"
+              }
+            },
+            "owner": "root:root",
+            "path": "/etc/kubernetes/azure.json",
+            "permissions": "0644"
+          }
+        ],
+        "format": "cloud-config",
+        "joinConfiguration": {
+          "discovery": {},
+          "nodeRegistration": {
+            "kubeletExtraArgs": {
+              "azure-container-registry-config": "/etc/kubernetes/azure.json",
+              "cloud-config": "/etc/kubernetes/azure.json",
+              "cloud-provider": "azure"
+            },
+            "name": "{{ ds.meta_data[\"local_hostname\"] }}"
+          }
+        }
+      }
+    }
+  }
+}

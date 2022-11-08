@@ -12,13 +12,21 @@ import { BACKEND_URL } from '@env'
 const ResourceScreen = ({ route, navigation }) => {
   const { name, namespace, kind, apiVersion, node } = route.params;
   // mockClusterInfo.Name = name;
-  const { status, spec } = fetchResourceData(kind, name);
+  // const crd = fetchResourceData(kind, name);
   const [tree, setTree] = useState({children: {}});
+  let conditions = clusterData.status.conditions;
+  const [crd, setCRD] = useState({status: {conditions: conditions}});
+  let info = clusterData.status.info;
 
   useEffect(() => {
+    // TODO: Check if Kind == Cluster
     fetchTree(name).then((res) => {
-      console.log("useeffect res: ", res)
+      console.log("useeffect fetchTree: ", res)
       setTree(res);
+    })
+    fetchResourceData(kind, name).then((res) => {
+      console.log("useeffect fetchResource: ", res)
+      setCRD(res);
     })
   }, [])
 
@@ -29,8 +37,8 @@ const ResourceScreen = ({ route, navigation }) => {
       <StatusCard 
         route={route}
         navigation={navigation}
-        conditions={status.conditions}
-        items={status.info}
+        conditions={crd.status.conditions}
+        items={info}
       />
       <Card.Title title="Spec"></Card.Title>
       <InfoCard route={route} navigation={navigation} items={spec} />
@@ -140,14 +148,18 @@ const azureClusterData = {
 };
 
 const fetchResourceData = (kind, name) => {
-  switch (kind) {
-    case "Cluster":
-      return clusterData;
-    case "AzureCluster":
-      return azureClusterData;
-    default:
-      return azureClusterData;
-  }
+  console.log("Fetching CRD for", name, "from", BACKEND_URL + '/resource?' + kind + '&' + name)
+  return new Promise((resolve, reject) => {
+    axios.get(BACKEND_URL + '/resource?kind=' + kind + '&name=' + name).then(
+      (response) => {
+        console.log("Response:", response.data);
+        resolve(response.data);
+      }
+    ).catch(error => {
+      console.log("Got an axios error fetching tree:", error);
+      reject("Axios error fetching tree:", error)
+    });
+  });
 };
 
 const fetchTree = async (name) => {

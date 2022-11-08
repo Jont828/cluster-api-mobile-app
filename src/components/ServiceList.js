@@ -33,7 +33,7 @@ const ServiceList = ({route, navigation, resourceMap}) => {
                       key={j}
                       kind={resource.kind}
                       name={resource.name}
-                      status={resource.status}
+                      status={resource.ready ? "success" : resource.severity}
                       route={route}
                       navigation={navigation}
                       node={resource}

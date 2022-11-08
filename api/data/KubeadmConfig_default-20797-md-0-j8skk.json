@@ -1,0 +1,94 @@
+{
+  "apiVersion": "bootstrap.cluster.x-k8s.io/v1beta1",
+  "kind": "KubeadmConfig",
+  "metadata": {
+    "annotations": {
+      "cluster.x-k8s.io/cloned-from-groupkind": "KubeadmConfigTemplate.bootstrap.cluster.x-k8s.io",
+      "cluster.x-k8s.io/cloned-from-name": "default-20797-md-0"
+    },
+    "creationTimestamp": "2022-11-07T21:29:52Z",
+    "generation": 2,
+    "labels": {
+      "cluster.x-k8s.io/cluster-name": "default-20797",
+      "cluster.x-k8s.io/deployment-name": "default-20797-md-0",
+      "machine-template-hash": "2839862342"
+    },
+    "name": "default-20797-md-0-j8skk",
+    "namespace": "default",
+    "ownerReferences": [
+      {
+        "apiVersion": "cluster.x-k8s.io/v1beta1",
+        "kind": "MachineSet",
+        "name": "default-20797-md-0-6d7fdb6786",
+        "uid": "6ac2b37d-53d6-4943-97d4-6e16dcb41c5a"
+      },
+      {
+        "apiVersion": "cluster.x-k8s.io/v1beta1",
+        "blockOwnerDeletion": true,
+        "controller": true,
+        "kind": "Machine",
+        "name": "default-20797-md-0-6d7fdb6786-kr4wk",
+        "uid": "8e8ebf97-17a6-40f1-b5e4-ca715a6430ff"
+      }
+    ],
+    "resourceVersion": "4834",
+    "uid": "81348581-3715-417b-b71f-90c48c00284c"
+  },
+  "spec": {
+    "files": [
+      {
+        "contentFrom": {
+          "secret": {
+            "key": "worker-node-azure.json",
+            "name": "default-20797-md-0-azure-json"
+          }
+        },
+        "owner": "root:root",
+        "path": "/etc/kubernetes/azure.json",
+        "permissions": "0644"
+      }
+    ],
+    "format": "cloud-config",
+    "joinConfiguration": {
+      "discovery": {
+        "bootstrapToken": {
+          "apiServerEndpoint": "default-20797-bb040df5.eastus.cloudapp.azure.com:6443",
+          "caCertHashes": [
+            "sha256:de9ca4e28f71afc8054e026a9a6c60d9c33fe621d10589ff96e23afc3fc6d7cc"
+          ],
+          "token": "oula2e.338suyro2cdnb1lr"
+        }
+      },
+      "nodeRegistration": {
+        "kubeletExtraArgs": {
+          "azure-container-registry-config": "/etc/kubernetes/azure.json",
+          "cloud-config": "/etc/kubernetes/azure.json",
+          "cloud-provider": "azure"
+        },
+        "name": "{{ ds.meta_data[\"local_hostname\"] }}"
+      }
+    }
+  },
+  "status": {
+    "conditions": [
+      {
+        "lastTransitionTime": "2022-11-07T21:35:01Z",
+        "status": "True",
+        "type": "Ready"
+      },
+      {
+        "lastTransitionTime": "2022-11-07T21:35:01Z",
+        "status": "True",
+        "type": "CertificatesAvailable"
+      },
+      {
+        "lastTransitionTime": "2022-11-07T21:35:01Z",
+        "status": "True",
+        "type": "DataSecretAvailable"
+      }
+    ],
+    "dataSecretName": "default-20797-md-0-j8skk",
+    "observedGeneration": 2,
+    "ready": true
+  }
+}

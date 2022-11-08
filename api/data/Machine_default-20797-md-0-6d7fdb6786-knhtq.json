@@ -1,0 +1,111 @@
+{
+  "apiVersion": "cluster.x-k8s.io/v1beta1",
+  "kind": "Machine",
+  "metadata": {
+    "creationTimestamp": "2022-11-07T21:29:52Z",
+    "finalizers": [
+      "machine.cluster.x-k8s.io"
+    ],
+    "generateName": "default-20797-md-0-6d7fdb6786-",
+    "generation": 3,
+    "labels": {
+      "cluster.x-k8s.io/cluster-name": "default-20797",
+      "cluster.x-k8s.io/deployment-name": "default-20797-md-0",
+      "machine-template-hash": "2839862342"
+    },
+    "name": "default-20797-md-0-6d7fdb6786-knhtq",
+    "namespace": "default",
+    "ownerReferences": [
+      {
+        "apiVersion": "cluster.x-k8s.io/v1beta1",
+        "blockOwnerDeletion": true,
+        "controller": true,
+        "kind": "MachineSet",
+        "name": "default-20797-md-0-6d7fdb6786",
+        "uid": "6ac2b37d-53d6-4943-97d4-6e16dcb41c5a"
+      }
+    ],
+    "resourceVersion": "5223",
+    "uid": "f5b976bf-8224-49e7-aaac-3f7f60c34869"
+  },
+  "spec": {
+    "bootstrap": {
+      "configRef": {
+        "apiVersion": "bootstrap.cluster.x-k8s.io/v1beta1",
+        "kind": "KubeadmConfig",
+        "name": "default-20797-md-0-gxtbp",
+        "namespace": "default",
+        "uid": "ce3b82a3-c25a-4240-afe8-d02ca49d3dbb"
+      },
+      "dataSecretName": "default-20797-md-0-gxtbp"
+    },
+    "clusterName": "default-20797",
+    "infrastructureRef": {
+      "apiVersion": "infrastructure.cluster.x-k8s.io/v1beta1",
+      "kind": "AzureMachine",
+      "name": "default-20797-md-0-nbwc6",
+      "namespace": "default",
+      "uid": "e1944f8b-44a6-43eb-a607-c1e3693ac754"
+    },
+    "nodeDeletionTimeout": "10s",
+    "providerID": "azure:///subscriptions/1d587fba-fa76-41cd-9897-fdcb329435c7/resourceGroups/default-20797/providers/Microsoft.Compute/virtualMachines/default-20797-md-0-nbwc6",
+    "version": "v1.23.9"
+  },
+  "status": {
+    "addresses": [
+      {
+        "address": "default-20797-md-0-nbwc6",
+        "type": "InternalDNS"
+      },
+      {
+        "address": "10.1.0.4",
+        "type": "InternalIP"
+      }
+    ],
+    "bootstrapReady": true,
+    "conditions": [
+      {
+        "lastTransitionTime": "2022-11-07T21:36:45Z",
+        "status": "True",
+        "type": "Ready"
+      },
+      {
+        "lastTransitionTime": "2022-11-07T21:35:01Z",
+        "status": "True",
+        "type": "BootstrapReady"
+      },
+      {
+        "lastTransitionTime": "2022-11-07T21:36:45Z",
+        "status": "True",
+        "type": "InfrastructureReady"
+      },
+      {
+        "lastTransitionTime": "2022-11-07T21:36:45Z",
+        "status": "True",
+        "type": "NodeHealthy"
+      }
+    ],
+    "infrastructureReady": true,
+    "lastUpdated": "2022-11-07T21:36:45Z",
+    "nodeInfo": {
+      "architecture": "amd64",
+      "bootID": "5e299443-adf4-478d-9847-a21825a6e3d4",
+      "containerRuntimeVersion": "containerd://1.6.2",
+      "kernelVersion": "5.15.0-1014-azure",
+      "kubeProxyVersion": "v1.23.9",
+      "kubeletVersion": "v1.23.9",
+      "machineID": "e9a6b47259fc4a6d865a4d9be832a7af",
+      "operatingSystem": "linux",
+      "osImage": "Ubuntu 20.04.4 LTS",
+      "systemUUID": "8f76176c-01fb-8545-8be7-c64b919276a5"
+    },
+    "nodeRef": {
+      "apiVersion": "v1",
+      "kind": "Node",
+      "name": "default-20797-md-0-nbwc6",
+      "uid": "095890c9-1c91-401a-b338-61a14b83db94"
+    },
+    "observedGeneration": 3,
+    "phase": "Running"
+  }
+}
