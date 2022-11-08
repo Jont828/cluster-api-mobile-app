@@ -1,0 +1,325 @@
+{
+  "name": "default-20797",
+  "namespace": "default",
+  "displayName": "default-20797",
+  "kind": "Cluster",
+  "group": "cluster.x-k8s.io",
+  "version": "v1beta1",
+  "provider": "cluster",
+  "uid": "32e091ca-6aad-4515-819b-0b64e456d94c",
+  "collapsible": false,
+  "collapsed": false,
+  "ready": true,
+  "severity": "",
+  "hasReady": true,
+  "children": {
+    "Cluster Infrastructure": [
+      {
+        "name": "default-20797",
+        "namespace": "default",
+        "displayName": "default-20797",
+        "kind": "AzureCluster",
+        "group": "infrastructure.cluster.x-k8s.io",
+        "version": "v1beta1",
+        "provider": "infrastructure",
+        "uid": "ef9783d7-3baf-4cf1-b094-b9f1b44ba766",
+        "collapsible": false,
+        "collapsed": false,
+        "ready": true,
+        "severity": "",
+        "hasReady": true,
+        "children": {}
+      }
+    ],
+    "Add-ons": [
+      {
+        "name": "crs-calico",
+        "namespace": "default",
+        "displayName": "crs-calico",
+        "kind": "ClusterResourceSet",
+        "group": "addons.cluster.x-k8s.io",
+        "version": "v1beta1",
+        "provider": "addons",
+        "uid": "addons.cluster.x-k8s.io/v1beta1, Kind=ClusterResourceSet, default/crs-calico",
+        "collapsible": false,
+        "collapsed": false,
+        "ready": false,
+        "severity": "",
+        "hasReady": false,
+        "children": {}
+      }
+    ],
+    "Control Plane": [
+      {
+        "name": "default-20797-control-plane",
+        "namespace": "default",
+        "displayName": "default-20797-control-plane",
+        "kind": "KubeadmControlPlane",
+        "group": "controlplane.cluster.x-k8s.io",
+        "version": "v1beta1",
+        "provider": "controlplane",
+        "uid": "aa27b40b-e22f-4dfb-b90d-bf2a4375120e",
+        "collapsible": false,
+        "collapsed": false,
+        "ready": true,
+        "severity": "",
+        "hasReady": true,
+        "children": {
+          "1 Machine": [
+            {
+              "name": "default-20797-control-plane-jrr66",
+              "namespace": "default",
+              "displayName": "default-20797-control-plane-jrr66",
+              "kind": "Machine",
+              "group": "cluster.x-k8s.io",
+              "version": "v1beta1",
+              "provider": "cluster",
+              "uid": "d34fbdbf-2ba8-41aa-8df7-398fdd4eb3b5",
+              "collapsible": false,
+              "collapsed": false,
+              "ready": true,
+              "severity": "",
+              "hasReady": true,
+              "children": {
+                "Machine Infrastructure": [
+                  {
+                    "name": "default-20797-control-plane-brjtb",
+                    "namespace": "default",
+                    "displayName": "default-20797-control-plane-brjtb",
+                    "kind": "AzureMachine",
+                    "group": "infrastructure.cluster.x-k8s.io",
+                    "version": "v1beta1",
+                    "provider": "infrastructure",
+                    "uid": "b5a2d8b4-9265-4fad-a87a-7cb65561c39a",
+                    "collapsible": false,
+                    "collapsed": false,
+                    "ready": true,
+                    "severity": "",
+                    "hasReady": true,
+                    "children": {}
+                  }
+                ],
+                "Bootstrap Config": [
+                  {
+                    "name": "default-20797-control-plane-bv9wj",
+                    "namespace": "default",
+                    "displayName": "default-20797-control-plane-bv9wj",
+                    "kind": "KubeadmConfig",
+                    "group": "bootstrap.cluster.x-k8s.io",
+                    "version": "v1beta1",
+                    "provider": "bootstrap",
+                    "uid": "ed050caf-41ff-44e8-a4b6-745ad94faf32",
+                    "collapsible": false,
+                    "collapsed": false,
+                    "ready": true,
+                    "severity": "",
+                    "hasReady": true,
+                    "children": {}
+                  }
+                ]
+              }
+            }
+          ],
+          "Templates": [
+            {
+              "name": "default-20797-control-plane",
+              "namespace": "default",
+              "displayName": "default-20797-control-plane",
+              "kind": "AzureMachineTemplate",
+              "group": "infrastructure.cluster.x-k8s.io",
+              "version": "v1beta1",
+              "provider": "infrastructure",
+              "uid": "infrastructure.cluster.x-k8s.io/v1beta1, Kind=AzureMachineTemplate, default/default-20797-control-plane",
+              "collapsible": false,
+              "collapsed": false,
+              "ready": false,
+              "severity": "",
+              "hasReady": false,
+              "children": {}
+            }
+          ]
+        }
+      }
+    ],
+    "Machine Deployments": [
+      {
+        "name": "default-20797-md-0",
+        "namespace": "default",
+        "displayName": "default-20797-md-0",
+        "kind": "MachineDeployment",
+        "group": "cluster.x-k8s.io",
+        "version": "v1beta1",
+        "provider": "cluster",
+        "uid": "5d09346e-2fab-40a2-83c5-47542bf64548",
+        "collapsible": false,
+        "collapsed": false,
+        "ready": true,
+        "severity": "",
+        "hasReady": true,
+        "children": {
+          "MachineSet": [
+            {
+              "name": "default-20797-md-0-6d7fdb6786",
+              "namespace": "default",
+              "displayName": "default-20797-md-0-6d7fdb6786",
+              "kind": "MachineSet",
+              "group": "cluster.x-k8s.io",
+              "version": "v1beta1",
+              "provider": "cluster",
+              "uid": "6ac2b37d-53d6-4943-97d4-6e16dcb41c5a",
+              "collapsible": false,
+              "collapsed": false,
+              "ready": true,
+              "severity": "",
+              "hasReady": true,
+              "children": {
+                "2 Machines": [
+                  {
+                    "name": "default-20797-md-0-6d7fdb6786-knhtq",
+                    "namespace": "default",
+                    "displayName": "default-20797-md-0-6d7fdb6786-knhtq",
+                    "kind": "Machine",
+                    "group": "cluster.x-k8s.io",
+                    "version": "v1beta1",
+                    "provider": "cluster",
+                    "uid": "f5b976bf-8224-49e7-aaac-3f7f60c34869",
+                    "collapsible": false,
+                    "collapsed": false,
+                    "ready": true,
+                    "severity": "",
+                    "hasReady": true,
+                    "children": {
+                      "Machine Infrastructure": [
+                        {
+                          "name": "default-20797-md-0-nbwc6",
+                          "namespace": "default",
+                          "displayName": "default-20797-md-0-nbwc6",
+                          "kind": "AzureMachine",
+                          "group": "infrastructure.cluster.x-k8s.io",
+                          "version": "v1beta1",
+                          "provider": "infrastructure",
+                          "uid": "e1944f8b-44a6-43eb-a607-c1e3693ac754",
+                          "collapsible": false,
+                          "collapsed": false,
+                          "ready": true,
+                          "severity": "",
+                          "hasReady": true,
+                          "children": {}
+                        }
+                      ],
+                      "Bootstrap Config": [
+                        {
+                          "name": "default-20797-md-0-gxtbp",
+                          "namespace": "default",
+                          "displayName": "default-20797-md-0-gxtbp",
+                          "kind": "KubeadmConfig",
+                          "group": "bootstrap.cluster.x-k8s.io",
+                          "version": "v1beta1",
+                          "provider": "bootstrap",
+                          "uid": "ce3b82a3-c25a-4240-afe8-d02ca49d3dbb",
+                          "collapsible": false,
+                          "collapsed": false,
+                          "ready": true,
+                          "severity": "",
+                          "hasReady": true,
+                          "children": {}
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "name": "default-20797-md-0-6d7fdb6786-kr4wk",
+                    "namespace": "default",
+                    "displayName": "default-20797-md-0-6d7fdb6786-kr4wk",
+                    "kind": "Machine",
+                    "group": "cluster.x-k8s.io",
+                    "version": "v1beta1",
+                    "provider": "cluster",
+                    "uid": "8e8ebf97-17a6-40f1-b5e4-ca715a6430ff",
+                    "collapsible": false,
+                    "collapsed": false,
+                    "ready": true,
+                    "severity": "",
+                    "hasReady": true,
+                    "children": {
+                      "Machine Infrastructure": [
+                        {
+                          "name": "default-20797-md-0-g6wkx",
+                          "namespace": "default",
+                          "displayName": "default-20797-md-0-g6wkx",
+                          "kind": "AzureMachine",
+                          "group": "infrastructure.cluster.x-k8s.io",
+                          "version": "v1beta1",
+                          "provider": "infrastructure",
+                          "uid": "c911bf12-af26-4db0-9890-d7241c6e6597",
+                          "collapsible": false,
+                          "collapsed": false,
+                          "ready": true,
+                          "severity": "",
+                          "hasReady": true,
+                          "children": {}
+                        }
+                      ],
+                      "Bootstrap Config": [
+                        {
+                          "name": "default-20797-md-0-j8skk",
+                          "namespace": "default",
+                          "displayName": "default-20797-md-0-j8skk",
+                          "kind": "KubeadmConfig",
+                          "group": "bootstrap.cluster.x-k8s.io",
+                          "version": "v1beta1",
+                          "provider": "bootstrap",
+                          "uid": "81348581-3715-417b-b71f-90c48c00284c",
+                          "collapsible": false,
+                          "collapsed": false,
+                          "ready": true,
+                          "severity": "",
+                          "hasReady": true,
+                          "children": {}
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "Templates": [
+            {
+              "name": "default-20797-md-0",
+              "namespace": "default",
+              "displayName": "default-20797-md-0",
+              "kind": "AzureMachineTemplate",
+              "group": "infrastructure.cluster.x-k8s.io",
+              "version": "v1beta1",
+              "provider": "infrastructure",
+              "uid": "infrastructure.cluster.x-k8s.io/v1beta1, Kind=AzureMachineTemplate, /default-20797-md-0",
+              "collapsible": false,
+              "collapsed": false,
+              "ready": false,
+              "severity": "",
+              "hasReady": false,
+              "children": {}
+            },
+            {
+              "name": "default-20797-md-0",
+              "namespace": "default",
+              "displayName": "default-20797-md-0",
+              "kind": "KubeadmConfigTemplate",
+              "group": "bootstrap.cluster.x-k8s.io",
+              "version": "v1beta1",
+              "provider": "bootstrap",
+              "uid": "bootstrap.cluster.x-k8s.io/v1beta1, Kind=KubeadmConfigTemplate, /default-20797-md-0",
+              "collapsible": false,
+              "collapsed": false,
+              "ready": false,
+              "severity": "",
+              "hasReady": false,
+              "children": {}
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
