@@ -17,16 +17,21 @@ const ResourceScreen = ({ route, navigation }) => {
   let conditions = clusterData.status.conditions;
   const [crd, setCRD] = useState({status: {conditions: conditions}});
   let info = clusterData.status.info;
+  const [specCardInput, setSpecCardInput] = useState([]);
 
   useEffect(() => {
     // TODO: Check if Kind == Cluster
     fetchTree(name).then((res) => {
-      console.log("useeffect fetchTree: ", res)
+      // console.log("useeffect fetchTree: ", res)
       setTree(res);
     })
     fetchResourceData(kind, name).then((res) => {
-      console.log("useeffect fetchResource: ", res)
+      // console.log("useeffect fetchResource: ", res)
       setCRD(res);
+
+      console.log("res spec is ", res.spec);
+      let result = crdToMapCard(res.spec);
+      setSpecCardInput(result.value);
     })
   }, [])
 
@@ -41,7 +46,7 @@ const ResourceScreen = ({ route, navigation }) => {
         items={info}
       />
       <Card.Title title="Spec"></Card.Title>
-      <InfoCard route={route} navigation={navigation} items={spec} />
+      <InfoCard route={route} navigation={navigation} items={specCardInput} />
 
       <View style={styles.wrapper}>
         <ServiceList route={route} navigation={navigation} resourceMap={tree.children} />
@@ -52,6 +57,82 @@ const ResourceScreen = ({ route, navigation }) => {
 }
 
 export default ResourceScreen;
+
+const spec1 = [
+  {
+    "name": "Paused",
+    "value": "False",
+    "valueType": "string",
+  },
+  {
+    "name": "APIServerPort",
+    "value": "6443",
+    "valueType": "string",
+  },
+  {
+    "name": "Labels",
+    "value": [
+      {
+        "name": "Label1",
+        "value": "Value1",
+        "valueType": "string",
+      },
+      {
+        "name": "Label2",
+        "value": "Value2",
+        "valueType": "string",
+      },
+    ],
+    "valueType": "list",
+  },
+]
+
+function crdToMapCard(resource) {
+  let result = [];
+  console.log("crdToMapCard, got resource", resource);
+  if (typeof resource == "string" || typeof resource == "number") {
+    return {
+      value: resource, 
+      valueType: "text"
+    };
+  } else if (Array.isArray(resource)) {
+    resource.forEach((e, i) => {
+      console.log("crdToMapCard, got array element", e);
+      let { value, valueType } = crdToMapCard(e);
+      if (valueType == "text") {
+        result.push({
+          name: value,
+          value: "",
+          valueType: "text",
+        });
+      } else {
+        result.push({
+          name: i,
+          value: value,
+          valueType: valueType,
+        });
+      }
+    });
+  } else {
+    // isObject
+    Object.entries(resource).forEach(([k, v]) => {
+      let name = k;
+      console.log("crdToMapCard, got key", k, "value", v);
+      let { value, valueType } = crdToMapCard(v);
+      
+      result.push({
+        name: name,
+        value: value,
+        valueType: valueType,
+      });
+    });
+  }
+
+  return {
+    value: result,
+    valueType: "list",
+  }
+}
 
 const conditions = [
   {
@@ -152,7 +233,7 @@ const fetchResourceData = (kind, name) => {
   return new Promise((resolve, reject) => {
     axios.get(BACKEND_URL + '/resource?kind=' + kind + '&name=' + name).then(
       (response) => {
-        console.log("Response:", response.data);
+        // console.log("Response:", response.data);
         resolve(response.data);
       }
     ).catch(error => {
@@ -167,7 +248,7 @@ const fetchTree = async (name) => {
   return new Promise((resolve, reject) => {
     axios.get(BACKEND_URL + '/tree/' + name).then(
       (response) => {
-        console.log("Response:", response.data);
+        // console.log("Response:", response.data);
         resolve(response.data);
       }
     ).catch(error => {
