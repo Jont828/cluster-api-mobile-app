@@ -14,10 +14,11 @@ const ResourceScreen = ({ route, navigation }) => {
   // mockClusterInfo.Name = name;
   // const crd = fetchResourceData(kind, name);
   const [tree, setTree] = useState({children: {}});
-  let conditions = clusterData.status.conditions;
+
   const [crd, setCRD] = useState({status: {conditions: conditions}});
-  let info = clusterData.status.info;
   const [specCardInput, setSpecCardInput] = useState([]);
+  const [conditions, setConditions] = useState([]);
+  const [statusCardInput, setStatusCardInput] = useState([]);
 
   useEffect(() => {
     // TODO: Check if Kind == Cluster
@@ -30,8 +31,13 @@ const ResourceScreen = ({ route, navigation }) => {
       setCRD(res);
 
       console.log("res spec is ", res.spec);
-      let result = crdToMapCard(res.spec);
-      setSpecCardInput(result.value);
+      let specResult = crdToMapCard(res.spec);
+      setSpecCardInput(specResult.value);
+
+      let { conditions, ...items } = res.status;
+      let statusResult = crdToMapCard(items);
+      setStatusCardInput(statusResult.value);
+      setConditions(conditions);
     })
   }, [])
 
@@ -42,8 +48,8 @@ const ResourceScreen = ({ route, navigation }) => {
       <StatusCard 
         route={route}
         navigation={navigation}
-        conditions={crd.status.conditions}
-        items={info}
+        conditions={conditions}
+        items={statusCardInput}
       />
       <Card.Title title="Spec"></Card.Title>
       <InfoCard route={route} navigation={navigation} items={specCardInput} />
@@ -90,9 +96,9 @@ const spec1 = [
 function crdToMapCard(resource) {
   let result = [];
   console.log("crdToMapCard, got resource", resource);
-  if (typeof resource == "string" || typeof resource == "number") {
+  if (typeof resource == "string" || typeof resource == "number" || typeof resource == "boolean") {
     return {
-      value: resource, 
+      value: resource.toString(), 
       valueType: "text"
     };
   } else if (Array.isArray(resource)) {
