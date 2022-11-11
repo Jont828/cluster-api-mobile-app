@@ -52,7 +52,7 @@
       "diskSizeGB": 128,
       "osType": "Linux"
     },
-    "providerID": "azure:///subscriptions/1d587fba-fa76-41cd-9897-fdcb329435c7/resourceGroups/default-20797/providers/Microsoft.Compute/virtualMachines/default-20797-control-plane-brjtb",
+    "providerID": "azure:///subscriptions/12345678-9012-3456-7890-123456789012/resourceGroups/default-20797/providers/Microsoft.Compute/virtualMachines/default-20797-control-plane-brjtb",
     "sshPublicKey": "c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCZ1FDdUVVcktRR1R1UWJXcG54aUo3Y1BCZzNSUC85TUtlbW5ReDVKeGdZem1EbVMzL1l2alNxSTRocWRVTUNqdmFVSXBjVjBWbktMR2M1bGh5Z1YwVGZFSTdaYjVQUnBvdGxRa05PUG1STE90Q2pVMnBiWTcxNUcrZEsrSWUzUjB4UXNmcXpWZUIrM1d4bE5EUU00Szc2NS81UERuUVIvVnd4V1lmcWMxTmd2TDBDSVV4elA5TFhXVW1oNmNHMnl5UWhMeDd2azdWUUc1QXR6N3pnTWV5c3AvNVZpUitiWjFrNXRzQTJHQjZkU2ZNL1FJOU4xNkhqdGxibjE2NFRlOVFYWDdJOGMxNVVUQ1B6VmJ2T1V6NUNJS2Q2S2RsY1ZiQ2ZMM0hMY3lEZE1tUmdPK2xvR3phOGZDQ09uTW9XTXZGSkNSOW83QWlocGo2aVdQTVhtUVNIM0xQNWhtZ2g1TitWOHByV1dQMHNrRnRPMjdQcmF6eHQ5VlB3SGluMTNPd0RRNXhGaHZsY0p6Tk1YcDlySlFJWXNHQlkzU0g0TkhPR2p3bWdHU2NkWUtIYzlUZTBweUlwOTdxOC9iYmp4cjg2eFFUMXkwbEY1YitkK3NreG1JaHptY2JwZVRLUDVtQkN5N1J5SitSdHYwYUY1ZTNuNTUzdHdCZWVLa3JWZ1krWjA9IGpvbmF0aGFuQEpvbmF0aGFuLU1TLVBD",
     "subnetName": "control-plane-subnet",
     "vmSize": "Standard_D2s_v3"

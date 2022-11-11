@@ -3,7 +3,7 @@
   "kind": "AzureCluster",
   "metadata": {
     "annotations": {
-      "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"infrastructure.cluster.x-k8s.io/v1beta1\",\"kind\":\"AzureCluster\",\"metadata\":{\"annotations\":{},\"name\":\"default-20797\",\"namespace\":\"default\"},\"spec\":{\"identityRef\":{\"apiVersion\":\"infrastructure.cluster.x-k8s.io/v1beta1\",\"kind\":\"AzureClusterIdentity\",\"name\":\"cluster-identity\"},\"location\":\"eastus\",\"networkSpec\":{\"subnets\":[{\"name\":\"control-plane-subnet\",\"role\":\"control-plane\"},{\"name\":\"node-subnet\",\"natGateway\":{\"name\":\"node-natgateway\"},\"role\":\"node\"}],\"vnet\":{\"name\":\"default-20797-vnet\"}},\"resourceGroup\":\"default-20797\",\"subscriptionID\":\"1d587fba-fa76-41cd-9897-fdcb329435c7\"}}\n"
+      "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"infrastructure.cluster.x-k8s.io/v1beta1\",\"kind\":\"AzureCluster\",\"metadata\":{\"annotations\":{},\"name\":\"default-20797\",\"namespace\":\"default\"},\"spec\":{\"identityRef\":{\"apiVersion\":\"infrastructure.cluster.x-k8s.io/v1beta1\",\"kind\":\"AzureClusterIdentity\",\"name\":\"cluster-identity\"},\"location\":\"eastus\",\"networkSpec\":{\"subnets\":[{\"name\":\"control-plane-subnet\",\"role\":\"control-plane\"},{\"name\":\"node-subnet\",\"natGateway\":{\"name\":\"node-natgateway\"},\"role\":\"node\"}],\"vnet\":{\"name\":\"default-20797-vnet\"}},\"resourceGroup\":\"default-20797\",\"subscriptionID\":\"12345678-9012-3456-7890-123456789012\"}}\n"
     },
     "creationTimestamp": "2022-11-07T21:29:44Z",
     "finalizers": [
@@ -62,7 +62,7 @@
           "cidrBlocks": [
             "10.0.0.0/16"
           ],
-          "id": "/subscriptions/1d587fba-fa76-41cd-9897-fdcb329435c7/resourceGroups/default-20797/providers/Microsoft.Network/virtualNetworks/default-20797-vnet/subnets/control-plane-subnet",
+          "id": "/subscriptions/12345678-9012-3456-7890-123456789012/resourceGroups/default-20797/providers/Microsoft.Network/virtualNetworks/default-20797-vnet/subnets/control-plane-subnet",
           "name": "control-plane-subnet",
           "natGateway": {
             "ip": {
@@ -106,10 +106,10 @@
           "cidrBlocks": [
             "10.1.0.0/16"
           ],
-          "id": "/subscriptions/1d587fba-fa76-41cd-9897-fdcb329435c7/resourceGroups/default-20797/providers/Microsoft.Network/virtualNetworks/default-20797-vnet/subnets/node-subnet",
+          "id": "/subscriptions/12345678-9012-3456-7890-123456789012/resourceGroups/default-20797/providers/Microsoft.Network/virtualNetworks/default-20797-vnet/subnets/node-subnet",
           "name": "node-subnet",
           "natGateway": {
-            "id": "/subscriptions/1d587fba-fa76-41cd-9897-fdcb329435c7/resourceGroups/default-20797/providers/Microsoft.Network/natGateways/node-natgateway",
+            "id": "/subscriptions/12345678-9012-3456-7890-123456789012/resourceGroups/default-20797/providers/Microsoft.Network/natGateways/node-natgateway",
             "ip": {
               "name": "pip-default-20797-node-subnet-natgw"
             },
@@ -128,7 +128,7 @@
         "cidrBlocks": [
           "10.0.0.0/8"
         ],
-        "id": "/subscriptions/1d587fba-fa76-41cd-9897-fdcb329435c7/resourceGroups/default-20797/providers/Microsoft.Network/virtualNetworks/default-20797-vnet",
+        "id": "/subscriptions/12345678-9012-3456-7890-123456789012/resourceGroups/default-20797/providers/Microsoft.Network/virtualNetworks/default-20797-vnet",
         "name": "default-20797-vnet",
         "resourceGroup": "default-20797",
         "tags": {
@@ -139,7 +139,7 @@
       }
     },
     "resourceGroup": "default-20797",
-    "subscriptionID": "1d587fba-fa76-41cd-9897-fdcb329435c7"
+    "subscriptionID": "12345678-9012-3456-7890-123456789012"
   },
   "status": {
     "conditions": [

@@ -48,7 +48,7 @@
       "uid": "c911bf12-af26-4db0-9890-d7241c6e6597"
     },
     "nodeDeletionTimeout": "10s",
-    "providerID": "azure:///subscriptions/1d587fba-fa76-41cd-9897-fdcb329435c7/resourceGroups/default-20797/providers/Microsoft.Compute/virtualMachines/default-20797-md-0-g6wkx",
+    "providerID": "azure:///subscriptions/12345678-9012-3456-7890-123456789012/resourceGroups/default-20797/providers/Microsoft.Compute/virtualMachines/default-20797-md-0-g6wkx",
     "version": "v1.23.9"
   },
   "status": {

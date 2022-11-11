@@ -50,7 +50,7 @@
       "uid": "b5a2d8b4-9265-4fad-a87a-7cb65561c39a"
     },
     "nodeDeletionTimeout": "10s",
-    "providerID": "azure:///subscriptions/1d587fba-fa76-41cd-9897-fdcb329435c7/resourceGroups/default-20797/providers/Microsoft.Compute/virtualMachines/default-20797-control-plane-brjtb",
+    "providerID": "azure:///subscriptions/12345678-9012-3456-7890-123456789012/resourceGroups/default-20797/providers/Microsoft.Compute/virtualMachines/default-20797-control-plane-brjtb",
     "version": "v1.23.9"
   },
   "status": {
