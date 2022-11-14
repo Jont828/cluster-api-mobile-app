@@ -20,7 +20,7 @@ const CardRow = (props) => {
       case 'link':
         return <Icon name="link-variant" size={25} style={[styles.textStyle, styles.textRight]}></Icon>
       case 'list':
-        return <Icon name="chevron-right" size={30} style={[styles.textStyle, styles.textRight]}></Icon>
+        return <Icon name="chevron-right" size={30} style={[styles.textStyle, styles.textRight, styles.chevron]}></Icon>
       case 'switch':
         return <Switch value={isSwitchOn} onValueChange={onToggleSwitch} color="#1976D2"/>
       case 'menu':
@@ -128,6 +128,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: "center",
     height: lineHeight,
+    minWidth: 0,
   }, 
   touchableRow: {
     alignItems: "center",
@@ -137,10 +138,13 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   chevron: {
-    lineHeight: lineHeight,
-    color: 'grey',
+    // lineHeight: lineHeight,
+    // color: 'grey',
+    marginRight: -5,
   },
   textStyle: {
+    minWidth: 0,
+
     // backgroundColor: '#aaa',
     // lineHeight: lineHeight,
     // display: 'inline-block',
@@ -163,6 +167,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   textRight: {
+    overflowWrap: 'break-word',
     minWidth: 0,
     textAlign: 'right',
     color: '#888',

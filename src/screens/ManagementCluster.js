@@ -41,6 +41,7 @@ const NamespaceList = (props) => {
 const ManagementCluster = (props) => {
   const [clusters, setClusters] = useState({});
   useEffect(() => {
+    console.log("Using BACKEND_URL", BACKEND_URL);
     axios.get(BACKEND_URL + '/managementclusters').then((res) => {
       console.log("cluster overview: ", res.data)
       setClusters(res.data);

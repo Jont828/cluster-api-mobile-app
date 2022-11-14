@@ -18,8 +18,8 @@ let arrayData = [
   {
     key: '0',
     kind: 'Cluster',
-    name: 'my-cluster',
-    namespace: 'my-namespace',
+    name: 'default-20797',
+    namespace: 'default',
     time: "",
     ago: "5 min",
     message: "Cluster provisioned successfully",

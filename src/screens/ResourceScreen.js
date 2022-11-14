@@ -22,10 +22,12 @@ const ResourceScreen = ({ route, navigation }) => {
 
   useEffect(() => {
     // TODO: Check if Kind == Cluster
-    fetchTree(name).then((res) => {
-      // console.log("useeffect fetchTree: ", res)
-      setTree(res);
-    })
+    if (kind == "Cluster") {
+      fetchTree(name).then((res) => {
+        // console.log("useeffect fetchTree: ", res)
+        setTree(res);
+      })
+    }
     fetchResourceData(kind, name).then((res) => {
       // console.log("useeffect fetchResource: ", res)
       setCRD(res);
@@ -103,7 +105,7 @@ function crdToMapCard(resource) {
     };
   } else if (Array.isArray(resource)) {
     resource.forEach((e, i) => {
-      console.log("crdToMapCard, got array element", e);
+      // console.log("crdToMapCard, got array element", e);
       let { value, valueType } = crdToMapCard(e);
       if (valueType == "text") {
         result.push({
@@ -123,7 +125,7 @@ function crdToMapCard(resource) {
     // isObject
     Object.entries(resource).forEach(([k, v]) => {
       let name = k;
-      console.log("crdToMapCard, got key", k, "value", v);
+      // console.log("crdToMapCard, got key", k, "value", v);
       let { value, valueType } = crdToMapCard(v);
       
       result.push({
@@ -250,9 +252,9 @@ const fetchResourceData = (kind, name) => {
 };
 
 const fetchTree = async (name) => {
-  console.log("Fetching tree for", name, "from", BACKEND_URL + '/tree/' + name)
+  console.log("Fetching tree for", name, "from", BACKEND_URL + '/tree?name=' + name)
   return new Promise((resolve, reject) => {
-    axios.get(BACKEND_URL + '/tree/' + name).then(
+    axios.get(BACKEND_URL + '/tree?name=' + name).then(
       (response) => {
         // console.log("Response:", response.data);
         resolve(response.data);

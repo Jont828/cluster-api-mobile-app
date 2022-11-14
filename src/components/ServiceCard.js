@@ -4,6 +4,15 @@ import { Card , Title, Subheading, Caption, Paragraph } from 'react-native-paper
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const ServiceCard = ({route, navigation, kind, name, namespace, apiVersion, status, node }) => {
+    let statusStyle = {}
+    if (status) {
+      statusStyle = eval("styles." + status);
+    } else {
+      statusStyle = {
+        width: 0,
+        marginRight: 5,
+      }
+    }
     return(
       <Card
         style={{margin: 10}}
@@ -18,7 +27,7 @@ const ServiceCard = ({route, navigation, kind, name, namespace, apiVersion, stat
         >
         <View style={styles.cardContentWrapper}>
           <View style={[styles.leftWrap]}>
-            <View style={[styles.leftStatus, eval("styles." + status)]} />
+            <View style={[styles.leftStatus, statusStyle]} />
             <View style={styles.leftTextWrap}>
               <Title style={styles.title}>{kind}</Title>
               <Subheading style={styles.name}>{name}</Subheading>

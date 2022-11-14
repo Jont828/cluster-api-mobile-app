@@ -25,7 +25,7 @@ type clusterOverview struct {
 
 func main() {
 	router := gin.Default()
-	router.GET("/tree/:name", getTree)
+	router.GET("/tree", getTree)
 	router.GET("/resource", getResourceByName)
 	router.GET("/managementclusters", getManagementClusters)
 
