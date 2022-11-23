@@ -97,7 +97,7 @@ const spec1 = [
 
 function crdToMapCard(resource) {
   let result = [];
-  console.log("crdToMapCard, got resource", resource);
+  // console.log("crdToMapCard, got resource", resource);
   if (typeof resource == "string" || typeof resource == "number" || typeof resource == "boolean") {
     return {
       value: resource.toString(), 

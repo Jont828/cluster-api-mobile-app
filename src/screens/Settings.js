@@ -24,7 +24,7 @@ const Settings = ({route, navigation}) => {
       // "icon": "account-circle",
       // "icon": "pencil",
       "iconSize": 20,
-      "iconColor": "#1976D2",
+      "iconColor": "#43A047",
     },
     {
       "name": "GitHub Repo",
@@ -34,7 +34,7 @@ const Settings = ({route, navigation}) => {
       // "icon": "account-circle",
       // "icon": "pencil",
       "iconSize": 20,
-      "iconColor": "#1976D2",
+      "iconColor": "#000",
     },
   ]
 
@@ -47,15 +47,15 @@ const Settings = ({route, navigation}) => {
       "valueType": "menu",
       "icon": "brightness-6",
       "iconSize": 20,
-      // "iconColor": "#555",
+      "iconColor": "#6A1B9A",
     },
-    {
-      "name": "Enable Something Random",
-      "valueType": "switch",
-      "icon": "help-circle",
-      "iconSize": 20,
-      "iconColor": "#1976D2",
-    },
+    // {
+    //   "name": "Enable Something Random",
+    //   "valueType": "switch",
+    //   "icon": "help-circle",
+    //   "iconSize": 20,
+    //   "iconColor": "#1976D2",
+    // },
     {
       "name": "Notifications",
       "value": [
@@ -64,7 +64,7 @@ const Settings = ({route, navigation}) => {
       "valueType": "list",
       "icon": "bell",
       "iconSize": 20,
-      "iconColor": "#1976D2",
+      "iconColor": "#F44336",
 
     },
   ]

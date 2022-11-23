@@ -51,6 +51,9 @@ func goDotEnvVariable(key string) string {
 
 func getTree(c *gin.Context) {
 	fmt.Println("Calling getTree()")
+	name := c.Query("name")
+	namespace := c.Query("namespace")
+	fmt.Printf("Values are: name: %s, namespace :%s\n", name, namespace)
 
 	treeFile, err := os.Open("data/tree.json")
 	if err != nil {
@@ -76,10 +79,12 @@ func getManagementClusters(c *gin.Context) {
 
 func getResourceByName(c *gin.Context) {
 	fmt.Println("Calling getResourceByName()")
-	name := c.Query("name")
 	kind := c.Query("kind")
+	apiVersion := c.Query("apiVersion")
+	name := c.Query("name")
+	namespace := c.Query("namespace")
 
-	fmt.Printf("Values are: name: %s, kind: %s\n", name, kind)
+	fmt.Printf("Values are: kind: %s, apiVersion: %s, name: %s, namespace :%s\n", kind, apiVersion, name, namespace)
 
 	crdFile, err := os.Open(fmt.Sprintf("data/%s_%s.json", kind, name))
 	if err != nil {
