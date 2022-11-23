@@ -1,0 +1,163 @@
+{
+  "apiVersion": "bootstrap.cluster.x-k8s.io/v1beta1",
+  "kind": "KubeadmConfig",
+  "metadata": {
+    "creationTimestamp": "2022-11-07T21:32:02Z",
+    "generation": 2,
+    "labels": {
+      "cluster.x-k8s.io/cluster-name": "default-20797",
+      "cluster.x-k8s.io/control-plane": ""
+    },
+    "name": "default-20797-control-plane-bv9wj",
+    "namespace": "default",
+    "ownerReferences": [
+      {
+        "apiVersion": "controlplane.cluster.x-k8s.io/v1beta1",
+        "kind": "KubeadmControlPlane",
+        "name": "default-20797-control-plane",
+        "uid": "aa27b40b-e22f-4dfb-b90d-bf2a4375120e"
+      },
+      {
+        "apiVersion": "cluster.x-k8s.io/v1beta1",
+        "blockOwnerDeletion": true,
+        "controller": true,
+        "kind": "Machine",
+        "name": "default-20797-control-plane-jrr66",
+        "uid": "d34fbdbf-2ba8-41aa-8df7-398fdd4eb3b5"
+      }
+    ],
+    "resourceVersion": "4157",
+    "uid": "ed050caf-41ff-44e8-a4b6-745ad94faf32"
+  },
+  "spec": {
+    "clusterConfiguration": {
+      "apiServer": {
+        "extraArgs": {
+          "cloud-config": "/etc/kubernetes/azure.json",
+          "cloud-provider": "azure"
+        },
+        "extraVolumes": [
+          {
+            "hostPath": "/etc/kubernetes/azure.json",
+            "mountPath": "/etc/kubernetes/azure.json",
+            "name": "cloud-config",
+            "readOnly": true
+          }
+        ],
+        "timeoutForControlPlane": "20m0s"
+      },
+      "clusterName": "default-20797",
+      "controlPlaneEndpoint": "default-20797-bb040df5.eastus.cloudapp.azure.com:6443",
+      "controllerManager": {
+        "extraArgs": {
+          "allocate-node-cidrs": "false",
+          "cloud-config": "/etc/kubernetes/azure.json",
+          "cloud-provider": "azure",
+          "cluster-name": "default-20797"
+        },
+        "extraVolumes": [
+          {
+            "hostPath": "/etc/kubernetes/azure.json",
+            "mountPath": "/etc/kubernetes/azure.json",
+            "name": "cloud-config",
+            "readOnly": true
+          }
+        ]
+      },
+      "dns": {},
+      "etcd": {
+        "local": {
+          "dataDir": "/var/lib/etcddisk/etcd",
+          "extraArgs": {
+            "quota-backend-bytes": "8589934592"
+          }
+        }
+      },
+      "kubernetesVersion": "v1.23.9",
+      "networking": {
+        "podSubnet": "192.168.0.0/16"
+      },
+      "scheduler": {}
+    },
+    "diskSetup": {
+      "filesystems": [
+        {
+          "device": "/dev/disk/azure/scsi1/lun0",
+          "extraOpts": [
+            "-E",
+            "lazy_itable_init=1,lazy_journal_init=1"
+          ],
+          "filesystem": "ext4",
+          "label": "etcd_disk"
+        },
+        {
+          "device": "ephemeral0.1",
+          "filesystem": "ext4",
+          "label": "ephemeral0",
+          "replaceFS": "ntfs"
+        }
+      ],
+      "partitions": [
+        {
+          "device": "/dev/disk/azure/scsi1/lun0",
+          "layout": true,
+          "overwrite": false,
+          "tableType": "gpt"
+        }
+      ]
+    },
+    "files": [
+      {
+        "contentFrom": {
+          "secret": {
+            "key": "control-plane-azure.json",
+            "name": "default-20797-control-plane-azure-json"
+          }
+        },
+        "owner": "root:root",
+        "path": "/etc/kubernetes/azure.json",
+        "permissions": "0644"
+      }
+    ],
+    "format": "cloud-config",
+    "initConfiguration": {
+      "localAPIEndpoint": {},
+      "nodeRegistration": {
+        "kubeletExtraArgs": {
+          "azure-container-registry-config": "/etc/kubernetes/azure.json",
+          "cloud-config": "/etc/kubernetes/azure.json",
+          "cloud-provider": "azure"
+        },
+        "name": "{{ ds.meta_data[\"local_hostname\"] }}"
+      }
+    },
+    "mounts": [
+      [
+        "LABEL=etcd_disk",
+        "/var/lib/etcddisk"
+      ]
+    ]
+  },
+  "status": {
+    "conditions": [
+      {
+        "lastTransitionTime": "2022-11-07T21:32:02Z",
+        "status": "True",
+        "type": "Ready"
+      },
+      {
+        "lastTransitionTime": "2022-11-07T21:32:02Z",
+        "status": "True",
+        "type": "CertificatesAvailable"
+      },
+      {
+        "lastTransitionTime": "2022-11-07T21:32:02Z",
+        "status": "True",
+        "type": "DataSecretAvailable"
+      }
+    ],
+    "dataSecretName": "default-20797-control-plane-bv9wj",
+    "observedGeneration": 2,
+    "ready": true
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "apiVersion": "infrastructure.cluster.x-k8s.io/v1beta1",
+  "kind": "AzureMachine",
+  "metadata": {
+    "annotations": {
+      "cluster-api-provider-azure": "true",
+      "cluster.x-k8s.io/cloned-from-groupkind": "AzureMachineTemplate.infrastructure.cluster.x-k8s.io",
+      "cluster.x-k8s.io/cloned-from-name": "default-20797-control-plane"
+    },
+    "creationTimestamp": "2022-11-07T21:32:02Z",
+    "finalizers": [
+      "azuremachine.infrastructure.cluster.x-k8s.io"
+    ],
+    "generation": 3,
+    "labels": {
+      "cluster.x-k8s.io/cluster-name": "default-20797",
+      "cluster.x-k8s.io/control-plane": ""
+    },
+    "name": "default-20797-control-plane-brjtb",
+    "namespace": "default",
+    "ownerReferences": [
+      {
+        "apiVersion": "controlplane.cluster.x-k8s.io/v1beta1",
+        "kind": "KubeadmControlPlane",
+        "name": "default-20797-control-plane",
+        "uid": "aa27b40b-e22f-4dfb-b90d-bf2a4375120e"
+      },
+      {
+        "apiVersion": "cluster.x-k8s.io/v1beta1",
+        "blockOwnerDeletion": true,
+        "controller": true,
+        "kind": "Machine",
+        "name": "default-20797-control-plane-jrr66",
+        "uid": "d34fbdbf-2ba8-41aa-8df7-398fdd4eb3b5"
+      }
+    ],
+    "resourceVersion": "4705",
+    "uid": "b5a2d8b4-9265-4fad-a87a-7cb65561c39a"
+  },
+  "spec": {
+    "dataDisks": [
+      {
+        "cachingType": "ReadWrite",
+        "diskSizeGB": 256,
+        "lun": 0,
+        "nameSuffix": "etcddisk"
+      }
+    ],
+    "identity": "None",
+    "osDisk": {
+      "cachingType": "None",
+      "diskSizeGB": 128,
+      "osType": "Linux"
+    },
+    "providerID": "azure:///subscriptions/12345678-9012-3456-7890-123456789012/resourceGroups/default-20797/providers/Microsoft.Compute/virtualMachines/default-20797-control-plane-brjtb",
+    "sshPublicKey": "c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCZ1FDdUVVcktRR1R1UWJXcG54aUo3Y1BCZzNSUC85TUtlbW5ReDVKeGdZem1EbVMzL1l2alNxSTRocWRVTUNqdmFVSXBjVjBWbktMR2M1bGh5Z1YwVGZFSTdaYjVQUnBvdGxRa05PUG1STE90Q2pVMnBiWTcxNUcrZEsrSWUzUjB4UXNmcXpWZUIrM1d4bE5EUU00Szc2NS81UERuUVIvVnd4V1lmcWMxTmd2TDBDSVV4elA5TFhXVW1oNmNHMnl5UWhMeDd2azdWUUc1QXR6N3pnTWV5c3AvNVZpUitiWjFrNXRzQTJHQjZkU2ZNL1FJOU4xNkhqdGxibjE2NFRlOVFYWDdJOGMxNVVUQ1B6VmJ2T1V6NUNJS2Q2S2RsY1ZiQ2ZMM0hMY3lEZE1tUmdPK2xvR3phOGZDQ09uTW9XTXZGSkNSOW83QWlocGo2aVdQTVhtUVNIM0xQNWhtZ2g1TitWOHByV1dQMHNrRnRPMjdQcmF6eHQ5VlB3SGluMTNPd0RRNXhGaHZsY0p6Tk1YcDlySlFJWXNHQlkzU0g0TkhPR2p3bWdHU2NkWUtIYzlUZTBweUlwOTdxOC9iYmp4cjg2eFFUMXkwbEY1YitkK3NreG1JaHptY2JwZVRLUDVtQkN5N1J5SitSdHYwYUY1ZTNuNTUzdHdCZWVLa3JWZ1krWjA9IGpvbmF0aGFuQEpvbmF0aGFuLU1TLVBD",
+    "subnetName": "control-plane-subnet",
+    "vmSize": "Standard_D2s_v3"
+  },
+  "status": {
+    "addresses": [
+      {
+        "address": "default-20797-control-plane-brjtb",
+        "type": "InternalDNS"
+      },
+      {
+        "address": "10.0.0.4",
+        "type": "InternalIP"
+      }
+    ],
+    "conditions": [
+      {
+        "lastTransitionTime": "2022-11-07T21:34:36Z",
+        "status": "True",
+        "type": "Ready"
+      },
+      {
+        "lastTransitionTime": "2022-11-07T21:34:36Z",
+        "status": "True",
+        "type": "BootstrapSucceeded"
+      },
+      {
+        "lastTransitionTime": "2022-11-07T21:33:23Z",
+        "status": "True",
+        "type": "DisksReady"
+      },
+      {
+        "lastTransitionTime": "2022-11-07T21:32:14Z",
+        "status": "True",
+        "type": "InboundNATRulesReady"
+      },
+      {
+        "lastTransitionTime": "2022-11-07T21:32:33Z",
+        "status": "True",
+        "type": "NetworkInterfacesReady"
+      },
+      {
+        "lastTransitionTime": "2022-11-07T21:33:23Z",
+        "status": "True",
+        "type": "VMRunning"
+      }
+    ],
+    "ready": true,
+    "vmState": "Succeeded"
+  }
+}

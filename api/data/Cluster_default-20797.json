@@ -1,0 +1,85 @@
+{
+  "apiVersion": "cluster.x-k8s.io/v1beta1",
+  "kind": "Cluster",
+  "metadata": {
+    "annotations": {
+      "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"cluster.x-k8s.io/v1beta1\",\"kind\":\"Cluster\",\"metadata\":{\"annotations\":{},\"labels\":{\"cni\":\"calico\"},\"name\":\"default-20797\",\"namespace\":\"default\"},\"spec\":{\"clusterNetwork\":{\"pods\":{\"cidrBlocks\":[\"192.168.0.0/16\"]}},\"controlPlaneRef\":{\"apiVersion\":\"controlplane.cluster.x-k8s.io/v1beta1\",\"kind\":\"KubeadmControlPlane\",\"name\":\"default-20797-control-plane\"},\"infrastructureRef\":{\"apiVersion\":\"infrastructure.cluster.x-k8s.io/v1beta1\",\"kind\":\"AzureCluster\",\"name\":\"default-20797\"}}}\n"
+    },
+    "creationTimestamp": "2022-11-07T21:29:44Z",
+    "finalizers": [
+      "cluster.cluster.x-k8s.io"
+    ],
+    "generation": 2,
+    "labels": {
+      "cni": "calico"
+    },
+    "name": "default-20797",
+    "namespace": "default",
+    "resourceVersion": "4799",
+    "uid": "32e091ca-6aad-4515-819b-0b64e456d94c"
+  },
+  "spec": {
+    "clusterNetwork": {
+      "pods": {
+        "cidrBlocks": [
+          "192.168.0.0/16"
+        ]
+      }
+    },
+    "controlPlaneEndpoint": {
+      "host": "default-20797-bb040df5.eastus.cloudapp.azure.com",
+      "port": 6443
+    },
+    "controlPlaneRef": {
+      "apiVersion": "controlplane.cluster.x-k8s.io/v1beta1",
+      "kind": "KubeadmControlPlane",
+      "name": "default-20797-control-plane",
+      "namespace": "default"
+    },
+    "infrastructureRef": {
+      "apiVersion": "infrastructure.cluster.x-k8s.io/v1beta1",
+      "kind": "AzureCluster",
+      "name": "default-20797",
+      "namespace": "default"
+    }
+  },
+  "status": {
+    "conditions": [
+      {
+        "lastTransitionTime": "2022-11-07T21:34:37Z",
+        "status": "True",
+        "type": "Ready"
+      },
+      {
+        "lastTransitionTime": "2022-11-07T21:34:37Z",
+        "status": "True",
+        "type": "ControlPlaneInitialized"
+      },
+      {
+        "lastTransitionTime": "2022-11-07T21:34:37Z",
+        "status": "True",
+        "type": "ControlPlaneReady"
+      },
+      {
+        "lastTransitionTime": "2022-11-07T21:32:01Z",
+        "status": "True",
+        "type": "InfrastructureReady"
+      }
+    ],
+    "controlPlaneReady": true,
+    "failureDomains": {
+      "1": {
+        "controlPlane": true
+      },
+      "2": {
+        "controlPlane": true
+      },
+      "3": {
+        "controlPlane": true
+      }
+    },
+    "infrastructureReady": true,
+    "observedGeneration": 2,
+    "phase": "Provisioned"
+  }
+}

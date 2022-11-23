@@ -10,7 +10,7 @@ const HomeScreen = ({ route, navigation }) => {
   const recents = [
     {
       kind: "Cluster",
-      name: "my-cluster",
+      name: "default-20797",
       status: "success",
       namespace: "default",
     },

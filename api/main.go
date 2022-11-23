@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
@@ -24,7 +26,7 @@ type clusterOverview struct {
 func main() {
 	router := gin.Default()
 	router.GET("/tree", getTree)
-	router.GET("/tree/:name", getResourceByName)
+	router.GET("/resource", getResourceByName)
 	router.GET("/managementclusters", getManagementClusters)
 
 	address := goDotEnvVariable("BACKEND_ADDRESS")
@@ -48,28 +50,75 @@ func goDotEnvVariable(key string) string {
 }
 
 func getTree(c *gin.Context) {
-	c.IndentedJSON(http.StatusOK, tree)
+	fmt.Println("Calling getTree()")
+	name := c.Query("name")
+	namespace := c.Query("namespace")
+	fmt.Printf("Values are: name: %s, namespace :%s\n", name, namespace)
+
+	treeFile, err := os.Open("data/tree.json")
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	defer treeFile.Close()
+
+	byteValue, err := ioutil.ReadAll(treeFile)
+	if err != nil {
+		fmt.Println(err)
+	}
+	c.Data(http.StatusOK, "application/json", byteValue)
+
+	// c.IndentedJSON(http.StatusOK, tree)
+
 }
 
 func getManagementClusters(c *gin.Context) {
+	fmt.Println("Calling getManagementClusters()")
 	c.IndentedJSON(http.StatusOK, overview)
 }
 
 func getResourceByName(c *gin.Context) {
-	name := c.Param("name")
+	fmt.Println("Calling getResourceByName()")
+	kind := c.Query("kind")
+	apiVersion := c.Query("apiVersion")
+	name := c.Query("name")
+	namespace := c.Query("namespace")
 
-	// Loop over the list of albums, looking for
-	// an album whose ID value matches the parameter.
-	for _, r := range resources {
-		if r.Name == name {
-			c.IndentedJSON(http.StatusOK, r)
-			return
-		}
+	fmt.Printf("Values are: kind: %s, apiVersion: %s, name: %s, namespace :%s\n", kind, apiVersion, name, namespace)
+
+	crdFile, err := os.Open(fmt.Sprintf("data/%s_%s.json", kind, name))
+	if err != nil {
+		fmt.Println(err)
 	}
-	c.IndentedJSON(http.StatusNotFound, gin.H{"message": "album not found"})
+
+	defer crdFile.Close()
+
+	byteValue, err := ioutil.ReadAll(crdFile)
+	if err != nil {
+		fmt.Println(err)
+	}
+	c.Data(http.StatusOK, "application/json", byteValue)
+
+	// c.String(http.StatusOK, string(byteValue))
+
+	// // Loop over the list of albums, looking for
+	// // an album whose ID value matches the parameter.
+	// for _, r := range resources {
+	// 	if r.Name == name {
+	// 		c.IndentedJSON(http.StatusOK, r)
+	// 		return
+	// 	}
+	// }
+	// c.IndentedJSON(http.StatusNotFound, gin.H{"message": "album not found"})
 }
 
 var overview = map[string][]clusterOverview{
+	"default": {
+		clusterOverview{
+			Name:     "default-20797",
+			Provider: "azure",
+		},
+	},
 	"my-namespace": {
 		clusterOverview{
 			Name:     "my-cluster",

@@ -1,0 +1,138 @@
+{
+  "apiVersion": "cluster.x-k8s.io/v1beta1",
+  "kind": "Machine",
+  "metadata": {
+    "annotations": {
+      "controlplane.cluster.x-k8s.io/kubeadm-cluster-configuration": "{\"etcd\":{\"local\":{\"dataDir\":\"/var/lib/etcddisk/etcd\",\"extraArgs\":{\"quota-backend-bytes\":\"8589934592\"}}},\"networking\":{},\"apiServer\":{\"extraArgs\":{\"cloud-config\":\"/etc/kubernetes/azure.json\",\"cloud-provider\":\"azure\"},\"extraVolumes\":[{\"name\":\"cloud-config\",\"hostPath\":\"/etc/kubernetes/azure.json\",\"mountPath\":\"/etc/kubernetes/azure.json\",\"readOnly\":true}],\"timeoutForControlPlane\":\"20m0s\"},\"controllerManager\":{\"extraArgs\":{\"allocate-node-cidrs\":\"false\",\"cloud-config\":\"/etc/kubernetes/azure.json\",\"cloud-provider\":\"azure\",\"cluster-name\":\"default-20797\"},\"extraVolumes\":[{\"name\":\"cloud-config\",\"hostPath\":\"/etc/kubernetes/azure.json\",\"mountPath\":\"/etc/kubernetes/azure.json\",\"readOnly\":true}]},\"scheduler\":{},\"dns\":{}}"
+    },
+    "creationTimestamp": "2022-11-07T21:32:02Z",
+    "finalizers": [
+      "machine.cluster.x-k8s.io"
+    ],
+    "generation": 3,
+    "labels": {
+      "cluster.x-k8s.io/cluster-name": "default-20797",
+      "cluster.x-k8s.io/control-plane": ""
+    },
+    "name": "default-20797-control-plane-jrr66",
+    "namespace": "default",
+    "ownerReferences": [
+      {
+        "apiVersion": "controlplane.cluster.x-k8s.io/v1beta1",
+        "blockOwnerDeletion": true,
+        "controller": true,
+        "kind": "KubeadmControlPlane",
+        "name": "default-20797-control-plane",
+        "uid": "aa27b40b-e22f-4dfb-b90d-bf2a4375120e"
+      }
+    ],
+    "resourceVersion": "4791",
+    "uid": "d34fbdbf-2ba8-41aa-8df7-398fdd4eb3b5"
+  },
+  "spec": {
+    "bootstrap": {
+      "configRef": {
+        "apiVersion": "bootstrap.cluster.x-k8s.io/v1beta1",
+        "kind": "KubeadmConfig",
+        "name": "default-20797-control-plane-bv9wj",
+        "namespace": "default",
+        "uid": "ed050caf-41ff-44e8-a4b6-745ad94faf32"
+      },
+      "dataSecretName": "default-20797-control-plane-bv9wj"
+    },
+    "clusterName": "default-20797",
+    "failureDomain": "1",
+    "infrastructureRef": {
+      "apiVersion": "infrastructure.cluster.x-k8s.io/v1beta1",
+      "kind": "AzureMachine",
+      "name": "default-20797-control-plane-brjtb",
+      "namespace": "default",
+      "uid": "b5a2d8b4-9265-4fad-a87a-7cb65561c39a"
+    },
+    "nodeDeletionTimeout": "10s",
+    "providerID": "azure:///subscriptions/12345678-9012-3456-7890-123456789012/resourceGroups/default-20797/providers/Microsoft.Compute/virtualMachines/default-20797-control-plane-brjtb",
+    "version": "v1.23.9"
+  },
+  "status": {
+    "addresses": [
+      {
+        "address": "default-20797-control-plane-brjtb",
+        "type": "InternalDNS"
+      },
+      {
+        "address": "10.0.0.4",
+        "type": "InternalIP"
+      }
+    ],
+    "bootstrapReady": true,
+    "conditions": [
+      {
+        "lastTransitionTime": "2022-11-07T21:34:36Z",
+        "status": "True",
+        "type": "Ready"
+      },
+      {
+        "lastTransitionTime": "2022-11-07T21:34:39Z",
+        "status": "True",
+        "type": "APIServerPodHealthy"
+      },
+      {
+        "lastTransitionTime": "2022-11-07T21:32:02Z",
+        "status": "True",
+        "type": "BootstrapReady"
+      },
+      {
+        "lastTransitionTime": "2022-11-07T21:34:39Z",
+        "status": "True",
+        "type": "ControllerManagerPodHealthy"
+      },
+      {
+        "lastTransitionTime": "2022-11-07T21:34:40Z",
+        "status": "True",
+        "type": "EtcdMemberHealthy"
+      },
+      {
+        "lastTransitionTime": "2022-11-07T21:34:39Z",
+        "status": "True",
+        "type": "EtcdPodHealthy"
+      },
+      {
+        "lastTransitionTime": "2022-11-07T21:34:36Z",
+        "status": "True",
+        "type": "InfrastructureReady"
+      },
+      {
+        "lastTransitionTime": "2022-11-07T21:34:55Z",
+        "status": "True",
+        "type": "NodeHealthy"
+      },
+      {
+        "lastTransitionTime": "2022-11-07T21:34:39Z",
+        "status": "True",
+        "type": "SchedulerPodHealthy"
+      }
+    ],
+    "infrastructureReady": true,
+    "lastUpdated": "2022-11-07T21:34:36Z",
+    "nodeInfo": {
+      "architecture": "amd64",
+      "bootID": "1465b30c-af04-47f2-9ca6-0c625edd83b2",
+      "containerRuntimeVersion": "containerd://1.6.2",
+      "kernelVersion": "5.15.0-1014-azure",
+      "kubeProxyVersion": "v1.23.9",
+      "kubeletVersion": "v1.23.9",
+      "machineID": "6b63fc4fd46247e4bee3d013e0ca7e04",
+      "operatingSystem": "linux",
+      "osImage": "Ubuntu 20.04.4 LTS",
+      "systemUUID": "9f031030-5d39-0d45-bf72-59b2175d7c5f"
+    },
+    "nodeRef": {
+      "apiVersion": "v1",
+      "kind": "Node",
+      "name": "default-20797-control-plane-brjtb",
+      "uid": "382871a3-c792-4db3-b1a5-dd9d55789639"
+    },
+    "observedGeneration": 3,
+    "phase": "Running"
+  }
+}

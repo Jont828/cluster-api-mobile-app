@@ -11,7 +11,10 @@ const StatusCard = ({ conditions, items, route, navigation }) => {
   const showDialog = () => {setDialogVisible(true) };
   const hideDialog = () => {setDialogVisible(false) };
 
-  const [selectedCondition, setSelectedCondition] = React.useState(conditions[0]);
+  const [selectedCondition, setSelectedCondition] = React.useState({
+    type: "",
+    status: "True",
+  });
   
   const getIcon = (condition) => {
     if (condition.status === 'True')

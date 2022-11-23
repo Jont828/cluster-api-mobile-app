@@ -1,0 +1,38 @@
+{
+  "apiVersion": "infrastructure.cluster.x-k8s.io/v1beta1",
+  "kind": "AzureMachineTemplate",
+  "metadata": {
+    "annotations": {
+      "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"infrastructure.cluster.x-k8s.io/v1beta1\",\"kind\":\"AzureMachineTemplate\",\"metadata\":{\"annotations\":{},\"name\":\"default-20797-md-0\",\"namespace\":\"default\"},\"spec\":{\"template\":{\"spec\":{\"osDisk\":{\"diskSizeGB\":128,\"osType\":\"Linux\"},\"sshPublicKey\":\"c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCZ1FDdUVVcktRR1R1UWJXcG54aUo3Y1BCZzNSUC85TUtlbW5ReDVKeGdZem1EbVMzL1l2alNxSTRocWRVTUNqdmFVSXBjVjBWbktMR2M1bGh5Z1YwVGZFSTdaYjVQUnBvdGxRa05PUG1STE90Q2pVMnBiWTcxNUcrZEsrSWUzUjB4UXNmcXpWZUIrM1d4bE5EUU00Szc2NS81UERuUVIvVnd4V1lmcWMxTmd2TDBDSVV4elA5TFhXVW1oNmNHMnl5UWhMeDd2azdWUUc1QXR6N3pnTWV5c3AvNVZpUitiWjFrNXRzQTJHQjZkU2ZNL1FJOU4xNkhqdGxibjE2NFRlOVFYWDdJOGMxNVVUQ1B6VmJ2T1V6NUNJS2Q2S2RsY1ZiQ2ZMM0hMY3lEZE1tUmdPK2xvR3phOGZDQ09uTW9XTXZGSkNSOW83QWlocGo2aVdQTVhtUVNIM0xQNWhtZ2g1TitWOHByV1dQMHNrRnRPMjdQcmF6eHQ5VlB3SGluMTNPd0RRNXhGaHZsY0p6Tk1YcDlySlFJWXNHQlkzU0g0TkhPR2p3bWdHU2NkWUtIYzlUZTBweUlwOTdxOC9iYmp4cjg2eFFUMXkwbEY1YitkK3NreG1JaHptY2JwZVRLUDVtQkN5N1J5SitSdHYwYUY1ZTNuNTUzdHdCZWVLa3JWZ1krWjA9IGpvbmF0aGFuQEpvbmF0aGFuLU1TLVBD\",\"vmSize\":\"Standard_D2s_v3\"}}}}\n"
+    },
+    "creationTimestamp": "2022-11-07T21:29:45Z",
+    "generation": 1,
+    "name": "default-20797-md-0",
+    "namespace": "default",
+    "ownerReferences": [
+      {
+        "apiVersion": "cluster.x-k8s.io/v1beta1",
+        "kind": "Cluster",
+        "name": "default-20797",
+        "uid": "32e091ca-6aad-4515-819b-0b64e456d94c"
+      }
+    ],
+    "resourceVersion": "3579",
+    "uid": "17f8d37d-4d64-4341-b385-40930c563564"
+  },
+  "spec": {
+    "template": {
+      "metadata": {},
+      "spec": {
+        "identity": "None",
+        "osDisk": {
+          "cachingType": "None",
+          "diskSizeGB": 128,
+          "osType": "Linux"
+        },
+        "sshPublicKey": "c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCZ1FDdUVVcktRR1R1UWJXcG54aUo3Y1BCZzNSUC85TUtlbW5ReDVKeGdZem1EbVMzL1l2alNxSTRocWRVTUNqdmFVSXBjVjBWbktMR2M1bGh5Z1YwVGZFSTdaYjVQUnBvdGxRa05PUG1STE90Q2pVMnBiWTcxNUcrZEsrSWUzUjB4UXNmcXpWZUIrM1d4bE5EUU00Szc2NS81UERuUVIvVnd4V1lmcWMxTmd2TDBDSVV4elA5TFhXVW1oNmNHMnl5UWhMeDd2azdWUUc1QXR6N3pnTWV5c3AvNVZpUitiWjFrNXRzQTJHQjZkU2ZNL1FJOU4xNkhqdGxibjE2NFRlOVFYWDdJOGMxNVVUQ1B6VmJ2T1V6NUNJS2Q2S2RsY1ZiQ2ZMM0hMY3lEZE1tUmdPK2xvR3phOGZDQ09uTW9XTXZGSkNSOW83QWlocGo2aVdQTVhtUVNIM0xQNWhtZ2g1TitWOHByV1dQMHNrRnRPMjdQcmF6eHQ5VlB3SGluMTNPd0RRNXhGaHZsY0p6Tk1YcDlySlFJWXNHQlkzU0g0TkhPR2p3bWdHU2NkWUtIYzlUZTBweUlwOTdxOC9iYmp4cjg2eFFUMXkwbEY1YitkK3NreG1JaHptY2JwZVRLUDVtQkN5N1J5SitSdHYwYUY1ZTNuNTUzdHdCZWVLa3JWZ1krWjA9IGpvbmF0aGFuQEpvbmF0aGFuLU1TLVBD",
+        "vmSize": "Standard_D2s_v3"
+      }
+    }
+  }
+}

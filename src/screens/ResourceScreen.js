@@ -12,13 +12,34 @@ import { BACKEND_URL } from '@env'
 const ResourceScreen = ({ route, navigation }) => {
   const { name, namespace, kind, apiVersion, node } = route.params;
   // mockClusterInfo.Name = name;
-  const { status, spec } = fetchResourceData(kind, name);
+  // const crd = fetchResourceData(kind, name);
   const [tree, setTree] = useState({children: {}});
 
+  const [crd, setCRD] = useState({status: {conditions: conditions}});
+  const [specCardInput, setSpecCardInput] = useState([]);
+  const [conditions, setConditions] = useState([]);
+  const [statusCardInput, setStatusCardInput] = useState([]);
+
   useEffect(() => {
-    fetchTree(name).then((res) => {
-      console.log("useeffect res: ", res)
-      setTree(res);
+    // TODO: Check if Kind == Cluster
+    if (kind == "Cluster") {
+      fetchTree(name).then((res) => {
+        // console.log("useeffect fetchTree: ", res)
+        setTree(res);
+      })
+    }
+    fetchResourceData(kind, name).then((res) => {
+      // console.log("useeffect fetchResource: ", res)
+      setCRD(res);
+
+      console.log("res spec is ", res.spec);
+      let specResult = crdToMapCard(res.spec);
+      setSpecCardInput(specResult.value);
+
+      let { conditions, ...items } = res.status;
+      let statusResult = crdToMapCard(items);
+      setStatusCardInput(statusResult.value);
+      setConditions(conditions);
     })
   }, [])
 
@@ -29,11 +50,11 @@ const ResourceScreen = ({ route, navigation }) => {
       <StatusCard 
         route={route}
         navigation={navigation}
-        conditions={status.conditions}
-        items={status.info}
+        conditions={conditions}
+        items={statusCardInput}
       />
       <Card.Title title="Spec"></Card.Title>
-      <InfoCard route={route} navigation={navigation} items={spec} />
+      <InfoCard route={route} navigation={navigation} items={specCardInput} />
 
       <View style={styles.wrapper}>
         <ServiceList route={route} navigation={navigation} resourceMap={tree.children} />
@@ -44,6 +65,82 @@ const ResourceScreen = ({ route, navigation }) => {
 }
 
 export default ResourceScreen;
+
+const spec1 = [
+  {
+    "name": "Paused",
+    "value": "False",
+    "valueType": "string",
+  },
+  {
+    "name": "APIServerPort",
+    "value": "6443",
+    "valueType": "string",
+  },
+  {
+    "name": "Labels",
+    "value": [
+      {
+        "name": "Label1",
+        "value": "Value1",
+        "valueType": "string",
+      },
+      {
+        "name": "Label2",
+        "value": "Value2",
+        "valueType": "string",
+      },
+    ],
+    "valueType": "list",
+  },
+]
+
+function crdToMapCard(resource) {
+  let result = [];
+  // console.log("crdToMapCard, got resource", resource);
+  if (typeof resource == "string" || typeof resource == "number" || typeof resource == "boolean") {
+    return {
+      value: resource.toString(), 
+      valueType: "text"
+    };
+  } else if (Array.isArray(resource)) {
+    resource.forEach((e, i) => {
+      // console.log("crdToMapCard, got array element", e);
+      let { value, valueType } = crdToMapCard(e);
+      if (valueType == "text") {
+        result.push({
+          name: value,
+          value: "",
+          valueType: "text",
+        });
+      } else {
+        result.push({
+          name: i,
+          value: value,
+          valueType: valueType,
+        });
+      }
+    });
+  } else {
+    // isObject
+    Object.entries(resource).forEach(([k, v]) => {
+      let name = k;
+      // console.log("crdToMapCard, got key", k, "value", v);
+      let { value, valueType } = crdToMapCard(v);
+      
+      result.push({
+        name: name,
+        value: value,
+        valueType: valueType,
+      });
+    });
+  }
+
+  return {
+    value: result,
+    valueType: "list",
+  }
+}
 
 const conditions = [
   {
@@ -140,22 +237,26 @@ const azureClusterData = {
 };
 
 const fetchResourceData = (kind, name) => {
-  switch (kind) {
-    case "Cluster":
-      return clusterData;
-    case "AzureCluster":
-      return azureClusterData;
-    default:
-      return azureClusterData;
-  }
+  console.log("Fetching CRD for", name, "from", BACKEND_URL + '/resource?' + kind + '&' + name)
+  return new Promise((resolve, reject) => {
+    axios.get(BACKEND_URL + '/resource?kind=' + kind + '&name=' + name).then(
+      (response) => {
+        // console.log("Response:", response.data);
+        resolve(response.data);
+      }
+    ).catch(error => {
+      console.log("Got an axios error fetching tree:", error);
+      reject("Axios error fetching tree:", error)
+    });
+  });
 };
 
 const fetchTree = async (name) => {
-  console.log("Fetching tree for", name, "from", BACKEND_URL + '/tree/' + name)
+  console.log("Fetching tree for", name, "from", BACKEND_URL + '/tree?name=' + name)
   return new Promise((resolve, reject) => {
-    axios.get(BACKEND_URL + '/tree/' + name).then(
+    axios.get(BACKEND_URL + '/tree?name=' + name).then(
       (response) => {
-        console.log("Response:", response.data);
+        // console.log("Response:", response.data);
         resolve(response.data);
       }
     ).catch(error => {

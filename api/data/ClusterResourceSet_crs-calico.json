@@ -1,0 +1,42 @@
+{
+  "apiVersion": "addons.cluster.x-k8s.io/v1beta1",
+  "kind": "ClusterResourceSet",
+  "metadata": {
+    "annotations": {
+      "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"addons.cluster.x-k8s.io/v1beta1\",\"kind\":\"ClusterResourceSet\",\"metadata\":{\"annotations\":{},\"name\":\"crs-calico\",\"namespace\":\"default\"},\"spec\":{\"clusterSelector\":{\"matchLabels\":{\"cni\":\"calico\"}},\"resources\":[{\"kind\":\"ConfigMap\",\"name\":\"calico-addon\"}],\"strategy\":\"ApplyOnce\"}}\n"
+    },
+    "creationTimestamp": "2022-11-07T21:19:29Z",
+    "finalizers": [
+      "addons.cluster.x-k8s.io"
+    ],
+    "generation": 1,
+    "name": "crs-calico",
+    "namespace": "default",
+    "resourceVersion": "4730",
+    "uid": "e572f16d-c12f-449e-bba8-4e5a24a1b5ce"
+  },
+  "spec": {
+    "clusterSelector": {
+      "matchLabels": {
+        "cni": "calico"
+      }
+    },
+    "resources": [
+      {
+        "kind": "ConfigMap",
+        "name": "calico-addon"
+      }
+    ],
+    "strategy": "ApplyOnce"
+  },
+  "status": {
+    "conditions": [
+      {
+        "lastTransitionTime": "2022-11-07T21:34:39Z",
+        "status": "True",
+        "type": "ResourcesApplied"
+      }
+    ],
+    "observedGeneration": 1
+  }
+}
