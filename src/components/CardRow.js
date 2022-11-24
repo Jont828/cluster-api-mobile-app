@@ -73,7 +73,7 @@ const CardRow = (props) => {
       style={styles.touchableRow}
       onPress={() => {
         if (props.valueType === 'list')
-          props.navigation.navigate("InfoCardScreen", { name: props.name, items: props.value })
+          props.navigation.push("InfoCardScreen", { name: props.name, items: props.value })
         else if (props.valueType === 'link')
           handlePress()
       }}
@@ -82,7 +82,7 @@ const CardRow = (props) => {
       <View style={styles.leftWrap}>
         {
           (props.icon) ? (
-            <Icon name={props.icon} size={props.iconSize} color={props.iconColor} style={styles.leftIcon} />
+            <Icon name={props.icon} size={(props.iconSize) ? props.iconSize : 20} color={props.iconColor} style={styles.leftIcon} />
           ) : null
         }
         {/* {props.name} */}
