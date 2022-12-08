@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   title: {
-    display: 'inline-block'
+    // display: 'inline-block'
     // marginLeft: 10,
   },
   card: {

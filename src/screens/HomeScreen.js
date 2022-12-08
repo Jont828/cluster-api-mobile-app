@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   titleWrap: {
-    display: 'inline',
+    // display: 'inline',
     backgroundColor: 'grey',
   },
   wrapper: {

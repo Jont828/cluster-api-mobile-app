@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
     // flex: 1
   },
   leftIcon: {
-    display: 'inline',
+    // display: 'inline',
     paddingTop: 1,
     // verticalAlign: 'middle',
     // lineHeight: lineHeight,
