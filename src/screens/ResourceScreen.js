@@ -14,19 +14,19 @@ const ResourceScreen = ({ route, navigation }) => {
   // mockClusterInfo.Name = name;
   // const crd = fetchResourceData(kind, name);
   const [tree, setTree] = useState({children: {}});
-
+  const [children, setChildren] = useState({});
   const [crd, setCRD] = useState({status: {conditions: conditions}});
   const [specCardInput, setSpecCardInput] = useState([]);
   const [conditions, setConditions] = useState([]);
   const [statusCardInput, setStatusCardInput] = useState([]);
 
   useEffect(() => {
-    // TODO: Check if Kind == Cluster
-    if (kind == "Cluster") {
+    if (node == null) {
       fetchTree(name).then((res) => {
-        // console.log("useeffect fetchTree: ", res)
-        setTree(res);
+        setChildren(res.children);
       })
+    } else {
+      setChildren(node.children);
     }
     fetchResourceData(kind, name).then((res) => {
       // console.log("useeffect fetchResource: ", res)
@@ -57,7 +57,7 @@ const ResourceScreen = ({ route, navigation }) => {
       <InfoCard route={route} navigation={navigation} items={specCardInput} />
 
       <View style={styles.wrapper}>
-        <ServiceList route={route} navigation={navigation} resourceMap={tree.children} />
+        <ServiceList route={route} navigation={navigation} resourceMap={children} />
       </View>
 
     </ScrollView >
